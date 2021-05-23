@@ -1,8 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 // import PlusCircleIcon from "./SideBar.jsx";
-import { Container, Row, Col } from "react-bootstrap";
-import Scrollspy from "react-scrollspy";
+import TripCards from "./TripCards.jsx";
 
 const SideNav = styled.nav`
   width: 50rem;
@@ -44,67 +43,24 @@ export default function SideBar() {
           <StyledNavItem>
             <h5 className="lead">Filters</h5>
           </StyledNavItem>
-          <Container>
-            <Row>
-              <Col md="3">
-                {" "}
-                <Scrollspy
-                  items={[
-                    "section1",
-                    "section2",
-                    "section3",
-                    "section4",
-                    "section5",
-                  ]}
-                  currentClassName="active"
-                  offset={-100}
-                >
-                  <li>
-                    <a href="#section1">Section 01</a>
-                  </li>
-                  <li>
-                    <a href="#section2">Section 02</a>
-                  </li>
-                  <li>
-                    <a href="#section3">Section 03</a>
-                  </li>
-                  <li>
-                    <a href="#section4">Section 04</a>
-                  </li>
-                  <li>
-                    <a href="#section5">Section 05</a>
-                  </li>
-                </Scrollspy>
-              </Col>
-              <Col md="9">
-                <section id="section1">
-                  <h2 className="text-light text-right mr-5 mb-5">
-                    Food Card A
-                  </h2>
-                </section>
-                <section id="section2">
-                  <h2 className="text-light text-right mr-5 mb-5">
-                    Food Card B
-                  </h2>
-                </section>
-                <section id="section3">
-                  <h2 className="text-light text-right mr-5 mb-5">
-                    Trip Card A
-                  </h2>
-                </section>
-                <section id="section4">
-                  <h2 className="text-light text-right mr-5 mb-5">
-                    Site Card A
-                  </h2>
-                </section>
-                <section id="section5">
-                  <h2 className="text-light text-right mr-5 mb-5">
-                    Food Card C
-                  </h2>
-                </section>
-              </Col>
-            </Row>
-          </Container>
+          <div>
+            <section id="section1">
+              <h2 className="text-light mb-5">Food Card A</h2>
+              <TripCards />
+            </section>
+            <section id="section2">
+              <h2 className="text-light mb-5">Food Card B</h2>
+            </section>
+            <section id="section3">
+              <h2 className="text-light mb-5">Trip Card A</h2>
+            </section>
+            <section id="section4">
+              <h2 className="text-light mb-5">Site Card A</h2>
+            </section>
+            <section id="section5">
+              <h2 className="text-light mb-5">Food Card C</h2>
+            </section>
+          </div>
         </StyledNavList>
       </SideNav>
     </div>
