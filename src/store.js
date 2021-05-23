@@ -2,7 +2,7 @@ import React, {useReducer} from 'react'
 import axios from 'axios'
 
 export const initialState ={
-  country: null
+  country: null 
 }
 
 
