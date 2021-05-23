@@ -1,8 +1,8 @@
 import { VectorMap } from "@south-paw/react-vector-maps";
 import worldMapJson from "./worldMapJson.js";
 import styled from "styled-components";
-import React, { useState } from "react";
-
+import React, { useState, useContext } from "react";
+import { PlanningContext } from "../store";
 const Map = styled.div`
   margin: 1rem auto;
 
@@ -33,6 +33,8 @@ const Map = styled.div`
 `;
 
 const WorldMap = (props) => {
+  const { store } = useContext(PlanningContext);
+  const { highlightedCountry } = store;
   const [hovered, setHovered] = useState(null);
   const [clicked, setClicked] = useState(null);
   const [focused, setFocused] = useState(null);
@@ -50,7 +52,7 @@ const WorldMap = (props) => {
         <VectorMap
           {...worldMapJson}
           layerProps={layerProps}
-          currentLayers={props.highlight}
+          currentLayers={highlightedCountry}
         />
       </Map>
       <p>Hovered: {hovered && <code>{hovered}</code>}</p>

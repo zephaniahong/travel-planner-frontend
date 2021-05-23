@@ -1,8 +1,12 @@
 import TripCards from "./TripCards.jsx";
-import GoogleMap from "./GoogleMap.jsx";
+import CountryMap from "./CountryMap.jsx";
 
 const CountryTrips = () => {
-  return <div></div>;
+  return (
+    <div>
+      <CountryMap />
+    </div>
+  );
 };
 
 export default CountryTrips;

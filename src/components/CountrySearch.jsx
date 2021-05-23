@@ -2,7 +2,11 @@ import React, { useContext, useState } from "react";
 import { Typeahead } from "react-bootstrap-typeahead";
 // Import as a module in your JS
 import "react-bootstrap-typeahead/css/Typeahead.css";
-import { PlanningContext, setCountryAction } from "../store";
+import {
+  PlanningContext,
+  setCountryAction,
+  setHighlightAction,
+} from "../store";
 import countries from "./countries";
 import worldMapJson from "./worldMapJson";
 
@@ -21,7 +25,7 @@ const CountrySearch = (props) => {
     const worldCountries = worldMapJson.layers;
     for (let i = 0; i < worldCountries.length; i += 1) {
       if (worldCountries[i].name === input[0]) {
-        props.setHighlight(worldCountries[i].id);
+        dispatch(setHighlightAction(worldCountries[i].id));
       }
     }
   };
@@ -29,6 +33,7 @@ const CountrySearch = (props) => {
   return (
     <div>
       <Typeahead
+        id="searchbar"
         onChange={(input) => {
           setSearchedCountry(input[0]);
           highlightCountry(input);

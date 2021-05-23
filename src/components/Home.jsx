@@ -5,15 +5,13 @@ import { PlanningContext } from "../store";
 
 const Home = () => {
   const { store } = useContext(PlanningContext);
-  // state to know which country to highlight
-  const [highlight, setHighlight] = useState(null);
 
   // only render home page if user has not selected country
   if (store.country === null) {
     return (
       <div>
-        <CountrySearch setHighlight={setHighlight} />
-        <WorldMap highlight={highlight} />
+        <CountrySearch />
+        <WorldMap />
       </div>
     );
   } else {
