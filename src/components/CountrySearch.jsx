@@ -6,12 +6,13 @@ import {
   PlanningContext,
   setCountryAction,
   setHighlightAction,
+  setLatLngAction,
 } from "../store";
 import countries from "./countries";
 import worldMapJson from "./worldMapJson";
 
 const CountrySearch = ({ getGeocode, getLatLng }) => {
-  const { dispatch } = useContext(PlanningContext);
+  const { store, dispatch } = useContext(PlanningContext);
   const [searchedCountry, setSearchedCountry] = useState(null);
 
   // set chosen country in store
@@ -23,7 +24,7 @@ const CountrySearch = ({ getGeocode, getLatLng }) => {
   async function getLocationInfo() {
     const results = await getGeocode({ address: searchedCountry });
     const { lat, lng } = await getLatLng(results[0]);
-    console.log(lat, lng);
+    dispatch(setLatLngAction(lat, lng));
   }
 
   // know which country to highlight

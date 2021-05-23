@@ -10,9 +10,12 @@ export const initialState ={
 export function planningReducer(state, action){
   switch(action.type){
     case SET_COUNTRY:
-      return {...state, country: action.payload}
+      return {...state, country: {name:action.payload}}
     case SET_HIGHLIGHT:
       return {...state, highlightedCountry: action.payload}
+    case SET_LAT_LNG:
+      console.log(state.country)
+      return {...state, country: {name: state.country.name, lat: action.payload.lat, lng: action.payload.lng}}
   default:
     return state
   }
@@ -32,6 +35,7 @@ export function PlanningProvider({children}) {
 // Types
 const SET_COUNTRY = 'SET_COUNTRY'
 const SET_HIGHLIGHT = 'SET_HIGHLIGHT'
+const SET_LAT_LNG = 'SET_LAT_LNG'
 
 // action functions
 export function setCountryAction(country) {
@@ -45,6 +49,13 @@ export function setHighlightAction(country) {
   return {
     type: SET_HIGHLIGHT,
     payload: country
+  }
+}
+
+export function setLatLngAction(lat, lng) {
+  return {
+    type: SET_LAT_LNG,
+    payload: {lat, lng}
   }
 }
 
