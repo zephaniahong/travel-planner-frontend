@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const StyledNav = styled.nav`
-  width: 5rem;
+  width: 15rem;
   height: 100vh;
   position: fixed;
   background-color: black;
@@ -21,6 +21,10 @@ const StyledNavItem = styled.li`
   align-items: center;
   height: 5rem;
   color: white;
+  text-decoration: none;
+`;
+
+const StyledNavLinks = styled.a`
   text-decoration: none;
 `;
 
