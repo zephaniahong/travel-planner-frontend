@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Navbar, Nav, NavItem } from "react-bootstrap";
+import { Nav, NavItem } from "react-bootstrap";
 import ProfileIcon from "./ProfileIcon.jsx";
 
 export default function NavBar() {
@@ -16,15 +16,20 @@ export default function NavBar() {
           />
         </NavItem>
         <NavItem className="mr-auto">
-          <Link className="btn btn-dark px-3 mx-3" to="/">
+          <Link className="btn btn-secondary px-3 mx-3" to="/">
             Explore Map
           </Link>
         </NavItem>
-        <ul className="align-middle m-2 text-light">
-          <a href="#">
-            <ProfileIcon />
-          </a>
-        </ul>
+        <NavItem>
+          <Link className="btn btn-outline-success">+ Create Trip</Link>
+        </NavItem>
+        <NavItem>
+          <ul className="align-middle m-2 text-light">
+            <Link>
+              <ProfileIcon />
+            </Link>
+          </ul>
+        </NavItem>
       </Nav>
     </div>
   );
