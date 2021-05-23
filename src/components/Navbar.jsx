@@ -24,14 +24,16 @@ export default function NavBar() {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav classname="mr-auto">
-            <Link className="btn btn-secondary px-3 mx-3" to="/">
+            <Link className="btn btn-secondary" to="/">
               Explore Map
             </Link>
           </Nav>
           <Nav className="ml-auto">
-            <NavItem>
-              <Link className="btn btn-outline-success">+ Create Trip</Link>
-            </NavItem>
+            <Link className="btn btn-outline-success mr-3" to="/createtrip">
+              + Create Trip
+            </Link>
+          </Nav>
+          <Nav>
             <NavDropdown
               title={<ProfileIcon />}
               id="collasible-nav-dropdown"

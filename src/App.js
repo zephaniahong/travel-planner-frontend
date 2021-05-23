@@ -6,29 +6,32 @@ import { BrowserRouter as Router,
 import {PlanningProvider} from './store';
 import Home from './components/Home.jsx';
 import Navbar from './components/Navbar.jsx';
+import { Container } from 'react-bootstrap';
+import './App.css'
 
 function App() {
   return (
     <PlanningProvider>
-    <div className="container-fluid">
-      
-      <Router>
-        <Navbar />
-        
-        <Switch>
-          <Route path="/">
-            <Home/>
-          </Route>
-          <Route>
+    <Container id="main" fluid>
+
+          <Router>
+            <Navbar />
             
-          </Route>
-          <Route>
-            
-          </Route>
-        </Switch>
-      </Router>
-       
-    </div>
+            <Switch>
+              <Route path="/">
+                <Home/>
+              </Route>
+              <Route>
+                
+              </Route>
+              <Route>
+                
+              </Route>
+            </Switch>
+          </Router>
+
+
+    </Container>
     </PlanningProvider>
   );
 }
