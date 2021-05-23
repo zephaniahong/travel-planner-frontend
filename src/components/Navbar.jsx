@@ -1,36 +1,49 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Nav, NavItem } from "react-bootstrap";
+import { Navbar, Nav, NavItem, NavDropdown } from "react-bootstrap";
 import ProfileIcon from "./ProfileIcon.jsx";
 
 export default function NavBar() {
   return (
     <div>
-      <Nav className="navbar navbar-expand-lg navbar-dark justify-content-between">
-        <NavItem className="navbar-brand text-dark px-3" href="#">
+      <Navbar
+        collapseOnSelect
+        bg="dark"
+        expand="lg"
+        variant="dark"
+        className="mb-5"
+      >
+        <Navbar.Brand className="navbar-brand text-dark px-3" href="#">
           <img
             src="./travel-planner-logo.png"
             width="32"
             height="32"
             alt="Travel Planner Brand"
           />
-        </NavItem>
-        <NavItem className="mr-auto">
-          <Link className="btn btn-secondary px-3 mx-3" to="/">
-            Explore Map
-          </Link>
-        </NavItem>
-        <NavItem>
-          <Link className="btn btn-outline-success">+ Create Trip</Link>
-        </NavItem>
-        <NavItem>
-          <ul className="align-middle m-2 text-light">
-            <Link>
-              <ProfileIcon />
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav classname="mr-auto">
+            <Link className="btn btn-secondary px-3 mx-3" to="/">
+              Explore Map
             </Link>
-          </ul>
-        </NavItem>
-      </Nav>
+          </Nav>
+          <Nav className="ml-auto">
+            <NavItem>
+              <Link className="btn btn-outline-success">+ Create Trip</Link>
+            </NavItem>
+            <NavDropdown
+              title={<ProfileIcon />}
+              id="collasible-nav-dropdown"
+              className="align-middle m-2 text-light"
+            >
+              <NavDropdown.Item>All Trips</NavDropdown.Item>
+              <NavDropdown.Item>Settings</NavDropdown.Item>
+              <NavDropdown.Item>Logout</NavDropdown.Item>
+            </NavDropdown>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
     </div>
   );
 }
