@@ -1,6 +1,5 @@
 import { useState, useContext } from "react";
 import WorldMap from "./WorldMap.jsx";
-import CountrySearch from "./CountrySearch.jsx";
 import { PlanningContext } from "../store";
 
 const Home = () => {
@@ -10,7 +9,6 @@ const Home = () => {
   if (store.country === null) {
     return (
       <div>
-        <CountrySearch />
         <WorldMap />
       </div>
     );
