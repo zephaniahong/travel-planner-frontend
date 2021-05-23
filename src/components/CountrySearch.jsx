@@ -10,14 +10,21 @@ import {
 import countries from "./countries";
 import worldMapJson from "./worldMapJson";
 
-const CountrySearch = (props) => {
+const CountrySearch = ({ getGeocode, getLatLng }) => {
   const { dispatch } = useContext(PlanningContext);
   const [searchedCountry, setSearchedCountry] = useState(null);
 
   // set chosen country in store
-  const handleSubmit = () => {
+  function handleSubmit() {
     dispatch(setCountryAction(searchedCountry));
-  };
+  }
+
+  // get lat and lng info of chosen country
+  async function getLocationInfo() {
+    const results = await getGeocode({ address: searchedCountry });
+    const { lat, lng } = await getLatLng(results[0]);
+    console.log(lat, lng);
+  }
 
   // know which country to highlight
   // loop through entire worldmapjson and find a match to find and set the id in state
@@ -40,7 +47,14 @@ const CountrySearch = (props) => {
         }}
         options={countries}
       />
-      <button onClick={handleSubmit}>Submit</button>
+      <button
+        onClick={() => {
+          handleSubmit();
+          getLocationInfo();
+        }}
+      >
+        Submit
+      </button>
     </div>
   );
 };
