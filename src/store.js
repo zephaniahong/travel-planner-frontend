@@ -14,7 +14,6 @@ export function planningReducer(state, action){
     case SET_HIGHLIGHT:
       return {...state, highlightedCountry: action.payload}
     case SET_LAT_LNG:
-      console.log(state.country)
       return {...state, country: {name: state.country.name, lat: action.payload.lat, lng: action.payload.lng}}
   default:
     return state
