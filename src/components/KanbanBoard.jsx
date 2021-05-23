@@ -1,3 +1,4 @@
+// KIV for Stretch (This will be used for calendar instead of food/activties/trips)
 import React, { useCallback, useState } from "react";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 

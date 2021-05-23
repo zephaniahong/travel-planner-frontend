@@ -6,13 +6,7 @@ import ProfileIcon from "./ProfileIcon.jsx";
 export default function NavBar() {
   return (
     <div>
-      <Navbar
-        collapseOnSelect
-        bg="dark"
-        expand="lg"
-        variant="dark"
-        className="mb-5"
-      >
+      <Navbar collapseOnSelect bg="dark" expand="lg" variant="dark">
         <Link to="/">
           <Navbar.Brand className="navbar-brand text-dark px-3">
             <img
