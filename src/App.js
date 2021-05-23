@@ -20,16 +20,13 @@ function App() {
             <Switch>
               <Route path="/">
                 <Home/>
+              </Route>                
+              <Route path="/createtrip">
+              
               </Route>
-              <Route>
                 
-              </Route>
-              <Route>
-                
-              </Route>
             </Switch>
           </Router>
-
 
     </Container>
     </PlanningProvider>
