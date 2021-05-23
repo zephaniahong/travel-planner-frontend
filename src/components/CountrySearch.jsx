@@ -11,7 +11,7 @@ import {
 import countries from "./countries";
 import worldMapJson from "./worldMapJson";
 
-const CountrySearch = ({ getGeocode, getLatLng }) => {
+const CountrySearch = ({ getGeocode, getLatLng, panTo }) => {
   const { store, dispatch } = useContext(PlanningContext);
   const [searchedCountry, setSearchedCountry] = useState(null);
 
@@ -24,6 +24,8 @@ const CountrySearch = ({ getGeocode, getLatLng }) => {
   async function getLocationInfo() {
     const results = await getGeocode({ address: searchedCountry });
     const { lat, lng } = await getLatLng(results[0]);
+    console.log(lat, lng);
+    panTo({ lat, lng });
     dispatch(setLatLngAction(lat, lng));
   }
 

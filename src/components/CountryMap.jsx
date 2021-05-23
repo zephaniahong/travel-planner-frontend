@@ -2,10 +2,7 @@ import { GoogleMap, useLoadScript } from "@react-google-maps/api";
 import React, { useState, useRef, useCallback, useContext } from "react";
 import { PlanningContext } from "../store";
 import CountrySearch from "./CountrySearch.jsx";
-import usePlacesAutocomplete, {
-  getGeocode,
-  getLatLng,
-} from "use-places-autocomplete";
+import { getGeocode, getLatLng } from "use-places-autocomplete";
 
 // variables for country map
 const libraries = ["places"];
@@ -30,11 +27,16 @@ export default function CountryMap() {
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_KEY,
     libraries,
   });
-  const [markers, setMarkers] = useState([]);
 
+  // keep a copy of the original map
   const mapRef = useRef();
-  const onMapLoad = useCallback((map) => {
+
+  const onLoad = useCallback((map) => {
+    console.log("inside calback");
     mapRef.current = map;
+  }, []);
+  const panTo = useCallback(({ lat, lng }) => {
+    mapRef.current.panTo({ lat, lng });
   }, []);
 
   // handle errors/ loading of map
@@ -42,28 +44,18 @@ export default function CountryMap() {
   if (!isLoaded) return "Loading Maps";
   return (
     <React.Fragment>
-      <CountrySearch getGeocode={getGeocode} getLatLng={getLatLng} />
+      <CountrySearch
+        getGeocode={getGeocode}
+        getLatLng={getLatLng}
+        panTo={panTo}
+      />
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
         zoom={8}
         center={center}
         options={options}
-        onMapLoad={onMapLoad}
+        onLoad={onLoad}
       ></GoogleMap>
     </React.Fragment>
   );
 }
-
-// const CountryMap = withScriptjs(
-//   withGoogleMap((props) => {
-//     return (
-//       <GoogleMap defaultZoom={8} defaultCenter={{ lat: -34.397, lng: 150.644 }}>
-//         {props.isMarkerShown && (
-//           <Marker position={{ lat: -34.397, lng: 150.644 }} />
-//         )}
-//       </GoogleMap>
-//     );
-//   })
-// );
-
-// export default CountryMap;
