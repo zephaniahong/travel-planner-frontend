@@ -11,14 +11,13 @@ function App() {
   return (
     <PlanningProvider>
     <div className="container-fluid">
-      <Navbar />
-      <Router>
-        <Home/>
       
-
+      <Router>
+        <Navbar />
+        
         <Switch>
-          <Route>
-
+          <Route path="/">
+            <Home/>
           </Route>
           <Route>
             
@@ -28,8 +27,7 @@ function App() {
           </Route>
         </Switch>
       </Router>
-    
-      
+       
     </div>
     </PlanningProvider>
   );
