@@ -1,9 +1,4 @@
-import {
-  GoogleMap,
-  useLoadScript,
-  Marker,
-  InfoWindow,
-} from "@react-google-maps/api";
+import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 import React, { useState, useRef, useCallback, useContext } from "react";
 import ReactDOM from "react-dom";
 import { PlanningContext } from "../store";

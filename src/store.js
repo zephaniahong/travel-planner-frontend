@@ -3,7 +3,8 @@ import axios from 'axios'
 
 export const initialState ={
   country: null,
-  highlightedCountry: null
+  highlightedCountry: null,
+  trips: [],
 }
 
 
@@ -15,6 +16,8 @@ export function planningReducer(state, action){
       return {...state, highlightedCountry: action.payload}
     case SET_LAT_LNG:
       return {...state, country: {name: state.country.name, lat: action.payload.lat, lng: action.payload.lng}}
+    case GET_TRIPS:
+      return {...state, trips: action.payload}
   default:
     return state
   }
@@ -35,6 +38,7 @@ export function PlanningProvider({children}) {
 const SET_COUNTRY = 'SET_COUNTRY'
 const SET_HIGHLIGHT = 'SET_HIGHLIGHT'
 const SET_LAT_LNG = 'SET_LAT_LNG'
+const GET_TRIPS = 'GET_TRIPS'
 
 // action functions
 export function setCountryAction(country) {
@@ -58,7 +62,21 @@ export function setLatLngAction(lat, lng) {
   }
 }
 
+export function getTripsAction(trips) {
+  return {
+    type: GET_TRIPS,
+    payload: trips
+  }
+};
+
 
 const BACKEND_URL = 'http://localhost:3004'
 
 // axios requests
+export function getTrips(dispatch) {
+  // Need to get trips related to country. 
+  axios.get(`${BACKEND_URL}/gettrips`)
+    .then(res => {
+      dispatch(getTripsAction(res.data));
+    })
+}
