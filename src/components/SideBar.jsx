@@ -35,7 +35,7 @@ const StyledNavLinks = styled.a`
   color: white;
 `;
 
-export default function SideBar() {
+export default function SideBar({ children }) {
   return (
     <div>
       <SideNav>
@@ -43,24 +43,7 @@ export default function SideBar() {
           <StyledNavItem>
             <h5 className="lead">Filters</h5>
           </StyledNavItem>
-          <div>
-            <section id="section1">
-              <h2 className="text-light mb-5">Food Card A</h2>
-              <TripCards />
-            </section>
-            <section id="section2">
-              <h2 className="text-light mb-5">Food Card B</h2>
-            </section>
-            <section id="section3">
-              <h2 className="text-light mb-5">Trip Card A</h2>
-            </section>
-            <section id="section4">
-              <h2 className="text-light mb-5">Site Card A</h2>
-            </section>
-            <section id="section5">
-              <h2 className="text-light mb-5">Food Card C</h2>
-            </section>
-          </div>
+          <div>{children}</div>
         </StyledNavList>
       </SideNav>
     </div>
