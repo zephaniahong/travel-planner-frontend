@@ -43,14 +43,14 @@ const GoogleSearch = () => {
         disabled={!ready}
         placeholder="Enter an address"
       />
-      <ComboboxPopover>
-        <ComboboxList>
-          {status === "OK" &&
-            data.map(({ id, description }) => (
-              <ComboboxOption key={id} value={description} />
-            ))}
-        </ComboboxList>
-      </ComboboxPopover>
+      <ul className="list-group">
+        {status === "OK" &&
+          data.map(({ id, description }) => (
+            <li className="list-group-item" key={id}>
+              {description}
+            </li>
+          ))}
+      </ul>
     </Combobox>
   );
 };
