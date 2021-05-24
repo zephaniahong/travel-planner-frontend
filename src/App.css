@@ -14,3 +14,17 @@ body::-webkit-scrollbar-track {
 body::-webkit-scrollbar-thumb {
   background: #48337d;
 }
+
+.sidenav {
+  width: 50rem;
+  height: 100%;
+  position: absolute;
+  background-color: black;
+  padding: 0 30px;
+  /* left: -100%; */
+  transition: all 1s;
+}
+
+.sidenav.active {
+  left: 0;
+}

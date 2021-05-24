@@ -29,12 +29,6 @@ const StyledNavItem = styled.li`
   text-decoration: none;
 `;
 
-const StyledNavLinks = styled.a`
-  list-style: none;
-  text-decoration: none;
-  color: white;
-`;
-
 const Hamburger = styled.header`
   position: fixed;
   width: 60px;
