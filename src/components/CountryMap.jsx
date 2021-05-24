@@ -1,5 +1,10 @@
-import { GoogleMap, useLoadScript } from "@react-google-maps/api";
-import React, { useRef, useCallback, useContext } from "react";
+import {
+  GoogleMap,
+  useLoadScript,
+  Marker,
+  InfoWindow,
+} from "@react-google-maps/api";
+import React, { useState, useRef, useCallback, useContext } from "react";
 import ReactDOM from "react-dom";
 import { PlanningContext } from "../store";
 import CountrySearch from "./CountrySearch.jsx";
@@ -26,6 +31,8 @@ export default function CountryMap() {
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_KEY,
     libraries,
   });
+  const [markers, setMarkers] = useState([]);
+  const [selected, setSelected] = useState(null);
 
   // keep a copy of the original map
   const mapRef = useRef();
@@ -37,6 +44,17 @@ export default function CountryMap() {
 
   const panTo = useCallback(({ lat, lng }) => {
     mapRef.current.panTo({ lat, lng });
+  }, []);
+
+  const onMapClick = useCallback((e) => {
+    setMarkers((current) => [
+      ...current,
+      {
+        lat: e.latLng.lat(),
+        lng: e.latLng.lng(),
+        time: new Date(),
+      },
+    ]);
   }, []);
 
   // handle errors/ loading of map
@@ -63,7 +81,18 @@ export default function CountryMap() {
             center={center}
             options={options}
             onLoad={onLoad}
-          />
+            onClick={onMapClick}
+          >
+            {markers.map((marker) => (
+              <Marker
+                key={marker.time.toISOString()}
+                position={{ lat: marker.lat, lng: marker.lng }}
+                onClick={() => {
+                  setSelected(marker);
+                }}
+              />
+            ))}
+          </GoogleMap>
         </div>
       )}
     </div>
