@@ -9,6 +9,7 @@ import Navbar from './components/Navbar.jsx';
 import CountryTrips from './components/CountryTrips.jsx'
 import TripPlanningPage from './components/TripPlanningPage.jsx';
 import { Container } from 'react-bootstrap';
+import GoogleSearch from './components/GoogleSearch.jsx'
 import './App.css'
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
           </Route>  
 
           <Route path="/">
+            
             <Home/>
             <CountryTrips />
           </Route>       

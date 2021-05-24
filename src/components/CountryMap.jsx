@@ -4,6 +4,7 @@ import ReactDOM from "react-dom";
 import { PlanningContext } from "../store";
 import CountrySearch from "./CountrySearch.jsx";
 import { getGeocode, getLatLng } from "use-places-autocomplete";
+import GoogleSearch from "./GoogleSearch";
 
 // variables for country map
 const libraries = ["places"];
@@ -45,7 +46,7 @@ export default function CountryMap() {
   if (loadError) return "Error loading maps";
   if (!isLoaded) return "Loading Maps";
   return (
-    <React.Fragment>
+    <div>
       {!country &&
         ReactDOM.createPortal(
           <CountrySearch
@@ -56,14 +57,17 @@ export default function CountryMap() {
           document.getElementById("search-bar")
         )}
       {country && (
-        <GoogleMap
-          mapContainerStyle={mapContainerStyle}
-          zoom={8}
-          center={center}
-          options={options}
-          onLoad={onLoad}
-        ></GoogleMap>
+        <div>
+          <GoogleSearch />
+          <GoogleMap
+            mapContainerStyle={mapContainerStyle}
+            zoom={8}
+            center={center}
+            options={options}
+            onLoad={onLoad}
+          />
+        </div>
       )}
-    </React.Fragment>
+    </div>
   );
 }
