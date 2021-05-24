@@ -44,6 +44,7 @@ const CountrySearch = ({ getGeocode, getLatLng, panTo }) => {
     <div>
       <Typeahead
         id="searchbar"
+        className="form"
         onChange={(input) => {
           setSearchedCountry(input[0]);
           highlightCountry(input);
@@ -51,6 +52,7 @@ const CountrySearch = ({ getGeocode, getLatLng, panTo }) => {
         options={countries}
       />
       <button
+        className="btn btn-secondary ml-2 mt-3"
         onClick={() => {
           handleSubmit();
           getLocationInfo();

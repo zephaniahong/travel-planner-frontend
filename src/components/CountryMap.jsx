@@ -5,22 +5,18 @@ import { PlanningContext } from "../store";
 import CountrySearch from "./CountrySearch.jsx";
 import { getGeocode, getLatLng } from "use-places-autocomplete";
 import GoogleSearch from "./GoogleSearch";
+import mapStyles from "./mapStyles";
 
 // variables for country map
 const libraries = ["places"];
-const mapContainerStyle = {
-  width: "100vw",
-  height: "100vh",
-};
-const center = {
-  lat: 43,
-  lng: -79,
-};
+const mapContainerStyle = { width: "100vw", height: "100vh" };
+const center = { lat: 43, lng: -79 };
 const options = {
   // remove all UI elements on map
   disableDefaultUI: true,
   // show zoom buttons
   zoomControl: true,
+  styles: mapStyles,
 };
 
 export default function CountryMap() {
@@ -38,6 +34,7 @@ export default function CountryMap() {
     console.log("inside calback");
     mapRef.current = map;
   }, []);
+
   const panTo = useCallback(({ lat, lng }) => {
     mapRef.current.panTo({ lat, lng });
   }, []);
@@ -45,6 +42,7 @@ export default function CountryMap() {
   // handle errors/ loading of map
   if (loadError) return "Error loading maps";
   if (!isLoaded) return "Loading Maps";
+
   return (
     <div>
       {!country &&

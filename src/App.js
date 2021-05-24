@@ -26,17 +26,13 @@ function App() {
           </Route>
 
           <Route path="/exploretrips">
-            
+            {/* <CountryTrips /> */}
           </Route>  
 
           <Route path="/">
-            
-            <Home/>
+            <Home/>  
             <CountryTrips />
-          </Route>       
-          
-     
-                   
+          </Route>               
           
         </Switch>
         </Container>
