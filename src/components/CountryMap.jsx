@@ -1,5 +1,5 @@
 import { GoogleMap, useLoadScript } from "@react-google-maps/api";
-import React, { useState, useRef, useCallback, useContext } from "react";
+import React, { useRef, useCallback, useContext } from "react";
 import { PlanningContext } from "../store";
 import CountrySearch from "./CountrySearch.jsx";
 import { getGeocode, getLatLng } from "use-places-autocomplete";
@@ -23,6 +23,7 @@ const options = {
 
 export default function CountryMap() {
   const { store } = useContext(PlanningContext);
+  const { country } = store;
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_KEY,
     libraries,
@@ -49,13 +50,15 @@ export default function CountryMap() {
         getLatLng={getLatLng}
         panTo={panTo}
       />
-      <GoogleMap
-        mapContainerStyle={mapContainerStyle}
-        zoom={8}
-        center={center}
-        options={options}
-        onLoad={onLoad}
-      ></GoogleMap>
+      {country && (
+        <GoogleMap
+          mapContainerStyle={mapContainerStyle}
+          zoom={8}
+          center={center}
+          options={options}
+          onLoad={onLoad}
+        ></GoogleMap>
+      )}
     </React.Fragment>
   );
 }
