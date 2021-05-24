@@ -24,11 +24,17 @@ function App() {
             <TripPlanningPage />
           </Route>
 
+          <Route path="/exploretrips">
+            <CountryTrips />
+          </Route>  
+
           <Route path="/">
             <Home/>
-          </Route>                
+          </Route>       
           
-            
+     
+                   
+          
         </Switch>
         </Container>
       </Router>
