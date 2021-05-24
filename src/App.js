@@ -7,30 +7,31 @@ import {PlanningProvider} from './store';
 import Home from './components/Home.jsx';
 import Navbar from './components/Navbar.jsx';
 import CountryTrips from './components/CountryTrips.jsx'
+import TripPlanningPage from './components/TripPlanningPage.jsx';
 import { Container } from 'react-bootstrap';
 import './App.css'
 
 function App() {
   return (
     <PlanningProvider>
-    <Container id="main" fluid>
+      <Router>
+        <Container id="main" fluid>
+        <Navbar />
+        <Switch>
+          
+          {/* Need to include tripid in this route as well */}
+          <Route path="/createtrip">
+            <TripPlanningPage />
+          </Route>
 
-          <Router>
-            <Navbar />
+          <Route path="/">
+            <Home/>
+          </Route>                
+          
             
-            <Switch>
-              <Route path="/">
-                <Home/>
-              </Route>                
-              <Route path="/createtrip">
-              
-              </Route>
-                
-            </Switch>
-            <CountryTrips/>
-          </Router>
-
-    </Container>
+        </Switch>
+        </Container>
+      </Router>
     </PlanningProvider>
   );
 }
