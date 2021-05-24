@@ -25,11 +25,12 @@ function App() {
           </Route>
 
           <Route path="/exploretrips">
-            <CountryTrips />
+            
           </Route>  
 
           <Route path="/">
             <Home/>
+            <CountryTrips />
           </Route>       
           
      

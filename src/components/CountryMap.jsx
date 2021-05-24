@@ -1,5 +1,6 @@
 import { GoogleMap, useLoadScript } from "@react-google-maps/api";
 import React, { useRef, useCallback, useContext } from "react";
+import ReactDOM from "react-dom";
 import { PlanningContext } from "../store";
 import CountrySearch from "./CountrySearch.jsx";
 import { getGeocode, getLatLng } from "use-places-autocomplete";
@@ -45,11 +46,15 @@ export default function CountryMap() {
   if (!isLoaded) return "Loading Maps";
   return (
     <React.Fragment>
-      <CountrySearch
-        getGeocode={getGeocode}
-        getLatLng={getLatLng}
-        panTo={panTo}
-      />
+      {!country &&
+        ReactDOM.createPortal(
+          <CountrySearch
+            getGeocode={getGeocode}
+            getLatLng={getLatLng}
+            panTo={panTo}
+          />,
+          document.getElementById("search-bar")
+        )}
       {country && (
         <GoogleMap
           mapContainerStyle={mapContainerStyle}

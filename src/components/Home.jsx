@@ -9,6 +9,7 @@ const Home = () => {
   if (store.country === null) {
     return (
       <div>
+        <div id="search-bar"></div>
         <WorldMap />
       </div>
     );
