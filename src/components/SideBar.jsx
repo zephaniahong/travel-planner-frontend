@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-// import PlusCircleIcon from "./SideBar.jsx";
-import TripCards from "./TripCards.jsx";
+import PlusCircleIcon from "./PlusCircleIcon.jsx";
+// import HamburgerIcon from "./HamburgerIcon.jsx";
 
 const SideNav = styled.nav`
   width: 50rem;
@@ -35,10 +35,32 @@ const StyledNavLinks = styled.a`
   color: white;
 `;
 
+const Hamburger = styled.header`
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  top: 100px;
+  left: 0px;
+  background-color: #0c9;
+  color: #fff;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 2px 2px 1px #999;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 export default function SideBar({ children }) {
+  const [showNav, setShowNav] = useState(false);
+
   return (
     <div>
-      <SideNav>
+      <Hamburger className="ml-3">
+        <PlusCircleIcon onClick={() => setShowNav(!showNav)} />
+      </Hamburger>
+      <SideNav show={showNav}>
         <StyledNavList>
           <StyledNavItem>
             <h5 className="lead">Filters</h5>

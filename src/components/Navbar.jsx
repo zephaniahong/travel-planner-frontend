@@ -22,7 +22,13 @@ import styled, { keyframes } from "styled-components";
 export default function NavBar() {
   return (
     <div>
-      <Navbar collapseOnSelect bg="dark" expand="lg" variant="dark">
+      <Navbar
+        collapseOnSelect
+        bg="dark"
+        expand="lg"
+        variant="dark"
+        fixed="sticky"
+      >
         <Link to="/">
           <Navbar.Brand className="navbar-brand text-dark px-3">
             {/* <LogoRotate> */}
