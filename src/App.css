@@ -14,3 +14,34 @@ body::-webkit-scrollbar-track {
 body::-webkit-scrollbar-thumb {
   background: #48337d;
 }
+
+.sidenav {
+  width: 340px;
+  background: black;
+  position: absolute;
+  height: 100%;
+  padding: 0 30px;
+  left: -100%;
+  transition: all 0.9s;
+}
+
+.sidenav.active {
+  left: 0;
+}
+
+.sidebar-btn {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  top: 100px;
+  left: 20px;
+  background-color: #0c9;
+  color: #fff;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 2px 2px 1px #999;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
