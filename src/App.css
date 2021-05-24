@@ -2,3 +2,15 @@
   padding-left: 0px !important;
   padding-right: 0px !important;
 }
+
+body::-webkit-scrollbar {
+  width: 0.25rem;
+}
+
+body::-webkit-scrollbar-track {
+  background: #151515;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #48337d;
+}
