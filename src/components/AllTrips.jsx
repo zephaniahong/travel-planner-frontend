@@ -11,6 +11,13 @@ export default function AllTrips() {
     getUserTrips(dispatch);
   }, []);
 
+  function dateDiff(startDate, endDate) {
+    const start = moment(`${startDate}`);
+    const end = moment(`${endDate}`);
+
+    return end.diff(start, "days");
+  }
+
   return (
     <Container fluid>
       <Row className="mt-4">
@@ -26,7 +33,10 @@ export default function AllTrips() {
                 <Card.Body>
                   <Card.Title>{trip.hotel}</Card.Title>
                   <Card.Subtitle className="mb-2 text-muted">
-                    Cost / Day: {trip.totalCost}
+                    Cost / Day: $
+                    {Math.floor(
+                      trip.totalCost / dateDiff(trip.startDate, trip.endDate)
+                    )}
                   </Card.Subtitle>
                   <Card.Text>
                     Some quick example text to build on the card title and make
