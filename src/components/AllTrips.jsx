@@ -42,8 +42,8 @@ export default function AllTrips() {
                     Some quick example text to build on the card title and make
                     up the bulk of the card's content.
                   </Card.Text>
-                  <Card.Link href="#">Card Link</Card.Link>
-                  <Card.Link href="#">Another Link</Card.Link>
+                  <Card.Link href="#">Start Planning</Card.Link>
+                  <Card.Link href="#">Delete</Card.Link>
                 </Card.Body>
               </Card>
             );
