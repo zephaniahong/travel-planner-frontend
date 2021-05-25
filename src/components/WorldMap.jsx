@@ -3,6 +3,7 @@ import worldMapJson from "./worldMapJson.js";
 import styled from "styled-components";
 import React, { useState, useContext } from "react";
 import { PlanningContext } from "../store";
+
 const Map = styled.div`
   margin: 1rem auto;
 

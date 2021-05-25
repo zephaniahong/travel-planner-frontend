@@ -10,7 +10,6 @@ import {
 } from "../store";
 import countries from "./countries";
 import worldMapJson from "./worldMapJson";
-import { Link } from "react-router-dom";
 
 const CountrySearch = ({ getGeocode, getLatLng, panTo }) => {
   const { store, dispatch } = useContext(PlanningContext);
