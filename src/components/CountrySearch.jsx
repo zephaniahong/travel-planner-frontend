@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import { Typeahead } from "react-bootstrap-typeahead";
-// Import as a module in your JS
 import "react-bootstrap-typeahead/css/Typeahead.css";
 import {
   PlanningContext,
