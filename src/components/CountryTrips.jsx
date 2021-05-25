@@ -6,6 +6,7 @@ import SideBar from "./SideBar.jsx";
 import PopFilter from "./countrytrip/PopFilter.jsx";
 import PriceFilter from "./countrytrip/PriceFilter.jsx";
 import DayFilter from "./countrytrip/DayFilter.jsx";
+import LocFilter from "./countrytrip/LocFilter.jsx";
 
 const avgRating = (ratingsArr, numUsers) => {
   let totalRating = 0;
@@ -27,6 +28,7 @@ const CountryTrips = () => {
   return (
     <div>
       <SideBar>
+        <LocFilter />
         <PopFilter />
         <PriceFilter />
         <DayFilter />

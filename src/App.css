@@ -47,3 +47,7 @@ body::-webkit-scrollbar-thumb {
   justify-content: center;
   align-items: center;
 }
+
+#location-filter {
+  color: white;
+}
