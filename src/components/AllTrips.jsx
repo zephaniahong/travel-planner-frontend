@@ -1,11 +1,15 @@
 import React, { useEffect, useContext } from "react";
-import { PlanningContext } from "../store.js";
-import { Container, Row, Col } from "react-bootstrap";
+import { PlanningContext, getUserTrips } from "../store.js";
+import { Container, Row, Col, Card } from "react-bootstrap";
+import moment from "moment";
 
 export default function AllTrips() {
   const { store, dispatch } = useContext(PlanningContext);
+  const { userTrips } = store;
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    getUserTrips(dispatch);
+  }, []);
 
   return (
     <Container fluid>
@@ -15,7 +19,26 @@ export default function AllTrips() {
         </Col>
       </Row>
       <Row>
-        <Col>TripCards</Col>
+        <Col>
+          {userTrips.map((trip) => {
+            return (
+              <Card style={{ width: "18rem" }}>
+                <Card.Body>
+                  <Card.Title>{trip.hotel}</Card.Title>
+                  <Card.Subtitle className="mb-2 text-muted">
+                    Cost / Day: {trip.totalCost}
+                  </Card.Subtitle>
+                  <Card.Text>
+                    Some quick example text to build on the card title and make
+                    up the bulk of the card's content.
+                  </Card.Text>
+                  <Card.Link href="#">Card Link</Card.Link>
+                  <Card.Link href="#">Another Link</Card.Link>
+                </Card.Body>
+              </Card>
+            );
+          })}
+        </Col>
       </Row>
     </Container>
   );
