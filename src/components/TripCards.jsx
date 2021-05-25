@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, Nav, Button } from "react-bootstrap";
 
-const TripCards = () => {
+const TripCards = ({ hotel, type }) => {
   return (
     <div>
       <Card className="mb-5">
@@ -15,13 +15,13 @@ const TripCards = () => {
             </Nav.Item>
             <Nav.Item>
               <Nav.Link href="#disabled" disabled>
-                Remove
+                {type}
               </Nav.Link>
             </Nav.Item>
           </Nav>
         </Card.Header>
         <Card.Body>
-          <Card.Title>Special title treatment</Card.Title>
+          <Card.Title>{hotel}</Card.Title>
           <Card.Text>
             With supporting text below as a natural lead-in to additional
             content.

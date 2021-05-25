@@ -10,6 +10,7 @@ import {
 } from "../store";
 import countries from "./countries";
 import worldMapJson from "./worldMapJson";
+import { Link } from "react-router-dom";
 
 const CountrySearch = ({ getGeocode, getLatLng, panTo }) => {
   const { store, dispatch } = useContext(PlanningContext);
@@ -44,6 +45,7 @@ const CountrySearch = ({ getGeocode, getLatLng, panTo }) => {
     <div>
       <Typeahead
         id="searchbar"
+        className="form"
         onChange={(input) => {
           setSearchedCountry(input[0]);
           highlightCountry(input);
@@ -51,12 +53,13 @@ const CountrySearch = ({ getGeocode, getLatLng, panTo }) => {
         options={countries}
       />
       <button
+        className="btn btn-secondary ml-2 mt-3"
         onClick={() => {
           handleSubmit();
           getLocationInfo();
         }}
       >
-        Submit
+        <Link to="/exploretrips">Submit</Link>
       </button>
     </div>
   );
