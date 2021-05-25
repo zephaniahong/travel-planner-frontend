@@ -26,7 +26,7 @@ const TripCards = ({
         <Card.Header>
           <Nav.Item className="mb-2">
             <Card.Title className="lead mt-2">{hotel}</Card.Title>
-            <span>{<TripRating stars={stars} />}</span>
+            <Card.Text>{<TripRating stars={stars} />}</Card.Text>
           </Nav.Item>
           <Nav variant="pills" defaultActiveKey="#first">
             <Nav.Item>

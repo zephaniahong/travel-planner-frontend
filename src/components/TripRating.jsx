@@ -10,7 +10,7 @@ export default function TripRating({ stars }) {
     <>
       <Box component="fieldset" mb={2} borderColor="transparent">
         <Typography component="legend">Trip Reviews:</Typography>
-        <Rating name="simple-controlled" defaultValue={val} readOnly />
+        <Rating name="simple-controlled" defaultValue={val} disabled />
       </Box>
     </>
   );

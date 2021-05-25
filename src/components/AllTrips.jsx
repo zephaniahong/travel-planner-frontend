@@ -9,7 +9,7 @@ export default function AllTrips() {
 
   useEffect(() => {
     getUserTrips(dispatch);
-  }, []);
+  }, [dispatch]);
 
   function dateDiff(startDate, endDate) {
     const start = moment(`${startDate}`);

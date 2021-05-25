@@ -21,10 +21,6 @@ const CountryTrips = () => {
     getTrips(dispatch);
   }, []);
 
-  trips.map((trip) => {
-    console.log("avgRating:", avgRating(trip.reviews, trip.reviews.length));
-  });
-
   return (
     <div>
       <SideBar>
