@@ -5,6 +5,7 @@ export const initialState ={
   country: null,
   highlightedCountry: null,
   trips: [],
+  userTrips: [],
 }
 
 
@@ -18,6 +19,8 @@ export function planningReducer(state, action){
       return {...state, country: {name: state.country.name, lat: action.payload.lat, lng: action.payload.lng}}
     case GET_TRIPS:
       return {...state, trips: action.payload}
+    case GET_USER_TRIPS:
+      return {...state, userTrips: action.payload}
   default:
     return state
   }
@@ -39,6 +42,7 @@ const SET_COUNTRY = 'SET_COUNTRY'
 const SET_HIGHLIGHT = 'SET_HIGHLIGHT'
 const SET_LAT_LNG = 'SET_LAT_LNG'
 const GET_TRIPS = 'GET_TRIPS'
+const GET_USER_TRIPS = 'GET_USER_TRIPS'
 
 // action functions
 export function setCountryAction(country) {
@@ -69,6 +73,13 @@ export function getTripsAction(trips) {
   }
 };
 
+export function getUserTripsAction(userTrips) {
+  return {
+    type: GET_USER_TRIPS,
+    payload: userTrips
+  }
+}
+
 
 const BACKEND_URL = 'http://localhost:3004'
 
@@ -78,5 +89,12 @@ export function getTrips(dispatch) {
   axios.get(`${BACKEND_URL}/gettrips`)
     .then(res => {
       dispatch(getTripsAction(res.data));
+    })
+}
+
+export function getUserTrips(dispatch) {
+  axios.get(`${BACKEND_URL}/usertrips`)
+    .then((res) => {
+      dispatch(getUserTripsAction(res.data))
     })
 }
