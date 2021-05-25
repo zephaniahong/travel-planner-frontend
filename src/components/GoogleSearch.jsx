@@ -23,11 +23,13 @@ const GoogleSearch = () => {
     clearSuggestions,
   } = usePlacesAutocomplete({
     // search preference - prefer results that are near the user's selected country
-    requestOptions: {
-      location: { lat: () => country.lat, lng: () => country.lng },
-      radius: 200 * 1000,
-    },
+    // requestOptions: {
+    //   location: { lat: () => country.lat, lng: () => country.lng },
+    //   radius: 200 * 1000,
+    // },
   });
+
+  const addToItinerary = () => {};
 
   return (
     <Combobox
@@ -48,6 +50,9 @@ const GoogleSearch = () => {
           data.map(({ id, description }) => (
             <li className="list-group-item" key={id}>
               {description}
+              <button onClick={addToItinerary} className="btn btn-secondary">
+                +
+              </button>
             </li>
           ))}
       </ul>
