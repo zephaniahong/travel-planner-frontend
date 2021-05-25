@@ -11,14 +11,22 @@ function calcAvg(startDate, endDate, totalCost) {
   return Math.floor(totalCost / diff);
 }
 
-const TripCards = ({ hotel, type, city, startDate, endDate, totalCost }) => {
+const TripCards = ({
+  hotel,
+  type,
+  city,
+  startDate,
+  endDate,
+  totalCost,
+  stars,
+}) => {
   return (
     <div>
       <Card className="mb-5">
         <Card.Header>
           <Nav.Item className="mb-2">
             <Card.Title className="lead mt-2">{hotel}</Card.Title>
-            <span>{<TripRating />}</span>
+            <span>{<TripRating stars={stars} />}</span>
           </Nav.Item>
           <Nav variant="pills" defaultActiveKey="#first">
             <Nav.Item>
