@@ -4,7 +4,6 @@ import ReactDOM from "react-dom";
 import { PlanningContext } from "../store";
 import CountrySearch from "./CountrySearch.jsx";
 import { getGeocode, getLatLng } from "use-places-autocomplete";
-import GoogleSearch from "./GoogleSearch";
 
 // variables for country map
 const libraries = ["places"];
@@ -58,7 +57,6 @@ export default function CountryMap() {
         )}
       {country && (
         <div>
-          <GoogleSearch />
           <GoogleMap
             mapContainerStyle={mapContainerStyle}
             zoom={8}
