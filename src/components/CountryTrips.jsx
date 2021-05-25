@@ -3,6 +3,7 @@ import TripCards from "./TripCards.jsx";
 import { getTrips, PlanningContext } from "../store.js";
 import CountryMap from "./CountryMap.jsx";
 import SideBar from "./SideBar.jsx";
+import PopFilter from "./countrytrip/PopFilter.jsx";
 
 const avgRating = (ratingsArr, numUsers) => {
   let totalRating = 0;
@@ -24,6 +25,7 @@ const CountryTrips = () => {
   return (
     <div>
       <SideBar>
+        <PopFilter />
         {trips.map((trip) => {
           return (
             <TripCards
