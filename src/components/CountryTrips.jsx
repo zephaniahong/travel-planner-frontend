@@ -17,7 +17,6 @@ const CountryTrips = () => {
   return (
     <div>
       <SideBar>
-        <h1>Hello World</h1>
         {trips.map((trip) => {
           return <TripCards hotel={trip.hotelDetails} type={trip.tripType} />;
         })}

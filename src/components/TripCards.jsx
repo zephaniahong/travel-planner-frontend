@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Nav, Button } from "react-bootstrap";
+import { Card, Nav, Button, Badge } from "react-bootstrap";
 
 const TripCards = ({ hotel, type }) => {
   return (
@@ -11,11 +11,13 @@ const TripCards = ({ hotel, type }) => {
               <Nav.Link href="#first">Add To Board</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link href="#link">See This in Other Trips </Nav.Link>
+              <Nav.Link href="#link">More details</Nav.Link>
             </Nav.Item>
             <Nav.Item>
               <Nav.Link href="#disabled" disabled>
-                {type}
+                <Badge pill variant="warning">
+                  {type}
+                </Badge>
               </Nav.Link>
             </Nav.Item>
           </Nav>

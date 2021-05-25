@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import PlusCircleIcon from "./PlusCircleIcon.jsx";
-import TripCards from "./TripCards.jsx";
 
 const StyledNavList = styled.ul`
   list-style: none;

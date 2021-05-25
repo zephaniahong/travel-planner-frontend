@@ -24,6 +24,7 @@ body::-webkit-scrollbar-thumb {
   left: -100%;
   transition: all 0.9s;
   z-index: 1;
+  overflow: auto;
 }
 
 .sidenav.active {
