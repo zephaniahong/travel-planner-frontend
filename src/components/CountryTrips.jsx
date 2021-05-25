@@ -18,7 +18,16 @@ const CountryTrips = () => {
     <div>
       <SideBar>
         {trips.map((trip) => {
-          return <TripCards hotel={trip.hotelDetails} type={trip.tripType} />;
+          return (
+            <TripCards
+              hotel={trip.hotel}
+              type={trip.tripType}
+              city={trip.city}
+              startDate={trip.startDate}
+              endDate={trip.endDate}
+              totalCost={trip.totalCost}
+            />
+          );
         })}
       </SideBar>
       <CountryMap />
