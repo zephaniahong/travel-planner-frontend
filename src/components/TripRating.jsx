@@ -12,9 +12,9 @@ export default function TripRating() {
         <Typography component="legend">Controlled</Typography>
         <Rating
           name="simple-controlled"
-          value={value}
+          value={val}
           onChange={(event, newValue) => {
-            setValue(newValue);
+            setVal(newValue);
           }}
         />
       </Box>

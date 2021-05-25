@@ -1,6 +1,7 @@
 import React from "react";
 import { Card, Nav, Button, Badge } from "react-bootstrap";
 import moment from "moment";
+import TripRating from "./TripRating.jsx";
 
 function calcAvg(startDate, endDate, totalCost) {
   const start = moment(`${startDate}`);
