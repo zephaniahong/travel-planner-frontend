@@ -12,12 +12,14 @@ const CountryTrips = () => {
     getTrips(dispatch);
   }, []);
 
+  console.log("trips", trips);
+
   return (
     <div>
       <SideBar>
         <h1>Hello World</h1>
         {trips.map((trip) => {
-          return <h2>trip.hotelDetails</h2>;
+          return <TripCards hotel={trip.hotelDetails} type={trip.tripType} />;
         })}
       </SideBar>
       <CountryMap />

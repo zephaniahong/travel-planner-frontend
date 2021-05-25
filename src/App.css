@@ -16,7 +16,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .sidenav {
-  width: 380px;
+  width: 500px;
   background: black;
   position: absolute;
   height: 100%;
