@@ -8,6 +8,7 @@ import Home from './components/Home.jsx';
 import Navbar from './components/Navbar.jsx';
 import CountryTrips from './components/CountryTrips.jsx'
 import TripPlanningPage from './components/TripPlanningPage.jsx';
+import AllTrips from './components/AllTrips.jsx'
 import { Container } from 'react-bootstrap';
 import './App.css'
 
@@ -27,6 +28,10 @@ function App() {
           <Route path="/exploretrips">
             {/* <CountryTrips /> */}
           </Route>  
+
+          <Route path="/alltrips">
+            <AllTrips />
+          </Route>
 
           <Route path="/">
             <Home/>  
