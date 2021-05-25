@@ -4,19 +4,13 @@ import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 
 export default function TripRating() {
-  const [val, setVal] = useState(2);
+  const [val, setVal] = useState(0);
 
   return (
     <>
-      <Box component="fieldset" mb={3} borderColor="transparent">
-        <Typography component="legend">Controlled</Typography>
-        <Rating
-          name="simple-controlled"
-          value={val}
-          onChange={(event, newValue) => {
-            setVal(newValue);
-          }}
-        />
+      <Box component="fieldset" mb={2} borderColor="transparent">
+        <Typography component="legend">Trip Reviews:</Typography>
+        <Rating name="simple-controlled" defaultValue={val} readOnly />
       </Box>
     </>
   );
