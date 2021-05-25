@@ -5,6 +5,7 @@ import CountryMap from "./CountryMap.jsx";
 import SideBar from "./SideBar.jsx";
 import PopFilter from "./countrytrip/PopFilter.jsx";
 import PriceFilter from "./countrytrip/PriceFilter.jsx";
+import DayFilter from "./countrytrip/DayFilter.jsx";
 
 const avgRating = (ratingsArr, numUsers) => {
   let totalRating = 0;
@@ -28,6 +29,7 @@ const CountryTrips = () => {
       <SideBar>
         <PopFilter />
         <PriceFilter />
+        <DayFilter />
         {trips.map((trip) => {
           return (
             <TripCards
