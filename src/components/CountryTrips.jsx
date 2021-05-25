@@ -19,16 +19,21 @@ const avgRating = (ratingsArr, numUsers) => {
 
 const CountryTrips = () => {
   const { store, dispatch } = useContext(PlanningContext);
-  const { trips } = store;
+  const { trips, country } = store;
 
   useEffect(() => {
     getTrips(dispatch);
   }, [dispatch]);
 
+  // Include country in trips as well for filtering.
+  // const filteredTrips = trips.filter((trip) => {
+
+  // })
+
   return (
     <div>
       <SideBar>
-        <LocFilter />
+        <LocFilter country={country ? `${country.name}` : ""} />
         <PopFilter />
         <PriceFilter />
         <DayFilter />

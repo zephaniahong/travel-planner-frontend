@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function LocFilter() {
+export default function LocFilter({ country }) {
   const classes = useStyles();
   const [age, setAge] = React.useState("");
 
@@ -25,7 +25,7 @@ export default function LocFilter() {
   return (
     <div>
       <FormControl className={classes.formControl}>
-        <InputLabel id="location-filter">Location</InputLabel>
+        <InputLabel id="location-filter">Country: {country}</InputLabel>
         <Select
           labelId="location-filter"
           id="location-filter"
