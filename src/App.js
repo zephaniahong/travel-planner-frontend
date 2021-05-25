@@ -25,9 +25,9 @@ function App() {
             <TripPlanningPage />
           </Route>
 
-          <Route path="/exploretrips">
+          {/* <Route path="/exploretrips"> */}
             {/* <CountryTrips /> */}
-          </Route>  
+          {/* </Route>   */}
 
           <Route path="/alltrips">
             <AllTrips />

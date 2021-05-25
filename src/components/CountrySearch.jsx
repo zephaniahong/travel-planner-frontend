@@ -60,7 +60,7 @@ const CountrySearch = ({ getGeocode, getLatLng, panTo }) => {
           getLocationInfo();
         }}
       >
-        <Link to="/exploretrips">Submit</Link>
+        Submit
       </button>
     </div>
   );
