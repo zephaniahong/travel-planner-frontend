@@ -29,7 +29,7 @@ export default function SideBar({ children }) {
         <PlusCircleIcon setShowNav={setShowNav} showNav={showNav} />
       </header>
 
-      <div show={showNav}>
+      <div>
         <div className={showNav ? "sidenav active" : "sidenav"}>
           <StyledNavList>
             <StyledNavItem>

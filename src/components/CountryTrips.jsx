@@ -19,7 +19,7 @@ const CountryTrips = () => {
 
   useEffect(() => {
     getTrips(dispatch);
-  }, []);
+  }, [dispatch]);
 
   return (
     <div>

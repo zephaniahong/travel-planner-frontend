@@ -24,10 +24,8 @@ const TripCards = ({
     <div>
       <Card className="mb-5">
         <Card.Header>
-          <Nav.Item className="mb-2">
-            <Card.Title className="lead mt-2">{hotel}</Card.Title>
-            <Card.Text>{<TripRating stars={stars} />}</Card.Text>
-          </Nav.Item>
+          <Card.Title className="lead mt-2">{hotel}</Card.Title>
+          {<TripRating stars={stars} />}
           <Nav variant="pills" defaultActiveKey="#first">
             <Nav.Item>
               <Nav.Link href="#first">Info</Nav.Link>
@@ -44,6 +42,7 @@ const TripCards = ({
             </Nav.Item>
           </Nav>
         </Card.Header>
+
         <Card.Body>
           <Card.Title></Card.Title>
           <Card.Text>
