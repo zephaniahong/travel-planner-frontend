@@ -42,12 +42,19 @@ const CountryTrips = () => {
     setCostRange(cost);
   }
 
+  function inRange(cost, min, max) {
+    return cost <= max && cost >= min;
+  }
+
   console.log("trips cost", costRange);
 
   const filteredTrips = trips.filter((trip) => {
     trip["avgReview"] = calcAvgStars(trip.reviews, trip.reviews.length);
     trip["avgCost"] = calcAvgCost(trip.startDate, trip.endDate, trip.totalCost);
-    return trip.avgReview === pop;
+    return (
+      trip.avgReview === pop &&
+      inRange(trip.avgCost, costRange[0], costRange[1])
+    );
   });
 
   return (
