@@ -3,10 +3,10 @@ import TripCards from "./TripCards.jsx";
 import { getTrips, PlanningContext } from "../store.js";
 import CountryMap from "./CountryMap.jsx";
 import SideBar from "./SideBar.jsx";
-import PopFilter from "./countrytrip/PopFilter.jsx";
-import PriceFilter from "./countrytrip/PriceFilter.jsx";
-import DayFilter from "./countrytrip/DayFilter.jsx";
-import LocFilter from "./countrytrip/LocFilter.jsx";
+// import PopFilter from "./countrytrip/PopFilter.jsx";
+// import PriceFilter from "./countrytrip/PriceFilter.jsx";
+// import DayFilter from "./countrytrip/DayFilter.jsx";
+import CountryTripsFilters from "./countrytrip/CountryTripsFilters.jsx";
 
 const avgRating = (ratingsArr, numUsers) => {
   let totalRating = 0;
@@ -30,15 +30,13 @@ const CountryTrips = () => {
 
   // })
 
-  console.log("Country!!!", country);
-
   return (
     <div>
       <SideBar>
-        <LocFilter country={country === null ? "" : `${country.name}`} />
-        <PopFilter />
-        <PriceFilter />
-        <DayFilter />
+        <CountryTripsFilters
+          country={country === null ? "" : `${country.name}`}
+        />
+
         {trips.map((trip) => {
           return (
             <TripCards
