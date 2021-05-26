@@ -31,7 +31,12 @@ function calcDateDiff(startDate, endDate) {
   return end.diff(start, "days");
 }
 
+function inRange(cost, min, max) {
+  return cost <= max && cost >= min;
+}
+
 const CountryTrips = () => {
+  const [countryName, setCountryName] = useState("");
   const [pop, setPop] = useState(null);
   const [costRange, setCostRange] = useState([]);
   const [duration, setDuration] = useState(1);
@@ -42,16 +47,16 @@ const CountryTrips = () => {
     getTrips(dispatch);
   }, [dispatch]);
 
+  function setCntryName(cntryFromFilter) {
+    setCountryName(cntryFromFilter);
+  }
+
   function setPopularity(numStars) {
     setPop(numStars);
   }
 
   function setCost(cost) {
     setCostRange(cost);
-  }
-
-  function inRange(cost, min, max) {
-    return cost <= max && cost >= min;
   }
 
   function setNumDays(days) {
@@ -64,6 +69,7 @@ const CountryTrips = () => {
     trip["duration"] = calcDateDiff(trip.startDate, trip.endDate);
 
     return (
+      trip.country === countryName.toLowerCase() &&
       trip.avgReview === pop &&
       inRange(trip.avgCost, costRange[0], costRange[1]) &&
       trip.duration <= duration
@@ -75,6 +81,7 @@ const CountryTrips = () => {
       <SideBar>
         <CountryTripsFilters
           country={country === null ? "" : `${country.name}`}
+          setCntryName={setCntryName}
           setPopularity={setPopularity}
           setCost={setCost}
           setNumDays={setNumDays}

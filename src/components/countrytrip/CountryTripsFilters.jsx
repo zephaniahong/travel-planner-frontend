@@ -6,13 +6,14 @@ import LocFilter from "./LocFilter.jsx";
 
 export default function CountryTripsFilters({
   country,
+  setCntryName,
   setPopularity,
   setCost,
   setNumDays,
 }) {
   return (
     <>
-      <LocFilter country={country} />
+      <LocFilter country={country} setCntryName={setCntryName} />
       <PopFilter setPopularity={setPopularity} />
       <PriceFilter setCost={setCost} />
       <DayFilter setNumDays={setNumDays} />

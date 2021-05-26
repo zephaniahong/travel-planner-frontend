@@ -13,7 +13,6 @@ import worldMapJson from "./worldMapJson";
 const CountrySearch = ({ getGeocode, getLatLng, panTo }) => {
   const { store, dispatch } = useContext(PlanningContext);
   const [searchedCountry, setSearchedCountry] = useState(null);
-  console.log("store in CountrySearch", store);
 
   // set chosen country in store
   function handleSubmit() {

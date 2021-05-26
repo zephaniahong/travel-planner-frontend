@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function LocFilter({ country }) {
+export default function LocFilter({ country, setCntryName }) {
   const classes = useStyles();
   const [select, setSelect] = useState(country);
 
@@ -26,6 +26,7 @@ export default function LocFilter({ country }) {
 
   const handleChange = (event) => {
     setSelect(event.target.value);
+    setCntryName(event.target.value);
   };
 
   return (
