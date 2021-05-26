@@ -14,19 +14,13 @@ function valuetext(value) {
   return `$${value}`;
 }
 
-export default function PriceFilter() {
+export default function PriceFilter({ setCost }) {
   const classes = useStyles();
   const [price, setPrice] = useState([50, 450]);
 
   function handleChange(event, newPrice) {
     setPrice(newPrice);
-
-    if (event.type === "mouseup") {
-      console.log("mouse up!;", price);
-    }
-
-    console.log("newPrice", newPrice);
-    console.log("EVT:", event);
+    setCost(newPrice);
   }
 
   return (

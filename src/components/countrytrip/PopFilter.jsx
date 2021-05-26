@@ -20,7 +20,6 @@ export default function PopFilter({ setPopularity }) {
 
   function handleChange(event, val) {
     const numStars = val;
-    console.log("numStars", numStars);
     setPopularity(numStars);
   }
 
@@ -36,7 +35,7 @@ export default function PopFilter({ setPopularity }) {
         valueLabelDisplay="auto"
         step={0.5}
         marks
-        min={0}
+        min={1}
         max={5}
         onChange={handleChange}
       />

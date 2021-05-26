@@ -5,6 +5,7 @@ import CountryMap from "./CountryMap.jsx";
 import SideBar from "./SideBar.jsx";
 import CountryTripsFilters from "./countrytrip/CountryTripsFilters.jsx";
 import moment from "moment";
+import { Spinner } from "react-bootstrap";
 
 function calcAvgStars(ratingsArr, numUsers) {
   let totalRating = 0;
@@ -25,7 +26,7 @@ function calcAvgCost(startDate, endDate, totalCost) {
 
 const CountryTrips = () => {
   const [pop, setPop] = useState(null);
-  const [cost, setCost] = useState([]);
+  const [costRange, setCostRange] = useState([]);
   const { store, dispatch } = useContext(PlanningContext);
   const { trips, country } = store;
 
@@ -37,21 +38,17 @@ const CountryTrips = () => {
     setPop(numStars);
   }
 
-  function setAvgCost(avgCost) {
-    setCost(avgCost);
+  function setCost(cost) {
+    setCostRange(cost);
   }
 
-  // console.log("trips", trips);
-  // Include country in trips as well for filtering.
+  console.log("trips cost", costRange);
+
   const filteredTrips = trips.filter((trip) => {
     trip["avgReview"] = calcAvgStars(trip.reviews, trip.reviews.length);
     trip["avgCost"] = calcAvgCost(trip.startDate, trip.endDate, trip.totalCost);
     return trip.avgReview === pop;
   });
-
-  console.log(filteredTrips);
-
-  // console.log("filteredTrips", filteredTrips);
 
   return (
     <div>
@@ -59,9 +56,8 @@ const CountryTrips = () => {
         <CountryTripsFilters
           country={country === null ? "" : `${country.name}`}
           setPopularity={setPopularity}
-          setAvgCost={setAvgCost}
+          setCost={setCost}
         />
-
         {filteredTrips.map((trip) => {
           return (
             <TripCards
