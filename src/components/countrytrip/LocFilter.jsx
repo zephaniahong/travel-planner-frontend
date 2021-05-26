@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
+import countries from "../countries.js";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -17,24 +18,29 @@ const useStyles = makeStyles((theme) => ({
 
 export default function LocFilter({ country }) {
   const classes = useStyles();
-  const [age, setAge] = React.useState("");
+  const [select, setSelect] = useState(country);
+
+  useEffect(() => {
+    setSelect(country);
+  }, [country]);
 
   const handleChange = (event) => {
-    setAge(event.target.value);
+    setSelect(event.target.value);
   };
+
   return (
     <div>
       <FormControl className={classes.formControl}>
-        <InputLabel id="location-filter">Country: {country}</InputLabel>
+        <InputLabel id="location-filter">Country: {select}</InputLabel>
         <Select
           labelId="location-filter"
           id="location-filter"
-          value={age}
+          value={select}
           onChange={handleChange}
         >
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          {countries.map((country) => {
+            return <MenuItem value={country}>{country}</MenuItem>;
+          })}
         </Select>
       </FormControl>
     </div>

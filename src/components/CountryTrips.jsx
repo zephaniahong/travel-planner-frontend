@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import TripCards from "./TripCards.jsx";
 import { getTrips, PlanningContext } from "../store.js";
 import CountryMap from "./CountryMap.jsx";
@@ -30,10 +30,12 @@ const CountryTrips = () => {
 
   // })
 
+  console.log("Country!!!", country);
+
   return (
     <div>
       <SideBar>
-        <LocFilter country={country ? `${country.name}` : ""} />
+        <LocFilter country={country === null ? "" : `${country.name}`} />
         <PopFilter />
         <PriceFilter />
         <DayFilter />
