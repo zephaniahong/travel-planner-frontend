@@ -32,7 +32,7 @@ export default function PopFilter({ setPopularity }) {
         getAriaValueText={valuetext}
         aria-labelledby="discrete-slider"
         valueLabelDisplay="auto"
-        step={0.5}
+        step={1}
         marks
         min={1}
         max={5}

@@ -69,7 +69,7 @@ const CountryTrips = () => {
     trip["duration"] = calcDateDiff(trip.startDate, trip.endDate);
 
     return (
-      trip.country === countryName.toLowerCase() &&
+      // trip.country.toLowerCase() === countryName.toLowerCase() &&
       trip.avgReview === pop &&
       inRange(trip.avgCost, costRange[0], costRange[1]) &&
       trip.duration <= duration
