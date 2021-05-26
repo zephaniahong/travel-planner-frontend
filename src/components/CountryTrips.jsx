@@ -1,14 +1,11 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useEffect, useContext } from "react";
 import TripCards from "./TripCards.jsx";
 import { getTrips, PlanningContext } from "../store.js";
 import CountryMap from "./CountryMap.jsx";
 import SideBar from "./SideBar.jsx";
-// import PopFilter from "./countrytrip/PopFilter.jsx";
-// import PriceFilter from "./countrytrip/PriceFilter.jsx";
-// import DayFilter from "./countrytrip/DayFilter.jsx";
 import CountryTripsFilters from "./countrytrip/CountryTripsFilters.jsx";
 
-const avgRating = (ratingsArr, numUsers) => {
+const calcAvg = (ratingsArr, numUsers) => {
   let totalRating = 0;
   ratingsArr.forEach((item) => {
     totalRating += item.stars;
@@ -48,7 +45,7 @@ const CountryTrips = () => {
               endDate={trip.endDate}
               totalCost={trip.totalCost}
               stars={
-                trip.reviews ? avgRating(trip.reviews, trip.reviews.length) : 0
+                trip.reviews ? calcAvg(trip.reviews, trip.reviews.length) : 0
               }
             />
           );

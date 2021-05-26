@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Slider from "@material-ui/core/Slider";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
@@ -16,19 +16,24 @@ function valuetext(value) {
 
 export default function PriceFilter() {
   const classes = useStyles();
+  const [price, setPrice] = useState([50, 450]);
+
+  function handleChange(event, newPrice) {
+    setPrice(newPrice);
+    console.log("newPrice", newPrice);
+  }
 
   return (
     <div className={classes.root}>
-      <Typography id="discrete-slider" gutterBottom>
-        Price Range
+      <Typography id="range-slider" gutterBottom>
+        Cost Range / Day
       </Typography>
       <Slider
-        defaultValue={250}
-        getAriaValueText={valuetext}
-        aria-labelledby="discrete-slider"
+        value={price}
+        onChange={handleChange}
         valueLabelDisplay="auto"
-        step={50}
-        marks
+        aria-labelledby="range-slider"
+        getAriaValueText={valuetext}
         min={0}
         max={9999}
       />
