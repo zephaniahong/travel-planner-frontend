@@ -24,9 +24,17 @@ function calcAvgCost(startDate, endDate, totalCost) {
   return Math.floor(totalCost / diff);
 }
 
+function calcDateDiff(startDate, endDate) {
+  const start = moment(`${startDate}`);
+  const end = moment(`${endDate}`);
+
+  return end.diff(start, "days");
+}
+
 const CountryTrips = () => {
   const [pop, setPop] = useState(null);
   const [costRange, setCostRange] = useState([]);
+  const [duration, setDuration] = useState(1);
   const { store, dispatch } = useContext(PlanningContext);
   const { trips, country } = store;
 
@@ -46,14 +54,19 @@ const CountryTrips = () => {
     return cost <= max && cost >= min;
   }
 
-  console.log("trips cost", costRange);
+  function setNumDays(days) {
+    setDuration(days);
+  }
 
   const filteredTrips = trips.filter((trip) => {
     trip["avgReview"] = calcAvgStars(trip.reviews, trip.reviews.length);
     trip["avgCost"] = calcAvgCost(trip.startDate, trip.endDate, trip.totalCost);
+    trip["duration"] = calcDateDiff(trip.startDate, trip.endDate);
+
     return (
       trip.avgReview === pop &&
-      inRange(trip.avgCost, costRange[0], costRange[1])
+      inRange(trip.avgCost, costRange[0], costRange[1]) &&
+      trip.duration <= duration
     );
   });
 
@@ -64,6 +77,7 @@ const CountryTrips = () => {
           country={country === null ? "" : `${country.name}`}
           setPopularity={setPopularity}
           setCost={setCost}
+          setNumDays={setNumDays}
         />
         {filteredTrips.map((trip) => {
           return (

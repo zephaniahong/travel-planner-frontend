@@ -11,11 +11,15 @@ const useStyles = makeStyles({
 });
 
 function valuetext(value) {
-  return `${value} stars`;
+  return `${value}`;
 }
 
-export default function DayFilter() {
+export default function DayFilter({ setNumDays }) {
   const classes = useStyles();
+
+  function handleChange(event, value) {
+    setNumDays(value);
+  }
 
   return (
     <div className={classes.root}>
@@ -23,7 +27,7 @@ export default function DayFilter() {
         No. of Days
       </Typography>
       <Slider
-        defaultValue={5}
+        defaultValue={7}
         getAriaValueText={valuetext}
         aria-labelledby="discrete-slider"
         valueLabelDisplay="auto"
@@ -31,6 +35,7 @@ export default function DayFilter() {
         marks
         min={1}
         max={30}
+        onChange={handleChange}
       />
     </div>
   );

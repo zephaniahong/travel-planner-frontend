@@ -2,7 +2,6 @@ import React from "react";
 import Slider from "@material-ui/core/Slider";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
-import { setCtPopAction } from "../../store.js";
 
 const useStyles = makeStyles({
   root: {

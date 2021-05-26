@@ -8,13 +8,14 @@ export default function CountryTripsFilters({
   country,
   setPopularity,
   setCost,
+  setNumDays,
 }) {
   return (
     <>
       <LocFilter country={country} />
       <PopFilter setPopularity={setPopularity} />
       <PriceFilter setCost={setCost} />
-      <DayFilter />
+      <DayFilter setNumDays={setNumDays} />
     </>
   );
 }
