@@ -18,7 +18,6 @@ const CountryTrips = () => {
   const [pop, setPop] = useState(null);
   const { store, dispatch } = useContext(PlanningContext);
   const { trips, country } = store;
-  console.log("store", store);
 
   useEffect(() => {
     getTrips(dispatch);
@@ -28,11 +27,14 @@ const CountryTrips = () => {
     setPop(numStars);
   }
 
-  console.log("POPs!!", pop);
+  // console.log("trips", trips);
   // Include country in trips as well for filtering.
-  // const filteredTrips = trips.filter((trip) => {
-  //   calcAvg(trip.reviews, trip.reviews.length) === ctPopFilter;
-  // });
+  const filteredTrips = trips.filter((trip) => {
+    trip["avgReview"] = calcAvg(trip.reviews, trip.reviews.length);
+    return trip.avgReview === pop;
+  });
+
+  console.log(filteredTrips);
 
   // console.log("filteredTrips", filteredTrips);
 
@@ -44,7 +46,7 @@ const CountryTrips = () => {
           setPopularity={setPopularity}
         />
 
-        {trips.map((trip) => {
+        {filteredTrips.map((trip) => {
           return (
             <TripCards
               key={trip.id.toString()}
