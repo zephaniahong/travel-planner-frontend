@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import ProfileIcon from "./ProfileIcon.jsx";
-import styled, { keyframes } from "styled-components";
+// import styled, { keyframes } from "styled-components";
 import { setCountryAction, PlanningContext } from "../store.js";
 
 // const rotate = keyframes`

@@ -4,11 +4,11 @@ import PriceFilter from "./PriceFilter.jsx";
 import DayFilter from "./DayFilter.jsx";
 import LocFilter from "./LocFilter.jsx";
 
-export default function CountryTripsFilters({ country }) {
+export default function CountryTripsFilters({ country, setPopularity }) {
   return (
     <>
       <LocFilter country={country} />
-      <PopFilter />
+      <PopFilter setPopularity={setPopularity} />
       <PriceFilter />
       <DayFilter />
     </>

@@ -15,13 +15,14 @@ function valuetext(value) {
   return `${Number(value)}`;
 }
 
-function handleChange(event, val) {
-  const numStars = val;
-  setCtPopAction(numStars);
-}
-
-export default function PopFilter() {
+export default function PopFilter({ setPopularity }) {
   const classes = useStyles();
+
+  function handleChange(event, val) {
+    const numStars = val;
+    console.log("numStars", numStars);
+    setPopularity(numStars);
+  }
 
   return (
     <div className={classes.root}>

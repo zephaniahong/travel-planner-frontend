@@ -6,7 +6,6 @@ export const initialState ={
   highlightedCountry: null,
   trips: [],
   userTrips: [],
-  ctPopFilter: 0,
 };
 
 
@@ -22,8 +21,6 @@ export function planningReducer(state, action) {
       return {...state, trips: action.payload}
     case GET_USER_TRIPS:
       return {...state, userTrips: action.payload}
-    case SET_CT_POPULARITY: 
-      return {...state, ctPopFilter: action.payload}
 
   default:
     return state
@@ -47,7 +44,6 @@ const SET_HIGHLIGHT = 'SET_HIGHLIGHT';
 const SET_LAT_LNG = 'SET_LAT_LNG';
 const GET_TRIPS = 'GET_TRIPS';
 const GET_USER_TRIPS = 'GET_USER_TRIPS';
-const SET_CT_POPULARITY = 'SET_CT_POPULARITY';
 
 // action functions
 export function setCountryAction(country) {
@@ -85,12 +81,6 @@ export function getUserTripsAction(userTrips) {
   }
 };
 
-export function setCtPopAction(popularity) {
-  return {
-    type: SET_CT_POPULARITY,
-    payload: Number(popularity)
-  }
-}
 
 const BACKEND_URL = 'http://localhost:3004';
 

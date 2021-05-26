@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import TripCards from "./TripCards.jsx";
 import { getTrips, PlanningContext } from "../store.js";
 import CountryMap from "./CountryMap.jsx";
@@ -15,15 +15,20 @@ const calcAvg = (ratingsArr, numUsers) => {
 };
 
 const CountryTrips = () => {
+  const [pop, setPop] = useState(null);
   const { store, dispatch } = useContext(PlanningContext);
-  const { trips, country, ctPopFilter } = store;
+  const { trips, country } = store;
   console.log("store", store);
-  console.log("store.ctPopFilter", ctPopFilter);
 
   useEffect(() => {
     getTrips(dispatch);
   }, [dispatch]);
 
+  function setPopularity(numStars) {
+    setPop(numStars);
+  }
+
+  console.log("POPs!!", pop);
   // Include country in trips as well for filtering.
   // const filteredTrips = trips.filter((trip) => {
   //   calcAvg(trip.reviews, trip.reviews.length) === ctPopFilter;
@@ -36,6 +41,7 @@ const CountryTrips = () => {
       <SideBar>
         <CountryTripsFilters
           country={country === null ? "" : `${country.name}`}
+          setPopularity={setPopularity}
         />
 
         {trips.map((trip) => {
