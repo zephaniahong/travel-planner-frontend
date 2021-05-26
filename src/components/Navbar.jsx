@@ -29,7 +29,7 @@ export default function NavBar() {
 
   // set chosen country as NULL in store, to re-render worldmap.
   function handleSubmit() {
-    dispatch(setCountryAction(searchedCountry));
+    dispatch(setCountryAction(null));
   }
 
   return (
@@ -38,7 +38,7 @@ export default function NavBar() {
         <Link to="/">
           <Navbar.Brand className="navbar-brand text-dark px-3">
             {/* <LogoRotate> */}
-            <button className="btn btn-sm px-0">
+            <button className="btn btn-sm px-0" onClick={handleSubmit}>
               <img
                 src="./travel-planner-logo.png"
                 width="32"

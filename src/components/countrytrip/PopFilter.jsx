@@ -14,6 +14,11 @@ function valuetext(value) {
   return `${value} stars`;
 }
 
+function handleChange(event) {
+  console.log("my event", event);
+  console.log("tARGET", event.target.textContent);
+}
+
 export default function PopFilter() {
   const classes = useStyles();
 
@@ -27,10 +32,11 @@ export default function PopFilter() {
         getAriaValueText={valuetext}
         aria-labelledby="discrete-slider"
         valueLabelDisplay="auto"
-        step={1}
+        step={0.5}
         marks
         min={0}
         max={5}
+        onChange={handleChange}
       />
     </div>
   );

@@ -23,9 +23,10 @@ const CountryTrips = () => {
   }, [dispatch]);
 
   // Include country in trips as well for filtering.
-  // const filteredTrips = trips.filter((trip) => {
+  const filteredTrips = trips.filter((trip) => { 
+    calcAvg(trip.reviews, trip.reviews.length) === 
 
-  // })
+  });
 
   return (
     <div>

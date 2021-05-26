@@ -20,7 +20,13 @@ export default function PriceFilter() {
 
   function handleChange(event, newPrice) {
     setPrice(newPrice);
+
+    if (event.type === "mouseup") {
+      console.log("mouse up!;", price);
+    }
+
     console.log("newPrice", newPrice);
+    console.log("EVT:", event);
   }
 
   return (
