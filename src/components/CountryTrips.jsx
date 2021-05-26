@@ -16,17 +16,20 @@ const calcAvg = (ratingsArr, numUsers) => {
 
 const CountryTrips = () => {
   const { store, dispatch } = useContext(PlanningContext);
-  const { trips, country } = store;
+  const { trips, country, ctPopFilter } = store;
+  console.log("store", store);
+  console.log("store.ctPopFilter", ctPopFilter);
 
   useEffect(() => {
     getTrips(dispatch);
   }, [dispatch]);
 
   // Include country in trips as well for filtering.
-  const filteredTrips = trips.filter((trip) => { 
-    calcAvg(trip.reviews, trip.reviews.length) === 
+  // const filteredTrips = trips.filter((trip) => {
+  //   calcAvg(trip.reviews, trip.reviews.length) === ctPopFilter;
+  // });
 
-  });
+  // console.log("filteredTrips", filteredTrips);
 
   return (
     <div>

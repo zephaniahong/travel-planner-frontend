@@ -2,6 +2,7 @@ import React from "react";
 import Slider from "@material-ui/core/Slider";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
+import { setCtPopAction } from "../../store.js";
 
 const useStyles = makeStyles({
   root: {
@@ -11,12 +12,12 @@ const useStyles = makeStyles({
 });
 
 function valuetext(value) {
-  return `${value} stars`;
+  return `${Number(value)}`;
 }
 
-function handleChange(event) {
-  console.log("my event", event);
-  console.log("tARGET", event.target.textContent);
+function handleChange(event, val) {
+  const numStars = val;
+  setCtPopAction(numStars);
 }
 
 export default function PopFilter() {

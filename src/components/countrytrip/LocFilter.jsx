@@ -39,7 +39,11 @@ export default function LocFilter({ country }) {
           onChange={handleChange}
         >
           {countries.map((country) => {
-            return <MenuItem value={country}>{country}</MenuItem>;
+            return (
+              <MenuItem key={country} value={country}>
+                {country}
+              </MenuItem>
+            );
           })}
         </Select>
       </FormControl>
