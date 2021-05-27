@@ -23,7 +23,6 @@ const CountrySearch = ({ getGeocode, getLatLng, panTo }) => {
   async function getLocationInfo() {
     const results = await getGeocode({ address: searchedCountry });
     const { lat, lng } = await getLatLng(results[0]);
-    console.log(lat, lng);
     panTo({ lat, lng });
     dispatch(setLatLngAction(lat, lng));
   }

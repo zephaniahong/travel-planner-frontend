@@ -27,13 +27,11 @@ export default function CountryMap() {
   });
   const [markers, setMarkers] = useState([]);
   const [selected, setSelected] = useState(null);
-  console.log(selected);
 
   // keep a copy of the original map
   const mapRef = useRef();
 
   const onLoad = useCallback((map) => {
-    console.log("inside calback");
     mapRef.current = map;
   }, []);
 
