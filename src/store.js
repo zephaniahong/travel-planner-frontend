@@ -157,7 +157,7 @@ export function newTrip(dispatch, setTripId) {
   .then((result) => {
     const tripId = result.data.tripId
     dispatch(setTripId(tripId))
-    axios.get(BACKEND_URL + '/get-items/29',)
+    axios.get(BACKEND_URL + `/get-items/${tripId}`,)
     .then((result)=> {
       dispatch(getItemsAction(result.data))
     })
