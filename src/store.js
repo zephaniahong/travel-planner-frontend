@@ -7,10 +7,7 @@ export const initialState ={
   trips: [],
   userTrips: [],
   tripId: null,
-<<<<<<< HEAD
-=======
   items: null
->>>>>>> 0ceaa005c385e8ea124fceff97223d5e139fd6df
 }
 
 
@@ -47,14 +44,6 @@ export function PlanningProvider({children}) {
 };
 
 // Types
-<<<<<<< HEAD
-const SET_COUNTRY = 'SET_COUNTRY';
-const SET_HIGHLIGHT = 'SET_HIGHLIGHT';
-const SET_LAT_LNG = 'SET_LAT_LNG';
-const GET_TRIPS = 'GET_TRIPS';
-const SET_TRIP_ID = 'SET_TRIP_ID';
-const GET_USER_TRIPS = 'GET_USER_TRIPS';
-=======
 const SET_COUNTRY = 'SET_COUNTRY'
 const SET_HIGHLIGHT = 'SET_HIGHLIGHT'
 const SET_LAT_LNG = 'SET_LAT_LNG'
@@ -62,7 +51,6 @@ const GET_TRIPS = 'GET_TRIPS'
 const SET_TRIP_ID = 'SET_TRIP_ID'
 const GET_USER_TRIPS = 'GET_USER_TRIPS'
 const GET_ITEMS = 'GET_ITEMS'
->>>>>>> 0ceaa005c385e8ea124fceff97223d5e139fd6df
 
 // action functions
 export function setCountryAction(country) {
