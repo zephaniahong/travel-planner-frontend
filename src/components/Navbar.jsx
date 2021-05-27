@@ -30,8 +30,6 @@ export default function NavBar() {
   const [searchedCountry, setSearchedCountry] = useState(null);
   const { country } = store;
 
-  console.log("See current country selected:", country);
-
   // set chosen country as NULL in store, to re-render worldmap.
   function handleSubmit() {
     dispatch(setCountryAction(null));
