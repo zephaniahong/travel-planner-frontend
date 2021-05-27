@@ -8,6 +8,7 @@ import {PlanningProvider} from './store';
 import Home from './components/Home.jsx';
 import Navbar from './components/Navbar.jsx';
 import CountryTrips from './components/CountryTrips.jsx'
+import SingleTrip from './components/SingleTrip.jsx'
 import TripPlanningPage from './components/TripPlanningPage.jsx';
 import AllTrips from './components/AllTrips.jsx'
 import { Container } from 'react-bootstrap';
@@ -20,16 +21,20 @@ function App() {
   const [trips, setTrips] = useState([]);
   const [selectedTripIndex, setSelectedTrip] = useState([]);
 
+  const selectedTrip = trips[selectedTripIndex];
+
   useEffect(() => {
     axios.get(`${BACKEND_URL}/gettrips`)
       .then((res) => {
         setTrips(res.data);
-      });
+    });
   }, []);
 
   const onDeepLink = (tripIndex) => {
     setSelectedTrip(tripIndex);
   }
+
+  console.log("See Trips", trips)
 
   return (
     <PlanningProvider>
@@ -44,7 +49,7 @@ function App() {
           </Route>
 
           <Route path="/trip/:tripId">
-            <CountryTrips onDeepLink={onDeepLink} /> 
+            <SingleTrip selectedTrip={selectedTrip} onDeepLink={onDeepLink} /> 
           </Route>  
 
           <Route path="/alltrips">
