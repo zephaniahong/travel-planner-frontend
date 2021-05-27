@@ -11,16 +11,14 @@ const libraries = ["places"];
 const mapContainerStyle = { width: "100vw", height: "100vh" };
 const center = { lat: 43, lng: -79 };
 const options = {
-  // remove all UI elements on map
   disableDefaultUI: true,
-  // show zoom buttons
   zoomControl: true,
   styles: mapStyles,
 };
 
 export default function CountryMap() {
   const { store } = useContext(PlanningContext);
-  const { country } = store;
+  const { country, trips } = store;
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_KEY,
     libraries,
@@ -39,17 +37,6 @@ export default function CountryMap() {
 
   const panTo = useCallback(({ lat, lng }) => {
     mapRef.current.panTo({ lat, lng });
-  }, []);
-
-  const onMapClick = useCallback((e) => {
-    setMarkers((current) => [
-      ...current,
-      {
-        lat: e.latLng.lat(),
-        lng: e.latLng.lng(),
-        time: new Date(),
-      },
-    ]);
   }, []);
 
   // handle errors/ loading of map
@@ -75,15 +62,11 @@ export default function CountryMap() {
             center={center}
             options={options}
             onLoad={onLoad}
-            onClick={onMapClick}
           >
-            {markers.map((marker) => (
+            {trips.map((trip) => (
               <Marker
-                key={marker.time.toISOString()}
-                position={{ lat: marker.lat, lng: marker.lng }}
-                onClick={() => {
-                  setSelected(marker);
-                }}
+                key={trip.id.toString()}
+                position={{ lat: trip.hotelLat, lng: trip.hotelLng }}
               />
             ))}
           </GoogleMap>

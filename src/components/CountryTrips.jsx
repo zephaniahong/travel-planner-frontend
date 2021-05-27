@@ -5,7 +5,6 @@ import CountryMap from "./CountryMap.jsx";
 import SideBar from "./SideBar.jsx";
 import CountryTripsFilters from "./countrytrip/CountryTripsFilters.jsx";
 import moment from "moment";
-import { Spinner } from "react-bootstrap";
 
 function calcAvgStars(ratingsArr, numUsers) {
   let totalRating = 0;
