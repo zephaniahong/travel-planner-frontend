@@ -7,10 +7,7 @@ export const initialState ={
   trips: [],
   userTrips: [],
   tripId: null,
-<<<<<<< HEAD
-=======
-  items: null
->>>>>>> 0ceaa005c385e8ea124fceff97223d5e139fd6df
+  items: {food:[], activities: [], sites: []}
 }
 
 
@@ -29,7 +26,28 @@ export function planningReducer(state, action) {
     case SET_TRIP_ID:
       return {...state, tripId: action.payload}
     case GET_ITEMS:
-      return {...state, items: {sites: action.payload.siteItems, food: action.payload.foodItems, activities: action.payload.activityItems}}
+      let food= []
+      let activities = []
+      let sites = []
+      for (let i =0; i< action.payload.length; i += 1) {
+        if (action.payload[i].type === 'food') {
+          food.push(action.payload[i])
+        } else if (action.payload[i].type === 'activities') {
+          activities.push(action.payload[i])
+        } else if (action.payload[i].type === 'sites') {
+          sites.push(action.payload[i])
+      }
+    }
+      return {...state, items: {food: food, sites: sites, activities: activities}}
+    case ADD_ITEM:
+      const item = action.payload
+      if (action.payload.type === 'food') {
+        return {...state, items: {...state.items, food: [...state.items.food, item]}}
+      } else if (action.payload.type === 'activities') {
+        return {...state, items: {...state.items, activities: [...state.items.activities, item]}}
+      } else if (action.payload.type === 'sites') {
+        return {...state, items: {...state.items, sites: [...state.items.activities, item]}}
+      }
   default:
     return state
   }
@@ -62,7 +80,7 @@ const GET_TRIPS = 'GET_TRIPS'
 const SET_TRIP_ID = 'SET_TRIP_ID'
 const GET_USER_TRIPS = 'GET_USER_TRIPS'
 const GET_ITEMS = 'GET_ITEMS'
->>>>>>> 0ceaa005c385e8ea124fceff97223d5e139fd6df
+const ADD_ITEM = 'ADD_ITEM'
 
 // action functions
 export function setCountryAction(country) {
@@ -112,6 +130,12 @@ export function getItemsAction(items) {
     payload: items
   }
 }
+export function addItemAction(item) {
+  return {
+    type: ADD_ITEM,
+    payload: item
+  }
+}
 
 const BACKEND_URL = 'http://localhost:3004';
 
@@ -131,8 +155,10 @@ export function getUserTrips(dispatch) {
     })
 };
 
-export function addItem(type, tripId, description) {
-  axios.post(BACKEND_URL + '/add-item', {type, tripId, description})
+export function addItem(dispatch, type, tripId, mainText, secondaryText) {
+  axios.post(BACKEND_URL + '/add-item', {type, tripId, mainText, secondaryText}).then((result)=> {
+    dispatch(addItemAction(result.data))
+  })
 }
 
 export function newTrip(dispatch, setTripId) {
@@ -140,9 +166,8 @@ export function newTrip(dispatch, setTripId) {
   .then((result) => {
     const tripId = result.data.tripId
     dispatch(setTripId(tripId))
-    axios.get(BACKEND_URL + '/get-items/43',)
+    axios.get(BACKEND_URL + `/get-items/${tripId}`,)
     .then((result)=> {
-      console.log(result.data)
       dispatch(getItemsAction(result.data))
     })
   })

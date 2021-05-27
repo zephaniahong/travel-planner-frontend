@@ -9,7 +9,7 @@ const libraries = ["places"];
 const GoogleSearch = () => {
   // google result
   const [result, setResult] = useState(null);
-  const { store } = useContext(PlanningContext);
+  const { store, dispatch } = useContext(PlanningContext);
   const { country, tripId } = store;
   const {
     ready,
@@ -25,16 +25,16 @@ const GoogleSearch = () => {
     },
   });
 
-  const addToItinerary = (types, description) => {
-    let selectedType;
+  const addToItinerary = (types, mainText, secondaryText) => {
+    let type;
     if (types[0] === "natural_feature") {
-      selectedType = "sites";
+      type = "sites";
     } else if (types[0] === "restaurant") {
-      selectedType = "food";
+      type = "food";
     } else if (types[0] === "point_of_interest") {
-      selectedType = "activities";
+      type = "activities";
     }
-    addItem(selectedType, tripId, description);
+    addItem(dispatch, type, tripId, mainText, secondaryText);
   };
 
   return (
@@ -58,7 +58,11 @@ const GoogleSearch = () => {
               <button
                 className="btn btn-primary"
                 onClick={() => {
-                  addToItinerary(types, description);
+                  addToItinerary(
+                    types,
+                    structured_formatting.main_text,
+                    structured_formatting.secondary_text
+                  );
                 }}
               >
                 Add
