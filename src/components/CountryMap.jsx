@@ -21,7 +21,7 @@ const options = {
   styles: mapStyles,
 };
 
-export default function CountryMap() {
+export default function CountryMap({ filtered }) {
   const { store } = useContext(PlanningContext);
   const { country, trips } = store;
   const { isLoaded, loadError } = useLoadScript({
@@ -66,7 +66,7 @@ export default function CountryMap() {
             options={options}
             onLoad={onLoad}
           >
-            {trips.map((trip) => (
+            {filtered.map((trip) => (
               <Marker
                 key={trip.id.toString()}
                 position={{ lat: trip.hotelLat, lng: trip.hotelLng }}

@@ -7,7 +7,6 @@ export const initialState ={
   trips: [],
   userTrips: [],
   tripId: null,
-  filteredTrips: []
 }
 
 
@@ -25,8 +24,7 @@ export function planningReducer(state, action) {
       return {...state, userTrips: action.payload}
     case SET_TRIP_ID:
       return {...state, tripId: action.payload}
-    case SET_FILTERED_TRIPS:
-      return {...state, filteredTrips: action.payload}
+
   default:
     return state
   }
@@ -50,7 +48,6 @@ const SET_LAT_LNG = 'SET_LAT_LNG';
 const GET_TRIPS = 'GET_TRIPS';
 const SET_TRIP_ID = 'SET_TRIP_ID';
 const GET_USER_TRIPS = 'GET_USER_TRIPS';
-const SET_FILTERED_TRIPS = 'SET_FILTERED_TRIPS';
 
 // action functions
 export function setCountryAction(country) {
@@ -94,14 +91,6 @@ export function setTripId(id) {
     payload: id
   }
 }
-
-export function setFilteredTrips(filteredTrips) {
-  return {
-    type: SET_FILTERED_TRIPS,
-    payload: filteredTrips
-  }
-}
-
 
 
 const BACKEND_URL = 'http://localhost:3004';

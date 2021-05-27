@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState } from "react";
 import TripCards from "./TripCards.jsx";
-import { getTrips, PlanningContext } from "../store.js";
+import { getTrips, PlanningContext, setFilteredTrips } from "../store.js";
 import CountryMap from "./CountryMap.jsx";
 import SideBar from "./SideBar.jsx";
 import CountryTripsFilters from "./countrytrip/CountryTripsFilters.jsx";
@@ -40,7 +40,7 @@ const CountryTrips = () => {
   const [costRange, setCostRange] = useState([]);
   const [duration, setDuration] = useState(1);
   const { store, dispatch } = useContext(PlanningContext);
-  const { trips, country } = store;
+  const { trips, country, filteredTrips } = store;
 
   useEffect(() => {
     getTrips(dispatch);
@@ -62,7 +62,7 @@ const CountryTrips = () => {
     setDuration(days);
   }
 
-  const filteredTrips = trips.filter((trip) => {
+  const filtered = trips.filter((trip) => {
     trip["avgReview"] = calcAvgStars(trip.reviews, trip.reviews.length);
     trip["avgCost"] = calcAvgCost(trip.startDate, trip.endDate, trip.totalCost);
     trip["duration"] = calcDateDiff(trip.startDate, trip.endDate);
@@ -75,10 +75,6 @@ const CountryTrips = () => {
     );
   });
 
-  useEffect(() => {
-    // dispatch filteredTrips
-  }, [countryName, pop, costRange, duration]);
-
   return (
     <div>
       <SideBar>
@@ -89,7 +85,7 @@ const CountryTrips = () => {
           setCost={setCost}
           setNumDays={setNumDays}
         />
-        {filteredTrips.map((trip) => {
+        {filtered.map((trip) => {
           return (
             <TripCards
               key={trip.id.toString()}
@@ -108,7 +104,7 @@ const CountryTrips = () => {
           );
         })}
       </SideBar>
-      <CountryMap />
+      <CountryMap filtered={filtered} />
     </div>
   );
 };
