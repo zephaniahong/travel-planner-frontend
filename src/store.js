@@ -44,9 +44,9 @@ export function PlanningProvider({children}) {
 const SET_COUNTRY = 'SET_COUNTRY'
 const SET_HIGHLIGHT = 'SET_HIGHLIGHT'
 const SET_LAT_LNG = 'SET_LAT_LNG'
-const ADD_TO_ITINERARY = 'ADD_TO_ITINERARY'
 const GET_TRIPS = 'GET_TRIPS'
 const SET_TRIP_ID = 'SET_TRIP_ID'
+const GET_USER_TRIPS = 'GET_USER_TRIPS'
 
 // action functions
 export function setCountryAction(country) {
@@ -109,13 +109,13 @@ export function getUserTrips(dispatch) {
     })
 };
 
-export function addToItinerary(dispatch, address) {
-  axios.post(BACKEND_URL + '/addtoitinerary', address)
+export function addItem(type, tripId, description) {
+  axios.post(BACKEND_URL + '/add-item', {type, tripId, description})
 }
 
 export function newTrip(dispatch, setTripId) {
   axios.post(BACKEND_URL + '/createtrip').then((result) => {
     console.log(result.data)
-    dispatch(setTripId(result.data))
+    dispatch(setTripId(result.data.tripId))
   })
 }
