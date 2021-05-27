@@ -6,7 +6,8 @@ export const initialState ={
   highlightedCountry: null, 
   trips: [],
   userTrips: [],
-  tripId: null
+  tripId: null,
+  filteredTrips: []
 }
 
 
@@ -24,6 +25,8 @@ export function planningReducer(state, action) {
       return {...state, userTrips: action.payload}
     case SET_TRIP_ID:
       return {...state, tripId: action.payload}
+    case SET_FILTERED_TRIPS:
+      return {...state, filteredTrips: action.payload}
   default:
     return state
   }
@@ -41,12 +44,13 @@ export function PlanningProvider({children}) {
 };
 
 // Types
-const SET_COUNTRY = 'SET_COUNTRY'
-const SET_HIGHLIGHT = 'SET_HIGHLIGHT'
-const SET_LAT_LNG = 'SET_LAT_LNG'
-const GET_TRIPS = 'GET_TRIPS'
-const SET_TRIP_ID = 'SET_TRIP_ID'
-const GET_USER_TRIPS = 'GET_USER_TRIPS'
+const SET_COUNTRY = 'SET_COUNTRY';
+const SET_HIGHLIGHT = 'SET_HIGHLIGHT';
+const SET_LAT_LNG = 'SET_LAT_LNG';
+const GET_TRIPS = 'GET_TRIPS';
+const SET_TRIP_ID = 'SET_TRIP_ID';
+const GET_USER_TRIPS = 'GET_USER_TRIPS';
+const SET_FILTERED_TRIPS = 'SET_FILTERED_TRIPS';
 
 // action functions
 export function setCountryAction(country) {
@@ -83,12 +87,21 @@ export function getUserTripsAction(userTrips) {
     payload: userTrips
   }
 };
+
 export function setTripId(id) {
   return {
     type: SET_TRIP_ID,
     payload: id
   }
 }
+
+export function setFilteredTrips(filteredTrips) {
+  return {
+    type: SET_FILTERED_TRIPS,
+    payload: filteredTrips
+  }
+}
+
 
 
 const BACKEND_URL = 'http://localhost:3004';

@@ -29,7 +29,6 @@ export default function CountryMap() {
     libraries,
   });
   const [selected, setSelected] = useState(null);
-  console.log(selected);
 
   // keep a copy of the original map
   const mapRef = useRef();

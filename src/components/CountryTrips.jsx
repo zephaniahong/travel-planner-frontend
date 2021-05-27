@@ -75,6 +75,10 @@ const CountryTrips = () => {
     );
   });
 
+  useEffect(() => {
+    // dispatch filteredTrips
+  }, [countryName, pop, costRange, duration]);
+
   return (
     <div>
       <SideBar>
