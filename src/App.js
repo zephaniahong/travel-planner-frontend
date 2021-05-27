@@ -9,6 +9,7 @@ import Navbar from './components/Navbar.jsx';
 import CountryTrips from './components/CountryTrips.jsx'
 import TripPlanningPage from './components/TripPlanningPage.jsx';
 import AllTrips from './components/AllTrips.jsx'
+// import SingleTrip from './components/SingleTrip.jsx'
 import { Container } from 'react-bootstrap';
 import './App.css'
 
@@ -25,9 +26,7 @@ function App() {
             <TripPlanningPage />
           </Route>
 
-          {/* <Route path="/exploretrips"> */}
-            {/* <CountryTrips /> */}
-          {/* </Route>   */}
+          {/* <Route path={"/trip/:tripId"} component={SingleTrip} /> */}
 
           <Route path="/alltrips">
             <AllTrips />

@@ -14,7 +14,7 @@ export const initialState ={
 export function planningReducer(state, action) {
   switch(action.type){
     case SET_COUNTRY:
-      return {...state, country: {name:action.payload}}
+      return {...state, country: {name: action.payload}}
     case SET_HIGHLIGHT:
       return {...state, highlightedCountry: action.payload}
     case SET_LAT_LNG:

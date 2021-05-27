@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import countries from "../countries.js";
+import { PlanningContext, setCountryAction } from "../../store.js";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -16,17 +17,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function LocFilter({ country, setCntryName }) {
+export default function LocFilter() {
   const classes = useStyles();
+  const { store, dispatch } = useContext(PlanningContext);
+  const { country } = store;
   const [select, setSelect] = useState(country);
-
-  useEffect(() => {
-    setSelect(country);
-  }, [country]);
 
   const handleChange = (event) => {
     setSelect(event.target.value);
-    setCntryName(event.target.value);
+    dispatch(setCountryAction(event.target.value));
   };
 
   return (
