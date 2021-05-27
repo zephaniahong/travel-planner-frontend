@@ -6,7 +6,8 @@ export const initialState ={
   highlightedCountry: null, 
   trips: [],
   userTrips: [],
-  tripId: null
+  tripId: null,
+  items: null
 }
 
 
@@ -24,6 +25,8 @@ export function planningReducer(state, action) {
       return {...state, userTrips: action.payload}
     case SET_TRIP_ID:
       return {...state, tripId: action.payload}
+    case GET_ITEMS:
+      return {...state, items: {sites: action.payload.siteItems, food: action.payload.foodItems, activities: action.payload.activityItems}}
   default:
     return state
   }
@@ -47,6 +50,7 @@ const SET_LAT_LNG = 'SET_LAT_LNG'
 const GET_TRIPS = 'GET_TRIPS'
 const SET_TRIP_ID = 'SET_TRIP_ID'
 const GET_USER_TRIPS = 'GET_USER_TRIPS'
+const GET_ITEMS = 'GET_ITEMS'
 
 // action functions
 export function setCountryAction(country) {
@@ -89,7 +93,12 @@ export function setTripId(id) {
     payload: id
   }
 }
-
+export function getItemsAction(items) {
+  return {
+    type: GET_ITEMS,
+    payload: items
+  }
+}
 
 const BACKEND_URL = 'http://localhost:3004';
 
@@ -114,8 +123,14 @@ export function addItem(type, tripId, description) {
 }
 
 export function newTrip(dispatch, setTripId) {
-  axios.post(BACKEND_URL + '/createtrip').then((result) => {
-    console.log(result.data)
-    dispatch(setTripId(result.data.tripId))
+  axios.post(BACKEND_URL + '/createtrip')
+  .then((result) => {
+    const tripId = result.data.tripId
+    dispatch(setTripId(tripId))
+    axios.get(BACKEND_URL + '/get-items/43',)
+    .then((result)=> {
+      console.log(result.data)
+      dispatch(getItemsAction(result.data))
+    })
   })
 }
