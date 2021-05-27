@@ -3,10 +3,15 @@ import axios from 'axios';
 
 export const initialState ={
   country: null,
-  highlightedCountry: null,
+  highlightedCountry: null, 
   trips: [],
+<<<<<<< HEAD
   userTrips: [],
 };
+=======
+  tripId: null
+}
+>>>>>>> create-trips
 
 
 export function planningReducer(state, action) {
@@ -19,9 +24,14 @@ export function planningReducer(state, action) {
       return {...state, country: {name: state.country.name, lat: action.payload.lat, lng: action.payload.lng}}
     case GET_TRIPS:
       return {...state, trips: action.payload}
+<<<<<<< HEAD
     case GET_USER_TRIPS:
       return {...state, userTrips: action.payload}
 
+=======
+    case SET_TRIP_ID:
+      return {...state, tripId: action.payload}
+>>>>>>> create-trips
   default:
     return state
   }
@@ -39,11 +49,12 @@ export function PlanningProvider({children}) {
 };
 
 // Types
-const SET_COUNTRY = 'SET_COUNTRY';
-const SET_HIGHLIGHT = 'SET_HIGHLIGHT';
-const SET_LAT_LNG = 'SET_LAT_LNG';
-const GET_TRIPS = 'GET_TRIPS';
-const GET_USER_TRIPS = 'GET_USER_TRIPS';
+const SET_COUNTRY = 'SET_COUNTRY'
+const SET_HIGHLIGHT = 'SET_HIGHLIGHT'
+const SET_LAT_LNG = 'SET_LAT_LNG'
+const ADD_TO_ITINERARY = 'ADD_TO_ITINERARY'
+const GET_TRIPS = 'GET_TRIPS'
+const SET_TRIP_ID = 'SET_TRIP_ID'
 
 // action functions
 export function setCountryAction(country) {
@@ -74,12 +85,21 @@ export function getTripsAction(trips) {
   }
 };
 
+<<<<<<< HEAD
 export function getUserTripsAction(userTrips) {
   return {
     type: GET_USER_TRIPS,
     payload: userTrips
   }
 };
+=======
+export function setTripId(id) {
+  return {
+    type: SET_TRIP_ID,
+    payload: id
+  }
+}
+>>>>>>> create-trips
 
 
 const BACKEND_URL = 'http://localhost:3004';
@@ -91,6 +111,7 @@ export function getTrips(dispatch) {
     .then(res => {
       dispatch(getTripsAction(res.data));
     })
+<<<<<<< HEAD
 };
 
 export function getUserTrips(dispatch) {
@@ -99,3 +120,16 @@ export function getUserTrips(dispatch) {
       dispatch(getUserTripsAction(res.data))
     })
 };
+=======
+}
+export function addToItinerary(dispatch, address) {
+  axios.post(BACKEND_URL + '/addtoitinerary', address)
+}
+
+export function newTrip(dispatch, setTripId) {
+  axios.post(BACKEND_URL + '/createtrip').then((result) => {
+    console.log(result.data)
+    dispatch(setTripId(result.data))
+  })
+}
+>>>>>>> create-trips

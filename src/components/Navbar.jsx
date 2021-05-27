@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { PlanningContext, newTrip, setTripId } from "../store";
 import { Link } from "react-router-dom";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import ProfileIcon from "./ProfileIcon.jsx";
@@ -32,6 +33,10 @@ export default function NavBar() {
     dispatch(setCountryAction(null));
   }
 
+  const { dispatch } = useContext(PlanningContext);
+  const createTrip = () => {
+    newTrip(dispatch, setTripId);
+  };
   return (
     <div>
       <Navbar collapseOnSelect bg="dark" expand="lg" variant="dark">
@@ -58,6 +63,7 @@ export default function NavBar() {
           </Nav>
           <Nav className="ml-auto">
             <Link
+              onClick={createTrip}
               className="btn btn-outline-success mx-2 my-1"
               to="/createtrip"
             >
