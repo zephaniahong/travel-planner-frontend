@@ -34,7 +34,6 @@ export default function CountryMap({ filtered }) {
   const mapRef = useRef();
 
   const onLoad = useCallback((map) => {
-    console.log("inside calback");
     mapRef.current = map;
   }, []);
 
