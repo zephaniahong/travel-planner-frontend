@@ -1,4 +1,9 @@
-import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
+import {
+  GoogleMap,
+  useLoadScript,
+  Marker,
+  InfoWindow,
+} from "@react-google-maps/api";
 import React, { useState, useRef, useCallback, useContext } from "react";
 import ReactDOM from "react-dom";
 import { PlanningContext } from "../store";
@@ -23,7 +28,6 @@ export default function CountryMap() {
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_KEY,
     libraries,
   });
-  const [markers, setMarkers] = useState([]);
   const [selected, setSelected] = useState(null);
   console.log(selected);
 
@@ -67,8 +71,25 @@ export default function CountryMap() {
               <Marker
                 key={trip.id.toString()}
                 position={{ lat: trip.hotelLat, lng: trip.hotelLng }}
+                onClick={() => {
+                  setSelected(trip);
+                }}
               />
             ))}
+
+            {selected && (
+              <InfoWindow
+                position={{ lat: selected.hotelLat, lng: selected.hotelLng }}
+                onCloseClick={() => {
+                  setSelected(null);
+                }}
+              >
+                <div>
+                  <h3 className="lead">Hotel: {selected.hotel}</h3>{" "}
+                  <p> {selected.tripType}</p>
+                </div>
+              </InfoWindow>
+            )}
           </GoogleMap>
         </div>
       )}
