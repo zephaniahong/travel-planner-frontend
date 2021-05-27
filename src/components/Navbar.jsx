@@ -1,10 +1,14 @@
 import React, { useContext, useState } from "react";
-import { PlanningContext, newTrip, setTripId } from "../store";
+import {
+  PlanningContext,
+  newTrip,
+  setTripId,
+  setCountryAction,
+} from "../store";
 import { Link } from "react-router-dom";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import ProfileIcon from "./ProfileIcon.jsx";
 // import styled, { keyframes } from "styled-components";
-import { setCountryAction, PlanningContext } from "../store.js";
 
 // const rotate = keyframes`
 //   from {
@@ -33,7 +37,6 @@ export default function NavBar() {
     dispatch(setCountryAction(null));
   }
 
-  const { dispatch } = useContext(PlanningContext);
   const createTrip = () => {
     newTrip(dispatch, setTripId);
   };
