@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Nav, Button, Badge } from "react-bootstrap";
+import { Card, Nav, Badge } from "react-bootstrap";
 import moment from "moment";
 import TripRating from "./TripRating.jsx";
 import { Link } from "react-router-dom";
@@ -51,7 +51,16 @@ const TripCards = ({
             <h5 className="text-capitalize">City: {city}</h5>
             <p>Cost / Day: ${calcAvg(startDate, endDate, totalCost)}</p>
           </Card.Text>
-          <Link to={`trips/${tripId}`} className="btn btn-outline-dark">
+          {/* This info will be passed to Single trips so we can go back to this page. */}
+          <Link
+            to={{
+              pathname: `trips/${tripId}`,
+              state: {
+                from: "root",
+              },
+            }}
+            className="btn btn-outline-dark"
+          >
             View Trip
           </Link>
         </Card.Body>
