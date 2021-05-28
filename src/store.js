@@ -48,6 +48,7 @@ export function planningReducer(state, action) {
       } else if (action.payload.type === 'sites') {
         return {...state, items: {...state.items, sites: [...state.items.activities, item]}}
       }
+      
   default:
     return state
   }

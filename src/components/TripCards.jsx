@@ -1,7 +1,8 @@
 import React from "react";
-import { Card, Nav, Button, Badge } from "react-bootstrap";
+import { Card, Nav, Badge } from "react-bootstrap";
 import moment from "moment";
 import TripRating from "./TripRating.jsx";
+import { Link } from "react-router-dom";
 
 function calcAvg(startDate, endDate, totalCost) {
   const start = moment(`${startDate}`);
@@ -13,6 +14,7 @@ function calcAvg(startDate, endDate, totalCost) {
 
 const TripCards = ({
   hotel,
+  tripId,
   type,
   city,
   startDate,
@@ -49,7 +51,18 @@ const TripCards = ({
             <h5 className="text-capitalize">City: {city}</h5>
             <p>Cost / Day: ${calcAvg(startDate, endDate, totalCost)}</p>
           </Card.Text>
-          <Button variant="dark">Find out more</Button>
+          {/* This info will be passed to Single trips so we can go back to this page. */}
+          <Link
+            to={{
+              pathname: `trips/${tripId}`,
+              state: {
+                from: "root",
+              },
+            }}
+            className="btn btn-outline-dark"
+          >
+            View Trip
+          </Link>
         </Card.Body>
       </Card>
     </div>
