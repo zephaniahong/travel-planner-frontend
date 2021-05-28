@@ -65,22 +65,14 @@ export function PlanningProvider({children}) {
 };
 
 // Types
-<<<<<<< HEAD
 const SET_COUNTRY = 'SET_COUNTRY';
 const SET_HIGHLIGHT = 'SET_HIGHLIGHT';
 const SET_LAT_LNG = 'SET_LAT_LNG';
 const GET_TRIPS = 'GET_TRIPS';
 const SET_TRIP_ID = 'SET_TRIP_ID';
 const GET_USER_TRIPS = 'GET_USER_TRIPS';
-=======
-const SET_COUNTRY = 'SET_COUNTRY'
-const SET_HIGHLIGHT = 'SET_HIGHLIGHT'
-const SET_LAT_LNG = 'SET_LAT_LNG'
-const GET_TRIPS = 'GET_TRIPS'
-const SET_TRIP_ID = 'SET_TRIP_ID'
-const GET_USER_TRIPS = 'GET_USER_TRIPS'
-const GET_ITEMS = 'GET_ITEMS'
-const ADD_ITEM = 'ADD_ITEM'
+const GET_ITEMS = 'GET_ITEMS';
+const ADD_ITEM = 'ADD_ITEM';
 
 // action functions
 export function setCountryAction(country) {
