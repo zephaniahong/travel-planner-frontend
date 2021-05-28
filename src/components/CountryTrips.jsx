@@ -84,6 +84,7 @@ const CountryTrips = () => {
               return (
                 <TripCards
                   key={trip.id.toString()}
+                  tripId={trip.id}
                   hotel={trip.hotel}
                   type={trip.tripType}
                   city={trip.city}
@@ -102,6 +103,7 @@ const CountryTrips = () => {
               return (
                 <TripCards
                   key={trip.id.toString()}
+                  tripId={trip.id}
                   hotel={trip.hotel}
                   type={trip.tripType}
                   city={trip.city}

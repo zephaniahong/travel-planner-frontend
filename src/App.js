@@ -34,8 +34,6 @@ function App() {
     setSelectedTrip(tripIndex);
   }
 
-  console.log("See Trips", trips)
-
   return (
     <PlanningProvider>
       <Router>
@@ -48,7 +46,7 @@ function App() {
             <TripPlanningPage />
           </Route>
 
-          <Route path="/trip/:tripId">
+          <Route path="/trips/:tripId">
             <SingleTrip selectedTrip={selectedTrip} onDeepLink={onDeepLink} /> 
           </Route>  
 
@@ -56,7 +54,7 @@ function App() {
             <AllTrips />
           </Route>
 
-          <Route path="/">
+          <Route path="/" exact>
             <Home/>  
             <CountryTrips />
           </Route>               

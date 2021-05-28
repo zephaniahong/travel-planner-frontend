@@ -7,9 +7,6 @@ export default function SingleTrip({ selectedTrip, onDeepLink }) {
   const { store, dispatch } = useContext(PlanningContext);
   let { tripId } = useParams();
 
-  console.log("selectedTrip", selectedTrip);
-  console.log("tripId", tripId);
-
   useEffect(() => {
     if (!selectedTrip) {
       onDeepLink(tripId);
