@@ -116,19 +116,21 @@ export function setTripId(id) {
     type: SET_TRIP_ID,
     payload: id
   }
-}
+};
+
 export function getItemsAction(items) {
   return {
     type: GET_ITEMS,
     payload: items
   }
-}
+};
+
 export function addItemAction(item) {
   return {
     type: ADD_ITEM,
     payload: item
   }
-}
+};
 
 const BACKEND_URL = 'http://localhost:3004';
 
@@ -163,5 +165,12 @@ export function newTrip(dispatch, setTripId) {
     .then((result)=> {
       dispatch(getItemsAction(result.data))
     })
+  })
+}
+
+export function getTripItems(dispatch, tripId) {
+  axios.get(BACKEND_URL + `/get-items/${tripId}`,)
+    .then((result)=> {
+      dispatch(getItemsAction(result.data))
   })
 }

@@ -1,16 +1,20 @@
 import React, { useContext, useEffect } from "react";
-import { PlanningContext } from "../store.js";
+import { PlanningContext, getTripItems } from "../store.js";
 import { useParams } from "react-router-dom";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-export default function SingleTrip({ selectedTrip, onDeepLink }) {
+export default function SingleTrip({ trips, selectedTrip, onDeepLink }) {
+  console.log("See this render!");
   const { store, dispatch } = useContext(PlanningContext);
   let { tripId } = useParams();
 
+  console.log("tripId: ------", tripId);
+  console.log("selectedTrip: ------", selectedTrip);
+
   useEffect(() => {
     if (!selectedTrip) {
-      onDeepLink(tripId);
+      onDeepLink(Number(tripId));
     }
   }, []);
 
@@ -42,7 +46,7 @@ export default function SingleTrip({ selectedTrip, onDeepLink }) {
             </svg>
           </Button>
         </Link>
-        <h1>Trip Id: {selectedTrip.id}</h1>
+        <h1>Hotel: {selectedTrip.hotel}</h1>
       </Row>
       <Row className="mx-3">
         <Col>

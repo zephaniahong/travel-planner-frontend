@@ -19,10 +19,9 @@ const BACKEND_URL = 'http://localhost:3004';
 
 function App() {
   const [trips, setTrips] = useState([]);
-  const [selectedTripIndex, setSelectedTrip] = useState([]);
-
-  const selectedTrip = trips[selectedTripIndex];
-
+  const [selectedTripId, setSelectedTrip] = useState();
+  const selectedTrip = trips.find(trip => trip.id === selectedTripId); // Set trip by tripId, not by array position.
+  
   useEffect(() => {
     axios.get(`${BACKEND_URL}/gettrips`)
       .then((res) => {
@@ -30,8 +29,8 @@ function App() {
     });
   }, []);
 
-  const onDeepLink = (tripIndex) => {
-    setSelectedTrip(tripIndex);
+  const onDeepLink = (tripId) => {
+    setSelectedTrip(tripId);
   }
 
   return (
@@ -47,7 +46,7 @@ function App() {
           </Route>
 
           <Route path="/trips/:tripId">
-            <SingleTrip selectedTrip={selectedTrip} onDeepLink={onDeepLink} /> 
+            <SingleTrip trips={trips} selectedTrip={selectedTrip} onDeepLink={onDeepLink} /> 
           </Route>  
 
           <Route path="/alltrips">
