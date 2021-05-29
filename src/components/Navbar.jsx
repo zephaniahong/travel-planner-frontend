@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import {
   PlanningContext,
   newTrip,
@@ -26,9 +26,7 @@ import ProfileIcon from "./ProfileIcon.jsx";
 // `;
 
 export default function NavBar() {
-  const { store, dispatch } = useContext(PlanningContext);
-  const [searchedCountry, setSearchedCountry] = useState(null);
-  const { country } = store;
+  const { dispatch } = useContext(PlanningContext);
 
   // set chosen country as NULL in store, to re-render worldmap.
   function handleSubmit() {
