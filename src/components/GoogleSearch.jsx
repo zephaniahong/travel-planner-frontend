@@ -48,7 +48,7 @@ const GoogleSearch = () => {
         placeholder="Enter an address"
       />
       {status === "OK" &&
-        data.map(({ id, description, structured_formatting, types }) => (
+        data.map(({ id, structured_formatting, types }) => (
           <div className="card" style={{ width: "18rem" }} key={id}>
             <div className="card-body">
               <h5 className="card-title">{structured_formatting.main_text}</h5>
