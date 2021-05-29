@@ -47,7 +47,7 @@ export function planningReducer(state, action) {
       } else if (action.payload.type === 'activities') {
         return {...state, items: {...state.items, activities: [...state.items.activities, item]}}
       } else if (action.payload.type === 'sites') {
-        return {...state, items: {...state.items, sites: [...state.items.activities, item]}}
+        return {...state, items: {...state.items, sites: [...state.items.sites, item]}}
       }
       return
     case GET_LIKED_ITEMS:
@@ -160,6 +160,7 @@ export function getUserTrips(dispatch) {
 
 export function addItem(dispatch, type, tripId, mainText, secondaryText) {
   axios.post(BACKEND_URL + '/add-item', {type, tripId, mainText, secondaryText}).then((result)=> {
+    console.log(result.data)
     dispatch(addItemAction(result.data))
   })
 }
