@@ -3,7 +3,6 @@ import { PlanningContext } from "../store";
 const UserItems = () => {
   const { store } = useContext(PlanningContext);
   const { items } = store;
-  console.log(items);
   let sites, food, activities;
   sites = items.sites.map((site) => (
     <div className="card" style={{ width: "20rem", height: "10rem" }}>
