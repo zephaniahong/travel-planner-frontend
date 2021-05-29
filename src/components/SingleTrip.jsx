@@ -1,16 +1,10 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Container, Row, Col, Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 export default function SingleTrip({ items, selectedTrip, onDeepLink }) {
-  console.log("⚠️ See this render! -------");
   let { tripId } = useParams();
-
-  console.log("items", items);
-
-  console.log("tripId: ------", tripId);
-  console.log("selectedTrip: ------", selectedTrip);
 
   useEffect(() => {
     if (!selectedTrip) {
@@ -51,12 +45,53 @@ export default function SingleTrip({ items, selectedTrip, onDeepLink }) {
       <Row className="mx-3">
         <Col>
           <h1>Food</h1>
+          {items
+            .filter((item) => item.type === "food")
+            .map((item) => {
+              return (
+                <Card
+                  bg={item.name.toLowerCase()}
+                  key={item.id.toString()}
+                  style={{ width: "18rem" }}
+                  className="mb-2"
+                >
+                  <Card.Header></Card.Header>
+                  <Card.Body>
+                    <Card.Title>{item.name} </Card.Title>
+                    <Card.Text>{item.address}</Card.Text>
+                  </Card.Body>
+                </Card>
+              );
+            })}
         </Col>
         <Col>
           <h1>Activities</h1>
+          {items
+            .filter((item) => item.type === "activities")
+            .map((item) => {
+              return <span>{item.name}</span>;
+            })}
         </Col>
         <Col>
           <h1>Sites</h1>
+          {items
+            .filter((item) => item.type === "sites")
+            .map((item) => {
+              return (
+                <Card
+                  bg={item.name.toLowerCase()}
+                  key={item.id.toString()}
+                  style={{ width: "18rem" }}
+                  className="mb-2"
+                >
+                  <Card.Header></Card.Header>
+                  <Card.Body>
+                    <Card.Title>{item.name} </Card.Title>
+                    <Card.Text>{item.address}</Card.Text>
+                  </Card.Body>
+                </Card>
+              );
+            })}
         </Col>
       </Row>
     </Container>
