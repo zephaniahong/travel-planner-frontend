@@ -1,13 +1,13 @@
-import React, { useContext, useEffect } from "react";
-import { PlanningContext, getTripItems } from "../store.js";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-export default function SingleTrip({ trips, selectedTrip, onDeepLink }) {
-  console.log("See this render!");
-  const { store, dispatch } = useContext(PlanningContext);
+export default function SingleTrip({ items, selectedTrip, onDeepLink }) {
+  console.log("⚠️ See this render! -------");
   let { tripId } = useParams();
+
+  console.log("items", items);
 
   console.log("tripId: ------", tripId);
   console.log("selectedTrip: ------", selectedTrip);
@@ -46,7 +46,7 @@ export default function SingleTrip({ trips, selectedTrip, onDeepLink }) {
             </svg>
           </Button>
         </Link>
-        <h1>Hotel: {selectedTrip.hotel}</h1>
+        <h1>{selectedTrip.hotel}</h1>
       </Row>
       <Row className="mx-3">
         <Col>
