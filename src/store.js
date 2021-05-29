@@ -7,7 +7,8 @@ export const initialState ={
   trips: [],
   userTrips: [],
   tripId: null,
-  items: {food:[], activities: [], sites: []}
+  items: {food:[], activities: [], sites: []},
+  likedItems: []
 }
 
 
@@ -48,7 +49,9 @@ export function planningReducer(state, action) {
       } else if (action.payload.type === 'sites') {
         return {...state, items: {...state.items, sites: [...state.items.activities, item]}}
       }
-      
+      return
+    case GET_LIKED_ITEMS:
+      return {...state, likedItems: action.payload}
   default:
     return state
   }
@@ -74,6 +77,7 @@ const SET_TRIP_ID = 'SET_TRIP_ID';
 const GET_USER_TRIPS = 'GET_USER_TRIPS';
 const GET_ITEMS = 'GET_ITEMS';
 const ADD_ITEM = 'ADD_ITEM';
+const GET_LIKED_ITEMS = 'GET_LIKED_ITEMS'
 
 // action functions
 export function setCountryAction(country) {
@@ -129,6 +133,12 @@ export function addItemAction(item) {
     payload: item
   }
 }
+export function getlikedItemsAction(items) {
+  return {
+    type: GET_LIKED_ITEMS,
+    payload: items
+  }
+}
 
 const BACKEND_URL = 'http://localhost:3004';
 
@@ -163,5 +173,11 @@ export function newTrip(dispatch, setTripId) {
     .then((result)=> {
       dispatch(getItemsAction(result.data))
     })
+  })
+}
+
+export function getlikedItems(dispatch) {
+  axios.get(BACKEND_URL + '/get-liked-items').then((result)=> {
+    dispatch(getlikedItemsAction(result.data))
   })
 }
