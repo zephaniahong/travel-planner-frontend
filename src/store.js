@@ -77,7 +77,8 @@ const SET_TRIP_ID = 'SET_TRIP_ID';
 const GET_USER_TRIPS = 'GET_USER_TRIPS';
 const GET_ITEMS = 'GET_ITEMS';
 const ADD_ITEM = 'ADD_ITEM';
-const GET_LIKED_ITEMS = 'GET_LIKED_ITEMS'
+const GET_LIKED_ITEMS = 'GET_LIKED_ITEMS';
+const ADD_TO_LIKED_ITEMS = 'ADD_TO_LIKED_ITEMS';
 
 // action functions
 export function setCountryAction(country) {
@@ -143,6 +144,12 @@ export function getlikedItemsAction(items) {
   }
 }
 
+export function addToLikeItemsAction(item) {
+  return {
+    type: ADD_TO_LIKED_ITEMS,
+    payload: item,
+  }
+}
 
 const BACKEND_URL = 'http://localhost:3004';
 
@@ -192,4 +199,11 @@ export function getTripItems(dispatch, tripId) {
     .then((result)=> {
       dispatch(getItemsAction(result.data))
   })
+}
+
+export function addToLikedItems(dispatch, itemId, userId=19) {
+  axios.post(`${BACKEND_URL}/addlikeditem/${itemId}/${userId}`, {})
+    .then(res => {
+      dispatch(addToLikeItemsAction(res.data));
+  });
 }
