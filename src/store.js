@@ -62,7 +62,7 @@ export function planningReducer(state, action) {
       return {...state, likedItems: action.payload}
 
     case ADD_TO_LIKED_ITEMS:
-      return {...state, likedItems: [initialState.likedItems, ...action.payload]}
+      return {...state, likedItems: [state.likedItems, ...action.payload]}
     
   default:
     return state
