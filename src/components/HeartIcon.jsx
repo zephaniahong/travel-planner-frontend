@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function HeartIcon({ item, heartColour, handleClick }) {
+export default function HeartIcon({ heartColour, handleClick }) {
   return (
     <>
       <div>

@@ -153,14 +153,14 @@ export function addItemAction(item) {
     type: ADD_ITEM,
     payload: item
   }
-}
+};
 
 export function getlikedItemsAction(items) {
   return {
     type: GET_LIKED_ITEMS,
     payload: items
   }
-}
+};
 
 export function addToLikeItemsAction(item) {
   return {
@@ -174,7 +174,7 @@ export function deleteFromLikedItemsAction(item) {
     type: DLT_FROM_LIKED_ITEMS,
     payload: item,
   }
-}
+};
 
 const BACKEND_URL = 'http://localhost:3004';
 
@@ -231,7 +231,7 @@ export function getTripItems(dispatch, tripId) {
 };
 
 export function addToLikedItems(dispatch, itemId, userId=19) {
-  axios.post(`${BACKEND_URL}/addlikeditem/${itemId}/${userId}`, {})
+  axios.post(`${BACKEND_URL}/addlikeditem/${itemId}/${userId}`)
     .then((res) => {
       dispatch(addToLikeItemsAction(res.data));
   });

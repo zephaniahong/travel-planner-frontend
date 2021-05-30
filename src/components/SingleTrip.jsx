@@ -4,29 +4,23 @@ import { useParams } from "react-router-dom";
 import { Container, Row, Col, Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import HeartIcon from "./HeartIcon.jsx";
+import Notification from "./Notification.jsx";
 
 export default function SingleTrip({ items, selectedTrip, onDeepLink }) {
   const { store, dispatch } = useContext(PlanningContext);
   let { tripId } = useParams();
   const { likedItems } = store;
-
-  console.log("See what I liked!! ----", likedItems);
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
     if (!selectedTrip) {
       onDeepLink(Number(tripId));
     }
-    // get all liked items from db for this trip
-    getlikedItems(dispatch);
+    getlikedItems(dispatch); // get all user liked items for this trip
   }, []);
 
-  // To see if an item has been liked, we need to load liked_items for the user and check.
+  // See if item that is to be clicked is in liked items.
   const likedIds = likedItems.map((item) => item.id);
-
-  const handleClick = () => {
-    // If className is the CSS style that hasn't liked, do a POST request, and change the style
-    // Else do a DELETE request to remove from liked items, & change back the style.
-  };
 
   if (!selectedTrip) {
     return (
@@ -40,8 +34,14 @@ export default function SingleTrip({ items, selectedTrip, onDeepLink }) {
     );
   }
 
+  const setToast = (bool) => {
+    console.log("TOASTTTTT");
+    setShow(bool);
+  };
+
   return (
     <Container fluid>
+      <Notification show={show} setToast={setToast} />
       <Row className="mx-3 mt-3 mb-5">
         <Link to="/">
           <Button variant="dark" className="px-3 mr-4">
@@ -77,9 +77,13 @@ export default function SingleTrip({ items, selectedTrip, onDeepLink }) {
                 >
                   <Card.Header>
                     <HeartIcon
-                      item={item}
                       heartColour={likedIds.includes(item.id) ? "red" : "grey"}
-                      handleClick={handleClick}
+                      handleClick={() => {
+                        if (!likedIds.includes(item.id)) {
+                          addToLikedItems(dispatch, item.id);
+                          setToast(true);
+                        }
+                      }}
                     />
                   </Card.Header>
                   <Card.Body>
