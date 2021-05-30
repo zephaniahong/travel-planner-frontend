@@ -160,7 +160,6 @@ export function getUserTrips(dispatch) {
 
 export function addItem(dispatch, type, tripId, mainText, secondaryText) {
   axios.post(BACKEND_URL + '/add-item', {type, tripId, mainText, secondaryText}).then((result)=> {
-    console.log(result.data)
     dispatch(addItemAction(result.data))
   })
 }
