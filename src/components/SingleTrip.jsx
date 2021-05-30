@@ -69,7 +69,20 @@ export default function SingleTrip({ items, selectedTrip, onDeepLink }) {
           {items
             .filter((item) => item.type === "activities")
             .map((item) => {
-              return <span>{item.name}</span>;
+              return (
+                <Card
+                  bg={item.name.toLowerCase()}
+                  key={item.id.toString()}
+                  style={{ width: "18rem" }}
+                  className="mb-2"
+                >
+                  <Card.Header></Card.Header>
+                  <Card.Body>
+                    <Card.Title>{item.name} </Card.Title>
+                    <Card.Text>{item.address}</Card.Text>
+                  </Card.Body>
+                </Card>
+              );
             })}
         </Col>
         <Col>
