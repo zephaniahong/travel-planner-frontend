@@ -1,15 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import { Row, Col, Toast } from "react-bootstrap";
 
-export default function Notification({ show, setToast }) {
+export default function Notification({ show, setToast, itemMsg }) {
   return (
     <Row>
-      <Col xs={6}>
+      <Col>
         <Toast
           className="toast-add"
           onClose={() => setToast(false)}
           show={show}
-          delay={2500}
+          delay={2800}
           autohide
         >
           <Toast.Header>
@@ -18,10 +18,11 @@ export default function Notification({ show, setToast }) {
               className="rounded mr-2"
               alt=""
             />
-            <strong className="mr-auto">Bootstrap</strong>
-            <small>11 mins ago</small>
+            <strong className="mr-auto">Saved</strong>
           </Toast.Header>
-          <Toast.Body>Item added to liked!</Toast.Body>
+          <Toast.Body>
+            {itemMsg.name} is now a liked {itemMsg.type} item!
+          </Toast.Body>
         </Toast>
       </Col>
     </Row>

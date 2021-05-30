@@ -11,6 +11,7 @@ export default function SingleTrip({ items, selectedTrip, onDeepLink }) {
   let { tripId } = useParams();
   const { likedItems } = store;
   const [show, setShow] = useState(false);
+  const [itemMsg, setItemMsg] = useState({});
 
   useEffect(() => {
     if (!selectedTrip) {
@@ -35,13 +36,12 @@ export default function SingleTrip({ items, selectedTrip, onDeepLink }) {
   }
 
   const setToast = (bool) => {
-    console.log("TOASTTTTT");
     setShow(bool);
   };
 
   return (
     <Container fluid>
-      <Notification show={show} setToast={setToast} />
+      <Notification show={show} setToast={setToast} itemMsg={itemMsg} />
       <Row className="mx-3 mt-3 mb-5">
         <Link to="/">
           <Button variant="dark" className="px-3 mr-4">
@@ -81,8 +81,9 @@ export default function SingleTrip({ items, selectedTrip, onDeepLink }) {
                       handleClick={() => {
                         if (!likedIds.includes(item.id)) {
                           addToLikedItems(dispatch, item.id);
-                          setToast(true);
                         }
+                        setItemMsg(item);
+                        setToast(true);
                       }}
                     />
                   </Card.Header>
