@@ -60,11 +60,3 @@ body {
   outline: 0 !important;
   box-shadow: none;
 }
-
-.liked-item {
-  background-color: rgb(255, 0, 111);
-}
-
-.unliked-item {
-  background-color: white;
-}

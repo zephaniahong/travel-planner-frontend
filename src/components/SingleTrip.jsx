@@ -8,10 +8,9 @@ import HeartIcon from "./HeartIcon.jsx";
 export default function SingleTrip({ items, selectedTrip, onDeepLink }) {
   const { store, dispatch } = useContext(PlanningContext);
   let { tripId } = useParams();
-  const [liked, setLiked] = useState(false);
+  const { likedItems } = store;
 
-  console.log("See what I liked!! ----", store.likedItems);
-  // For the liked items to appear, we need to let userId 19 person, like some trips from tripId 11.
+  console.log("See what I liked!! ----", likedItems);
 
   useEffect(() => {
     if (!selectedTrip) {
@@ -22,18 +21,22 @@ export default function SingleTrip({ items, selectedTrip, onDeepLink }) {
   }, []);
 
   // To see if an item has been liked, we need to load liked_items for the user and check.
-  // If the item is in user's liked_items, className of heart is red. else none.
+  const likedIds = likedItems.map((item) => item.id);
 
   const handleClick = () => {
-    // If className is the CSS style that hasn't liked, do a POST request, and change the style.
+    // If className is the CSS style that hasn't liked, do a POST request, and change the style
     // Else do a DELETE request to remove from liked items, & change back the style.
   };
 
   if (!selectedTrip) {
     return (
-      <div>
-        <h1>Trip is empty!</h1>
-      </div>
+      <Container>
+        <Row>
+          <Col>
+            <h1>Trip is empty!</h1>
+          </Col>
+        </Row>
+      </Container>
     );
   }
 
@@ -73,10 +76,14 @@ export default function SingleTrip({ items, selectedTrip, onDeepLink }) {
                   className="mb-2"
                 >
                   <Card.Header>
-                    <HeartIcon item={item} liked={liked} />
+                    <HeartIcon
+                      item={item}
+                      heartColour={likedIds.includes(item.id) ? "red" : "grey"}
+                      handleClick={handleClick}
+                    />
                   </Card.Header>
                   <Card.Body>
-                    <Card.Title>{item.name} </Card.Title>
+                    <Card.Title>{item.name}</Card.Title>
                     <Card.Text>{item.address}</Card.Text>
                   </Card.Body>
                 </Card>
