@@ -62,7 +62,12 @@ export function planningReducer(state, action) {
       return {...state, likedItems: action.payload}
 
     case ADD_TO_LIKED_ITEMS:
-      return {...state, likedItems: [state.likedItems, ...action.payload]}
+      return {...state, likedItems: [...state.likedItems, ...action.payload]}
+
+    case DLT_FROM_LIKED_ITEMS:
+      // This might not be the correct way.
+      const likedItemIdx = state.likedItems.indexOf(action.payload);
+      return {...state, likedItems: state.likedItems.splice(likedItemIdx, 1)}
     
   default:
     return state
@@ -91,6 +96,7 @@ const GET_ITEMS = 'GET_ITEMS';
 const ADD_ITEM = 'ADD_ITEM';
 const GET_LIKED_ITEMS = 'GET_LIKED_ITEMS';
 const ADD_TO_LIKED_ITEMS = 'ADD_TO_LIKED_ITEMS';
+const DLT_FROM_LIKED_ITEMS = 'DLT_FROM_LIKED_ITEMS';
 
 // action functions
 export function setCountryAction(country) {
@@ -159,6 +165,13 @@ export function getlikedItemsAction(items) {
 export function addToLikeItemsAction(item) {
   return {
     type: ADD_TO_LIKED_ITEMS,
+    payload: item,
+  }
+};
+
+export function deleteFromLikedItemsAction(item) {
+  return {
+    type: DLT_FROM_LIKED_ITEMS,
     payload: item,
   }
 }
