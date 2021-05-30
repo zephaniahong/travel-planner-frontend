@@ -1,17 +1,33 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext, useState } from "react";
+import { PlanningContext, getlikedItems, addToLikedItems } from "../store.js";
 import { useParams } from "react-router-dom";
 import { Container, Row, Col, Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import HeartIcon from "./HeartIcon.jsx";
 
 export default function SingleTrip({ items, selectedTrip, onDeepLink }) {
+  const { store, dispatch } = useContext(PlanningContext);
   let { tripId } = useParams();
+  const [liked, setLiked] = useState(false);
+
+  console.log("See what I liked!! ----", store.likedItems);
+  // For the liked items to appear, we need to let userId 19 person, like some trips from tripId 11.
 
   useEffect(() => {
     if (!selectedTrip) {
       onDeepLink(Number(tripId));
     }
+    // get all liked items from db for this trip
+    getlikedItems(dispatch);
   }, []);
+
+  // To see if an item has been liked, we need to load liked_items for the user and check.
+  // If the item is in user's liked_items, className of heart is red. else none.
+
+  const handleClick = () => {
+    // If className is the CSS style that hasn't liked, do a POST request, and change the style.
+    // Else do a DELETE request to remove from liked items, & change back the style.
+  };
 
   if (!selectedTrip) {
     return (
@@ -57,7 +73,7 @@ export default function SingleTrip({ items, selectedTrip, onDeepLink }) {
                   className="mb-2"
                 >
                   <Card.Header>
-                    <HeartIcon item={item} />
+                    <HeartIcon item={item} liked={liked} />
                   </Card.Header>
                   <Card.Body>
                     <Card.Title>{item.name} </Card.Title>

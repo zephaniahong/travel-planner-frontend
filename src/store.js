@@ -16,16 +16,22 @@ export function planningReducer(state, action) {
   switch(action.type){
     case SET_COUNTRY:
       return {...state, country: {name:action.payload}}
+
     case SET_HIGHLIGHT:
       return {...state, highlightedCountry: action.payload}
+
     case SET_LAT_LNG:
       return {...state, country: {name: state.country.name, lat: action.payload.lat, lng: action.payload.lng}}
+
     case GET_TRIPS:
       return {...state, trips: action.payload}
+
     case GET_USER_TRIPS:
       return {...state, userTrips: action.payload}
+
     case SET_TRIP_ID:
       return {...state, tripId: action.payload}
+
     case GET_ITEMS:
       let food= []
       let activities = []
@@ -40,6 +46,7 @@ export function planningReducer(state, action) {
       }
     }
       return {...state, items: {food: food, sites: sites, activities: activities}}
+
     case ADD_ITEM:
       const item = action.payload
       if (action.payload.type === 'food') {
@@ -50,8 +57,13 @@ export function planningReducer(state, action) {
         return {...state, items: {...state.items, sites: [...state.items.sites, item]}}
       }
       return
+
     case GET_LIKED_ITEMS:
       return {...state, likedItems: action.payload}
+
+    case ADD_TO_LIKED_ITEMS:
+      return {...state, likedItems: [initialState.likedItems, ...action.payload]}
+    
   default:
     return state
   }
@@ -166,44 +178,48 @@ export function getUserTrips(dispatch) {
   axios.get(`${BACKEND_URL}/usertrips`)
     .then((res) => {
       dispatch(getUserTripsAction(res.data))
-    })
+  });
 };
 
 export function addItem(dispatch, type, tripId, mainText, secondaryText) {
-  axios.post(BACKEND_URL + '/add-item', {type, tripId, mainText, secondaryText}).then((result)=> {
+  axios.post(BACKEND_URL + '/add-item', {type, tripId, mainText, secondaryText})
+  .then((result)=> {
     console.log(result.data)
     dispatch(addItemAction(result.data))
-  })
-}
+  });
+};
 
 export function newTrip(dispatch, setTripId) {
   axios.post(BACKEND_URL + '/createtrip')
-  .then((result) => {
-    const tripId = result.data.tripId
-    dispatch(setTripId(tripId))
-    axios.get(BACKEND_URL + `/get-items/${tripId}`,)
-    .then((result)=> {
-      dispatch(getItemsAction(result.data))
-    })
+    .then((result) => {
+      const tripId = result.data.tripId
+      dispatch(setTripId(tripId))
+
+      axios.get(BACKEND_URL + `/get-items/${tripId}`,)
+      .then((result)=> {
+        dispatch(getItemsAction(result.data))
+      })
   })
-}
+};
 
 export function getlikedItems(dispatch) {
-  axios.get(BACKEND_URL + '/get-liked-items').then((result)=> {
+  // TODO: Add /:userId parameter once Login Page is created.
+  axios.get(BACKEND_URL + '/get-liked-items')
+    .then((result)=> {
     dispatch(getlikedItemsAction(result.data))
-  })
-}
+  });
+};
 
 export function getTripItems(dispatch, tripId) {
   axios.get(BACKEND_URL + `/get-items/${tripId}`,)
     .then((result)=> {
       dispatch(getItemsAction(result.data))
   })
-}
+};
 
 export function addToLikedItems(dispatch, itemId, userId=19) {
   axios.post(`${BACKEND_URL}/addlikeditem/${itemId}/${userId}`, {})
-    .then(res => {
+    .then((res) => {
       dispatch(addToLikeItemsAction(res.data));
   });
-}
+};

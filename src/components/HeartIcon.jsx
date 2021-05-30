@@ -5,7 +5,7 @@ export default function HeartIcon({ item }) {
     <>
       <div>
         <button
-          className="btn"
+          className="btn heart-like"
           onClick={() => {
             console.log("Like Btn CLick");
             console.log("See Item,", item);

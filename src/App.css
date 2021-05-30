@@ -55,3 +55,8 @@ body::-webkit-scrollbar-thumb {
 body {
   background-color: #fafafa;
 }
+
+.heart-like:focus {
+  outline: 0 !important;
+  box-shadow: none;
+}
