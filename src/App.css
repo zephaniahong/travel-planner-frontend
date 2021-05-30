@@ -51,3 +51,7 @@ body::-webkit-scrollbar-thumb {
 #location-filter {
   color: white;
 }
+
+body {
+  background-color: #fafafa;
+}

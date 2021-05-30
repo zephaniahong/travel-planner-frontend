@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Container, Row, Col, Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import HeartIcon from "./HeartIcon.jsx";
 
 export default function SingleTrip({ items, selectedTrip, onDeepLink }) {
   let { tripId } = useParams();
@@ -55,7 +56,9 @@ export default function SingleTrip({ items, selectedTrip, onDeepLink }) {
                   style={{ width: "18rem" }}
                   className="mb-2"
                 >
-                  <Card.Header></Card.Header>
+                  <Card.Header>
+                    <HeartIcon item={item} />
+                  </Card.Header>
                   <Card.Body>
                     <Card.Title>{item.name} </Card.Title>
                     <Card.Text>{item.address}</Card.Text>
