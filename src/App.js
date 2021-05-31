@@ -8,11 +8,14 @@ import {PlanningProvider} from './store';
 import Home from './components/Home.jsx';
 import Navbar from './components/Navbar.jsx';
 import CountryTrips from './components/CountryTrips.jsx'
-import SingleTrip from './components/SingleTrip.jsx'
+;
+import SingleTrip from './components/SingleTrip.jsx';
 import TripPlanningPage from './components/TripPlanningPage.jsx';
 import AllTrips from './components/AllTrips.jsx'
 import { Container } from 'react-bootstrap';
 import './App.css'
+import Login from './components/Login.jsx'
+
 
 const BACKEND_URL = 'http://localhost:3004';
 
@@ -45,7 +48,9 @@ function App() {
         <Container id="main" fluid>
         <Navbar />
         <Switch>
-          
+          <Route path="/login">
+            <Login />
+          </Route>
           {/* Need to include tripid in this route as well */}
           <Route path="/createtrip">
             <TripPlanningPage />
