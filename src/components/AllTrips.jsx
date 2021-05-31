@@ -22,16 +22,20 @@ export default function AllTrips() {
     <Container fluid>
       <Row className="mt-4">
         <Col>
-          <h1 className="text-center">All Trips</h1>
+          <h1 className="text-center mb-5">All Trips</h1>
         </Col>
       </Row>
       <Row>
-        <Col>
-          {userTrips.map((trip) => {
-            return (
-              <Card style={{ width: "18rem" }}>
+        {userTrips.map((trip) => {
+          return (
+            <Col>
+              <Card
+                border="success"
+                style={{ width: "18rem" }}
+                className="m-2 text-center"
+              >
                 <Card.Body>
-                  <Card.Title>{trip.hotel}</Card.Title>
+                  <Card.Title>{trip.tripType} Trip</Card.Title>
                   <Card.Subtitle className="mb-2 text-muted">
                     Cost / Day: $
                     {Math.floor(
@@ -39,16 +43,15 @@ export default function AllTrips() {
                     )}
                   </Card.Subtitle>
                   <Card.Text>
-                    Some quick example text to build on the card title and make
-                    up the bulk of the card's content.
+                    Start destination: <br /> {trip.hotel}
                   </Card.Text>
-                  <Card.Link href="#">Start Planning</Card.Link>
+                  <Card.Link href="#">Continue Planning</Card.Link>
                   <Card.Link href="#">Delete</Card.Link>
                 </Card.Body>
               </Card>
-            );
-          })}
-        </Col>
+            </Col>
+          );
+        })}
       </Row>
     </Container>
   );

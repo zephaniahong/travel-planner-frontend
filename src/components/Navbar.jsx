@@ -2,28 +2,28 @@ import React, { useContext } from "react";
 import {
   PlanningContext,
   newTrip,
-  setTripId,
+  setTripIdAction,
   setCountryAction,
 } from "../store";
 import { Link } from "react-router-dom";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import ProfileIcon from "./ProfileIcon.jsx";
-// import styled, { keyframes } from "styled-components";
+import styled, { keyframes } from "styled-components";
 
-// const rotate = keyframes`
-//   from {
-//     transform: rotate(0deg);
-//   }
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
 
-//   to {
-//     transform: rotate(360deg);
-//   }
-// `;
+  to {
+    transform: rotate(360deg);
+  }
+`;
 
-// const LogoRotate = styled.div`
-//   display: inline-block;
-//   animation: ${rotate} 30s linear infinite;
-// `;
+const LogoRotate = styled.div`
+  display: inline-block;
+  animation: ${rotate} 30s linear infinite;
+`;
 
 export default function NavBar() {
   const { dispatch } = useContext(PlanningContext);
@@ -34,23 +34,23 @@ export default function NavBar() {
   }
 
   const createTrip = () => {
-    newTrip(dispatch, setTripId);
+    newTrip(dispatch, setTripIdAction);
   };
   return (
     <div>
       <Navbar collapseOnSelect bg="dark" expand="lg" variant="dark">
         <Link to="/">
           <Navbar.Brand className="navbar-brand text-dark px-3">
-            {/* <LogoRotate> */}
-            <button className="btn btn-sm px-0" onClick={handleSubmit}>
-              <img
-                src="./travel-planner-logo.png"
-                width="32"
-                height="32"
-                alt="Travel Planner Brand"
-              />
-            </button>
-            {/* </LogoRotate> */}
+            <LogoRotate>
+              <button className="btn btn-sm px-0" onClick={handleSubmit}>
+                <img
+                  src="./travel-planner-logo.png"
+                  width="32"
+                  height="32"
+                  alt="Travel Planner Brand"
+                />
+              </button>
+            </LogoRotate>
           </Navbar.Brand>
         </Link>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />

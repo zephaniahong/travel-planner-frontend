@@ -1,5 +1,10 @@
 import React, { useEffect, useContext, useState } from "react";
-import { PlanningContext, getlikedItems, addToLikedItems } from "../store.js";
+import {
+  PlanningContext,
+  getlikedItems,
+  addToLikedItems,
+  dltFromLikedItems,
+} from "../store.js";
 import { useParams } from "react-router-dom";
 import { Container, Row, Col, Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -7,6 +12,7 @@ import HeartIcon from "./HeartIcon.jsx";
 import Notification from "./Notification.jsx";
 
 export default function SingleTrip({ items, selectedTrip, onDeepLink }) {
+  console.log("============ SingleTrip rendering! ============ ");
   const { store, dispatch } = useContext(PlanningContext);
   let { tripId } = useParams();
   const { likedItems } = store;
@@ -18,7 +24,7 @@ export default function SingleTrip({ items, selectedTrip, onDeepLink }) {
       onDeepLink(Number(tripId));
     }
     getlikedItems(dispatch); // get all user liked items for this trip
-  }, []);
+  }, [show]);
 
   // See if item that is to be clicked is in liked items.
   const likedIds = likedItems.map((item) => item.id);
@@ -81,8 +87,12 @@ export default function SingleTrip({ items, selectedTrip, onDeepLink }) {
                       handleClick={() => {
                         if (!likedIds.includes(item.id)) {
                           addToLikedItems(dispatch, item.id);
+                          setItemMsg(item);
+                        } else if (likedIds.includes(item.id)) {
+                          dltFromLikedItems(dispatch, item.id);
+                          setItemMsg(item);
                         }
-                        setItemMsg(item);
+
                         setToast(true);
                       }}
                     />
@@ -107,7 +117,22 @@ export default function SingleTrip({ items, selectedTrip, onDeepLink }) {
                   style={{ width: "18rem" }}
                   className="mb-2"
                 >
-                  <Card.Header></Card.Header>
+                  <Card.Header>
+                    <HeartIcon
+                      heartColour={likedIds.includes(item.id) ? "red" : "grey"}
+                      handleClick={() => {
+                        if (!likedIds.includes(item.id)) {
+                          addToLikedItems(dispatch, item.id);
+                          setItemMsg(item);
+                        } else if (likedIds.includes(item.id)) {
+                          dltFromLikedItems(dispatch, item.id);
+                          setItemMsg(item);
+                        }
+
+                        setToast(true);
+                      }}
+                    />
+                  </Card.Header>
                   <Card.Body>
                     <Card.Title>{item.name} </Card.Title>
                     <Card.Text>{item.address}</Card.Text>

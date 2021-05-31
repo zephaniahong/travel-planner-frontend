@@ -134,7 +134,7 @@ export function getUserTripsAction(userTrips) {
   }
 };
 
-export function setTripId(id) {
+export function setTripIdAction(id) {
   return {
     type: SET_TRIP_ID,
     payload: id
@@ -169,12 +169,15 @@ export function addToLikeItemsAction(item) {
   }
 };
 
-export function deleteFromLikedItemsAction(item) {
+export function dltFromLikeItemsAction(item) {
   return {
     type: DLT_FROM_LIKED_ITEMS,
     payload: item,
   }
 };
+
+
+
 
 const BACKEND_URL = 'http://localhost:3004';
 
@@ -234,5 +237,12 @@ export function addToLikedItems(dispatch, itemId, userId=19) {
   axios.post(`${BACKEND_URL}/addlikeditem/${itemId}/${userId}`)
     .then((res) => {
       dispatch(addToLikeItemsAction(res.data));
+  });
+};
+
+export function dltFromLikedItems(dispatch, itemId, userId=19) {
+  axios.delete(`${BACKEND_URL}/deletelikeditem/${itemId}/${userId}`)
+    .then((res) => {
+      dispatch(dltFromLikeItemsAction(res.data));
   });
 };

@@ -9,7 +9,7 @@ export default function Notification({ show, setToast, itemMsg }) {
           className="toast-add"
           onClose={() => setToast(false)}
           show={show}
-          delay={2800}
+          delay={2000}
           autohide
         >
           <Toast.Header>
@@ -18,7 +18,7 @@ export default function Notification({ show, setToast, itemMsg }) {
               className="rounded mr-2"
               alt=""
             />
-            <strong className="mr-auto">Saved</strong>
+            <strong className="mr-auto">❤️ Saved</strong>
           </Toast.Header>
           <Toast.Body>
             {itemMsg.name} is now a liked {itemMsg.type} item!

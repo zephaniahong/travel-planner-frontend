@@ -51,7 +51,7 @@ const TripCards = ({
             <h5 className="text-capitalize">City: {city}</h5>
             <p>Cost / Day: ${calcAvg(startDate, endDate, totalCost)}</p>
           </Card.Text>
-          {/* This info will be passed to Single trips so we can go back to this page. */}
+          {/* This info will be passed to SingleTrip.jsx. */}
           <Link
             to={{
               pathname: `trips/${tripId}`,
