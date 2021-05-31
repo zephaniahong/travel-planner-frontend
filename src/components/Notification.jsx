@@ -9,7 +9,7 @@ export default function Notification({ show, setToast, itemMsg }) {
           className="toast-add"
           onClose={() => setToast(false)}
           show={show}
-          delay={500}
+          delay={2000}
           autohide
         >
           <Toast.Header>

@@ -179,38 +179,38 @@ export function dltFromLikeItemsAction(item) {
 
 
 
-const BACKEND_URL = 'http://localhost:3004';
+const REACT_APP_BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3004';
 
 // axios requests
 export function getTrips(dispatch) {
   // Need to get trips related to country. 
-  axios.get(`${BACKEND_URL}/gettrips`)
+  axios.get(`${REACT_APP_BACKEND_URL}/gettrips`)
     .then(res => {
       dispatch(getTripsAction(res.data));
     })
 };
 
 export function getUserTrips(dispatch) {
-  axios.get(`${BACKEND_URL}/usertrips`)
+  axios.get(`${REACT_APP_BACKEND_URL}/usertrips`)
     .then((res) => {
       dispatch(getUserTripsAction(res.data))
   });
 };
 
 export function addItem(dispatch, type, tripId, mainText, secondaryText) {
-  axios.post(BACKEND_URL + '/add-item', {type, tripId, mainText, secondaryText})
+  axios.post(REACT_APP_BACKEND_URL + '/add-item', {type, tripId, mainText, secondaryText})
   .then((result)=> {
     dispatch(addItemAction(result.data))
   });
 };
 
 export function newTrip(dispatch, setTripId) {
-  axios.post(BACKEND_URL + '/createtrip')
+  axios.post(REACT_APP_BACKEND_URL + '/createtrip')
     .then((result) => {
       const tripId = result.data.tripId
       dispatch(setTripId(tripId))
 
-      axios.get(BACKEND_URL + `/get-items/${tripId}`,)
+      axios.get(REACT_APP_BACKEND_URL + `/get-items/${tripId}`,)
       .then((result)=> {
         dispatch(getItemsAction(result.data))
       })
@@ -219,29 +219,30 @@ export function newTrip(dispatch, setTripId) {
 
 export function getlikedItems(dispatch) {
   // TODO: Add /:userId parameter once Login Page is created.
-  axios.get(BACKEND_URL + '/get-liked-items')
+  axios.get(REACT_APP_BACKEND_URL + '/get-liked-items')
     .then((result)=> {
     dispatch(getlikedItemsAction(result.data))
   });
 };
 
 export function getTripItems(dispatch, tripId) {
-  axios.get(BACKEND_URL + `/get-items/${tripId}`,)
+  axios.get(REACT_APP_BACKEND_URL + `/get-items/${tripId}`,)
     .then((result)=> {
       dispatch(getItemsAction(result.data))
   })
 };
 
 export function addToLikedItems(dispatch, itemId, userId=19) {
-  axios.post(`${BACKEND_URL}/addlikeditem/${itemId}/${userId}`)
+  axios.post(`${REACT_APP_BACKEND_URL}/addlikeditem/${itemId}/${userId}`)
     .then((res) => {
       dispatch(addToLikeItemsAction(res.data));
   });
 };
 
 export function dltFromLikedItems(dispatch, itemId, userId=19) {
-  axios.delete(`${BACKEND_URL}/deletelikeditem/${itemId}/${userId}`)
+  axios.delete(`${REACT_APP_BACKEND_URL}/deletelikeditem/${itemId}/${userId}`)
     .then((res) => {
+      console.log("Item coming from delete stuff:\n", res.data);
       dispatch(dltFromLikeItemsAction(res.data));
   });
 };
