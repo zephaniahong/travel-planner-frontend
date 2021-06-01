@@ -22,10 +22,7 @@ export default function SingleTrip({ items, selectedTrip, onDeepLink }) {
     if (!selectedTrip) {
       onDeepLink(Number(tripId));
     }
-    getlikedItems(dispatch); // get all user liked items for this trip
   }, [show]);
-
-  const likedIds = likedItems.map((item) => item.id);
 
   if (!selectedTrip) {
     return (
@@ -81,12 +78,12 @@ export default function SingleTrip({ items, selectedTrip, onDeepLink }) {
                 >
                   <Card.Header>
                     <HeartIcon
-                      heartColour={likedIds.includes(item.id) ? "red" : "grey"}
+                      heartColour={item.liked ? "red" : "grey"}
                       handleClick={() => {
-                        if (!likedIds.includes(item.id)) {
+                        if (!item.liked) {
                           addToLikedItems(dispatch, item.id);
                           setItemMsg(item);
-                        } else if (likedIds.includes(item.id)) {
+                        } else if (item.liked) {
                           dltFromLikedItems(dispatch, item.id);
                           setItemMsg(item);
                         }
@@ -116,16 +113,15 @@ export default function SingleTrip({ items, selectedTrip, onDeepLink }) {
                 >
                   <Card.Header>
                     <HeartIcon
-                      heartColour={likedIds.includes(item.id) ? "red" : "grey"}
+                      heartColour={item.liked ? "red" : "grey"}
                       handleClick={() => {
-                        if (!likedIds.includes(item.id)) {
+                        if (!item.liked) {
                           addToLikedItems(dispatch, item.id);
                           setItemMsg(item);
-                        } else if (likedIds.includes(item.id)) {
+                        } else if (item.liked) {
                           dltFromLikedItems(dispatch, item.id);
                           setItemMsg(item);
                         }
-
                         setToast(true);
                       }}
                     />

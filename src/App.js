@@ -35,8 +35,9 @@ function App() {
     const userId = 19;
     if (selectedTripId) {
       axios.get(`${REACT_APP_BACKEND_URL}/get-items/${selectedTripId}/${userId}`,)
-        .then((result)=> {
-          setItems(result.data);
+        .then((res)=> {
+          setItems(res.data);
+          console.log("See get items --------\n", res.data)
       });
     }
   }, [selectedTripId]);
