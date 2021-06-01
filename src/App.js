@@ -47,30 +47,32 @@ function App() {
     <PlanningProvider>
       <Router>
         <Container id="main" fluid>
-        <Navbar />
-        <Switch>
-          <Route path="/login">
-            <Login />
-          </Route>
-          {/* Need to include tripid in this route as well */}
-          <Route path="/createtrip">
-            <TripPlanningPage />
-          </Route>
+          <Navbar />
+          <Switch>
 
-          <Route path="/trips/:tripId">
-            <SingleTrip items={items} selectedTrip={selectedTrip} onDeepLink={onDeepLink} /> 
-          </Route>  
+            <Route path="/login" exact>
+              <Login />
+            </Route>
+            
+            {/* Need to include tripid in this route as well */}
+            <Route path="/createtrip">
+              <TripPlanningPage />
+            </Route>
 
-          <Route path="/alltrips">
-            <AllTrips />
-          </Route>
+            <Route path="/trips/:tripId">
+              <SingleTrip items={items} selectedTrip={selectedTrip} onDeepLink={onDeepLink} /> 
+            </Route>  
 
-          <Route path="/" exact>
-            <Home/>  
-            <CountryTrips />
-          </Route>               
-          
-        </Switch>
+            <Route path="/alltrips">
+              <AllTrips />
+            </Route>
+
+            <Route path="/" >
+              <Home/>  
+              <CountryTrips />
+            </Route>               
+            
+          </Switch>
         </Container>
       </Router>
     </PlanningProvider>
