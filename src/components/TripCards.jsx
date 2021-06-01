@@ -24,16 +24,13 @@ const TripCards = ({
 }) => {
   return (
     <div>
-      <Card className="mb-5">
+      <Card className="mb-4">
         <Card.Header>
           <Card.Title className="lead mt-2">{hotel}</Card.Title>
           {<TripRating stars={stars} />}
           <Nav variant="pills" defaultActiveKey="#first">
             <Nav.Item>
               <Nav.Link href="#first">Info</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link href="#link">More</Nav.Link>
             </Nav.Item>
             <Nav.Item className="ml-auto">
               <Nav.Link href="#disabled" disabled>
@@ -49,6 +46,7 @@ const TripCards = ({
           <Card.Title></Card.Title>
           <Card.Text>
             <h5 className="text-capitalize">City: {city}</h5>
+            <h6>Star Point: {hotel}</h6>
             <p>Cost / Day: ${calcAvg(startDate, endDate, totalCost)}</p>
           </Card.Text>
           {/* This info will be passed to SingleTrip.jsx. */}

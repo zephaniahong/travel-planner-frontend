@@ -19,6 +19,7 @@ import Login from './components/Login.jsx'
 // Command to run (everytime front end changes): `REACT_APP_BACKEND_URL='https://protected-garden-34701.herokuapp.com' npm run build`
 const REACT_APP_BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3004';
 axios.defaults.withCredentials = true;
+
 function App() {
   const [trips, setTrips] = useState([]);
   const [items, setItems] = useState([]);
@@ -50,7 +51,7 @@ function App() {
           <Navbar />
           <Switch>
 
-            <Route path="/login" exact>
+            <Route path="/login">
               <Login />
             </Route>
             
@@ -67,7 +68,7 @@ function App() {
               <AllTrips />
             </Route>
 
-            <Route path="/" >
+            <Route exact path="/">
               <Home/>  
               <CountryTrips />
             </Route>               
