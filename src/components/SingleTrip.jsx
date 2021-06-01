@@ -1,7 +1,6 @@
 import React, { useEffect, useContext, useState } from "react";
 import {
   PlanningContext,
-  getlikedItems,
   addToLikedItems,
   dltFromLikedItems,
 } from "../store.js";
@@ -14,15 +13,19 @@ import Notification from "./Notification.jsx";
 export default function SingleTrip({ items, selectedTrip, onDeepLink }) {
   const { store, dispatch } = useContext(PlanningContext);
   let { tripId } = useParams();
-  const { likedItems } = store;
   const [show, setShow] = useState(false);
   const [itemMsg, setItemMsg] = useState({});
+  const [value, setValue] = useState(0); // integer state
+
+  // function useForceUpdate() {
+  //   return () => setValue((value) => value + 1); // update the state to force render
+  // }
 
   useEffect(() => {
     if (!selectedTrip) {
       onDeepLink(Number(tripId));
     }
-  }, [show]);
+  }, []);
 
   if (!selectedTrip) {
     return (
@@ -88,6 +91,7 @@ export default function SingleTrip({ items, selectedTrip, onDeepLink }) {
                           setItemMsg(item);
                         }
                         setToast(true);
+                        // setValue((value) => value + 1);
                       }}
                     />
                   </Card.Header>
