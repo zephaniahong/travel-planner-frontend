@@ -246,3 +246,9 @@ export function dltFromLikedItems(dispatch, itemId, userId=19) {
       dispatch(dltFromLikeItemsAction(res.data));
   });
 };
+
+export function login(email, password){
+  axios.post(REACT_APP_BACKEND_URL + '/login', {email, password}).then((result)=> {
+    console.log(result.data)
+  })
+}
