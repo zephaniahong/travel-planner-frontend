@@ -225,8 +225,8 @@ export function getlikedItems(dispatch, userId=19) {
   });
 };
 
-export function getTripItems(dispatch, tripId) {
-  axios.get(REACT_APP_BACKEND_URL + `/get-items/${tripId}`,)
+export function getTripItems(dispatch, tripId, userId=19) {
+  axios.get(REACT_APP_BACKEND_URL + `/get-items/${tripId}/${userId}`,)
     .then((result)=> {
       dispatch(getItemsAction(result.data))
   })
