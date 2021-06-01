@@ -18,7 +18,7 @@ import Login from './components/Login.jsx'
 
 // Command to run (everytime front end changes): `REACT_APP_BACKEND_URL='https://protected-garden-34701.herokuapp.com' npm run build`
 const REACT_APP_BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3004';
-
+axios.defaults.withCredentials = true;
 function App() {
   const [trips, setTrips] = useState([]);
   const [items, setItems] = useState([]);
