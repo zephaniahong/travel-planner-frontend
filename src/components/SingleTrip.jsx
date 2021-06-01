@@ -24,7 +24,7 @@ export default function SingleTrip({ items, selectedTrip, onDeepLink }) {
       onDeepLink(Number(tripId));
     }
     getlikedItems(dispatch); // get all user liked items for this trip
-  }, []);
+  }, [show]);
 
   // See if item that is to be clicked is in liked items.
   const likedIds = likedItems.map((item) => item.id);
