@@ -188,6 +188,11 @@ export function getTrips(dispatch) {
     .then(res => {
       dispatch(getTripsAction(res.data));
     })
+
+  // axios.get(REACT_APP_BACKEND_URL + `/get-items/${tripId}`,)
+  //     .then((result)=> {
+  //       dispatch(getItemsAction(result.data))
+  //     })
 };
 
 export function getUserTrips(dispatch) {

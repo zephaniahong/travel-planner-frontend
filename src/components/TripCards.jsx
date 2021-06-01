@@ -16,17 +16,21 @@ const TripCards = ({
   hotel,
   tripId,
   type,
+  country,
   city,
   startDate,
   endDate,
   totalCost,
   stars,
+  userName,
 }) => {
   return (
     <div>
       <Card className="mb-4">
         <Card.Header>
-          <Card.Title className="lead mt-2">{hotel}</Card.Title>
+          <Card.Title className="lead mt-2">
+            {userName} - {country}
+          </Card.Title>
           {<TripRating stars={stars} />}
           <Nav variant="pills" defaultActiveKey="#first">
             <Nav.Item>

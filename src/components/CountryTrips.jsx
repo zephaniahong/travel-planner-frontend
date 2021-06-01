@@ -86,6 +86,7 @@ const CountryTrips = () => {
                   key={trip.id.toString()}
                   tripId={trip.id}
                   hotel={trip.hotel}
+                  country={trip.country}
                   type={trip.tripType}
                   city={trip.city}
                   startDate={trip.startDate}
@@ -96,6 +97,7 @@ const CountryTrips = () => {
                       ? calcAvgStars(trip.reviews, trip.reviews.length)
                       : 0
                   }
+                  userName={trip.user.name}
                 />
               );
             })
@@ -106,6 +108,7 @@ const CountryTrips = () => {
                   tripId={trip.id}
                   hotel={trip.hotel}
                   type={trip.tripType}
+                  country={trip.country}
                   city={trip.city}
                   startDate={trip.startDate}
                   endDate={trip.endDate}
@@ -115,6 +118,7 @@ const CountryTrips = () => {
                       ? calcAvgStars(trip.reviews, trip.reviews.length)
                       : 0
                   }
+                  userName={trip.user.name}
                 />
               );
             })}
