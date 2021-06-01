@@ -187,16 +187,11 @@ export function getTrips(dispatch) {
   axios.get(`${REACT_APP_BACKEND_URL}/gettrips`)
     .then(res => {
       dispatch(getTripsAction(res.data));
-    })
-
-  // axios.get(REACT_APP_BACKEND_URL + `/get-items/${tripId}`,)
-  //     .then((result)=> {
-  //       dispatch(getItemsAction(result.data))
-  //     })
+  });
 };
 
-export function getUserTrips(dispatch) {
-  axios.get(`${REACT_APP_BACKEND_URL}/usertrips`)
+export function getUserTrips(dispatch, userId=19) {
+  axios.get(`${REACT_APP_BACKEND_URL}/usertrips/${userId}`)
     .then((res) => {
       dispatch(getUserTripsAction(res.data))
   });
@@ -222,9 +217,9 @@ export function newTrip(dispatch, setTripId) {
   })
 };
 
-export function getlikedItems(dispatch) {
+export function getlikedItems(dispatch, userId=19) {
   // TODO: Add /:userId parameter once Login Page is created.
-  axios.get(REACT_APP_BACKEND_URL + '/get-liked-items')
+  axios.get(REACT_APP_BACKEND_URL + `/get-liked-items/${userId}`)
     .then((result)=> {
     dispatch(getlikedItemsAction(result.data))
   });

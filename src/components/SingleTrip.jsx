@@ -12,7 +12,6 @@ import HeartIcon from "./HeartIcon.jsx";
 import Notification from "./Notification.jsx";
 
 export default function SingleTrip({ items, selectedTrip, onDeepLink }) {
-  console.log("============ SingleTrip rendering! ============ ");
   const { store, dispatch } = useContext(PlanningContext);
   let { tripId } = useParams();
   const { likedItems } = store;
@@ -26,7 +25,6 @@ export default function SingleTrip({ items, selectedTrip, onDeepLink }) {
     getlikedItems(dispatch); // get all user liked items for this trip
   }, [show]);
 
-  // See if item that is to be clicked is in liked items.
   const likedIds = likedItems.map((item) => item.id);
 
   if (!selectedTrip) {
@@ -92,7 +90,6 @@ export default function SingleTrip({ items, selectedTrip, onDeepLink }) {
                           dltFromLikedItems(dispatch, item.id);
                           setItemMsg(item);
                         }
-
                         setToast(true);
                       }}
                     />
