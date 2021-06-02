@@ -40,6 +40,7 @@ const GoogleSearch = () => {
   return (
     <Combobox>
       <ComboboxInput
+        className="mb-2"
         value={value}
         onChange={(e) => {
           setValue(e.target.value);
@@ -49,7 +50,7 @@ const GoogleSearch = () => {
       />
       {status === "OK" &&
         data.map(({ id, structured_formatting, types }) => (
-          <div className="card" style={{ width: "18rem" }} key={id}>
+          <div className="card mb-2" style={{ width: "18rem" }} key={id}>
             <div className="card-body">
               <h5 className="card-title">{structured_formatting.main_text}</h5>
               <p className="card-text">

@@ -15,7 +15,7 @@ export default function TripPlanningPage() {
   }, []);
   const filteredLikedItems = likedItems.filter((item) => item.type === type);
   const displayLikedItems = filteredLikedItems.map((item) => (
-    <div className="card" style={{ width: "18rem" }} key={item.id}>
+    <div className="card mb-2" style={{ width: "18rem" }} key={item.id}>
       <div className="card-body">
         <h5 className="card-title">{item.name}</h5>
         <p className="card-text">{item.address}</p>
@@ -34,7 +34,20 @@ export default function TripPlanningPage() {
     return (
       <React.Fragment>
         <SideBar>
-          <button onClick={() => setSearch("liked")}>Liked Items</button>
+          <div>
+            <button
+              className="btn btn-primary mb-5"
+              onClick={() => setSearch("liked")}
+            >
+              Liked Items
+            </button>
+            <button
+              className="btn btn-primary mb-5"
+              onClick={() => setSearch("google")}
+            >
+              Google Search
+            </button>
+          </div>
           <GoogleSearch />
         </SideBar>
         <UserItems />
@@ -44,12 +57,38 @@ export default function TripPlanningPage() {
     return (
       <React.Fragment>
         <SideBar>
-          <button className="d-block" onClick={() => setSearch("google")}>
-            Google Search
+          <div>
+            <button
+              className="btn btn-primary mb-5"
+              onClick={() => setSearch("liked")}
+            >
+              Liked Items
+            </button>
+            <button
+              className="btn btn-primary mb-5"
+              onClick={() => setSearch("google")}
+            >
+              Google Search
+            </button>
+          </div>
+          <button
+            className="btn btn-secondary mb-2"
+            onClick={() => setType("food")}
+          >
+            Food
           </button>
-          <button onClick={() => setType("food")}>Food</button>
-          <button onClick={() => setType("sites")}>Sites</button>
-          <button onClick={() => setType("activities")}>Activities</button>
+          <button
+            className="btn btn-secondary mb-2"
+            onClick={() => setType("sites")}
+          >
+            Sites
+          </button>
+          <button
+            className="btn btn-secondary mb-2"
+            onClick={() => setType("activities")}
+          >
+            Activities
+          </button>
           {displayLikedItems}
         </SideBar>
         <UserItems />

@@ -29,10 +29,19 @@ const UserItems = () => {
     </div>
   ));
   return (
-    <div className="row">
-      <div className="col">{sites}</div>
-      <div className="col">{food}</div>
-      <div className="col">{activities}</div>
+    <div className="row userItems">
+      <div className="col">
+        <h2>Sites</h2>
+        {sites}
+      </div>
+      <div className="col">
+        <h2>Food</h2>
+        {food}
+      </div>
+      <div className="col">
+        <h2>Activities</h2>
+        {activities}
+      </div>
     </div>
   );
 };
