@@ -1,17 +1,19 @@
 import React, { useContext, useState } from "react";
 import { Typeahead } from "react-bootstrap-typeahead";
 import "react-bootstrap-typeahead/css/Typeahead.css";
+import classes from "./countrysearch.module.css";
 import {
   PlanningContext,
   setCountryAction,
   setHighlightAction,
   setLatLngAction,
+  setShow,
 } from "../store";
 import countries from "./countries";
 import worldMapJson from "./worldMapJson";
 
 const CountrySearch = ({ getGeocode, getLatLng, panTo }) => {
-  const { store, dispatch } = useContext(PlanningContext);
+  const { dispatch } = useContext(PlanningContext);
   const [searchedCountry, setSearchedCountry] = useState(null);
 
   // set chosen country in store
@@ -39,10 +41,10 @@ const CountrySearch = ({ getGeocode, getLatLng, panTo }) => {
   };
 
   return (
-    <div>
+    <>
       <Typeahead
         id="searchbar"
-        className="form"
+        className={`form ${classes.inputBox}`}
         onChange={(input) => {
           setSearchedCountry(input[0]);
           highlightCountry(input);
@@ -50,15 +52,16 @@ const CountrySearch = ({ getGeocode, getLatLng, panTo }) => {
         options={countries}
       />
       <button
-        className="btn btn-secondary ml-2 mt-3"
+        className="btn btn-secondary"
         onClick={() => {
           handleSubmit();
           getLocationInfo();
+          dispatch(setShow(true));
         }}
       >
         Submit
       </button>
-    </div>
+    </>
   );
 };
 

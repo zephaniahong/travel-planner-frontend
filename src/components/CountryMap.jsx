@@ -46,7 +46,7 @@ export default function CountryMap({ filtered }) {
   if (!isLoaded) return "Loading Maps";
 
   return (
-    <div>
+    <>
       {!country &&
         ReactDOM.createPortal(
           <CountrySearch
@@ -91,6 +91,6 @@ export default function CountryMap({ filtered }) {
           </GoogleMap>
         </div>
       )}
-    </div>
+    </>
   );
 }

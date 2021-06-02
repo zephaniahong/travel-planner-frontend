@@ -9,7 +9,7 @@ const Home = () => {
   if (store.country === null) {
     return (
       <div>
-        <div id="search-bar"></div>
+        <div className="w-50 d-flex" id="search-bar"></div>
         <WorldMap />
       </div>
     );

@@ -10,7 +10,7 @@ export default function Login() {
 
   const handleSubmit = () => {
     login(email, password);
-    history.push("/createtrip");
+    history.push("/");
   };
 
   return (

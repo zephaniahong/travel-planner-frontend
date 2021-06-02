@@ -9,10 +9,10 @@ const Map = styled.div`
 
   svg {
     stroke: #fff;
-
+    max-height: 650px;
     path {
       fill: #a82b2b;
-      cursor: pointer;
+      // cursor: pointer;
       outline: none;
 
       // When a layer is hovered
@@ -20,10 +20,10 @@ const Map = styled.div`
         fill: rgba(168, 43, 43, 0.83);
       }
 
-      // When a layer is focused.
-      &:focus {
-        fill: rgba(168, 43, 43, 0.6);
-      }
+      // // When a layer is focused.
+      // &:focus {
+      //   fill: rgba(168, 43, 43, 0.6);
+      // }
 
       // When a layer is 'selected' (via currentLayers prop).
       &[aria-current="true"] {
@@ -55,9 +55,9 @@ const WorldMap = (props) => {
           layerProps={layerProps}
           currentLayers={highlightedCountry}
         />
+        <p>Hovered: {hovered && <code>{hovered}</code>}</p>
+        {/* <p>Clicked: {clicked && <code>{clicked}</code>}</p> */}
       </Map>
-      <p>Hovered: {hovered && <code>{hovered}</code>}</p>
-      <p>Clicked: {clicked && <code>{clicked}</code>}</p>
     </React.Fragment>
   );
 };

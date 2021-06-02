@@ -26,7 +26,8 @@ const LogoRotate = styled.div`
 `;
 
 export default function NavBar() {
-  const { dispatch } = useContext(PlanningContext);
+  const { store, dispatch } = useContext(PlanningContext);
+  const { show } = store;
 
   // set chosen country as NULL in store, to re-render worldmap.
   function handleSubmit() {

@@ -8,7 +8,8 @@ export const initialState ={
   userTrips: [],
   tripId: null,
   items: {food:[], activities: [], sites: []},
-  likedItems: []
+  likedItems: [],
+  show: false
 }
 
 
@@ -31,6 +32,9 @@ export function planningReducer(state, action) {
 
     case SET_TRIP_ID:
       return {...state, tripId: action.payload}
+    
+    case SET_SHOW:
+      return {...state, show: action.payload}
 
     case GET_ITEMS:
       let food= []
@@ -97,6 +101,7 @@ const ADD_ITEM = 'ADD_ITEM';
 const GET_LIKED_ITEMS = 'GET_LIKED_ITEMS';
 const ADD_TO_LIKED_ITEMS = 'ADD_TO_LIKED_ITEMS';
 const DLT_FROM_LIKED_ITEMS = 'DLT_FROM_LIKED_ITEMS';
+const SET_SHOW = 'SET_SHOW'
 
 // action functions
 export function setCountryAction(country) {
@@ -175,6 +180,13 @@ export function dltFromLikeItemsAction(item) {
     payload: item,
   }
 };
+
+export function setShow(bool) {
+  return{
+    type: SET_SHOW,
+    payload: bool
+  }
+}
 
 
 
