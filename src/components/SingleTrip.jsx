@@ -155,7 +155,21 @@ export default function SingleTrip({
                   style={{ width: "18rem" }}
                   className="mb-2"
                 >
-                  <Card.Header></Card.Header>
+                  <Card.Header>
+                    <HeartIcon
+                      heartColour={item.liked ? "red" : "grey"}
+                      handleClick={() => {
+                        if (!item.liked) {
+                          addToLikedItems(dispatch, item.id);
+                          setItemMsg(item);
+                        } else if (item.liked) {
+                          dltFromLikedItems(dispatch, item.id);
+                          setItemMsg(item);
+                        }
+                        setToast(true);
+                      }}
+                    />
+                  </Card.Header>
                   <Card.Body>
                     <Card.Title>{item.name} </Card.Title>
                     <Card.Text>{item.address}</Card.Text>
