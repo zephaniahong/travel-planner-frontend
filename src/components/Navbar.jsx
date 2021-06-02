@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import ProfileIcon from "./ProfileIcon.jsx";
 import styled, { keyframes } from "styled-components";
+import { useHistory } from "react-router-dom";
 
 const rotate = keyframes`
   from {
@@ -27,11 +28,15 @@ const LogoRotate = styled.div`
 
 export default function NavBar() {
   const { store, dispatch } = useContext(PlanningContext);
-  const { show } = store;
+  const { country } = store;
+  const history = useHistory();
+
+  console.log("country ------>", country);
 
   // set chosen country as NULL in store, to re-render worldmap.
   function handleSubmit() {
     dispatch(setCountryAction(null));
+    history.push("/");
   }
 
   const createTrip = () => {
@@ -40,20 +45,18 @@ export default function NavBar() {
   return (
     <div>
       <Navbar collapseOnSelect bg="dark" expand="lg" variant="dark">
-        <Link to="/">
-          <Navbar.Brand className="navbar-brand text-dark px-3">
-            <LogoRotate>
-              <button className="btn btn-sm px-0" onClick={handleSubmit}>
-                <img
-                  src={"../travel-planner-logo.png"}
-                  width="32"
-                  height="32"
-                  alt="Travel Planner"
-                />
-              </button>
-            </LogoRotate>
-          </Navbar.Brand>
-        </Link>
+        <Navbar.Brand className="navbar-brand text-dark px-3">
+          <LogoRotate>
+            <button className="btn btn-sm px-0" onClick={handleSubmit}>
+              <img
+                src={"../travel-planner-logo.png"}
+                width="32"
+                height="32"
+                alt="Travel Planner"
+              />
+            </button>
+          </LogoRotate>
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
