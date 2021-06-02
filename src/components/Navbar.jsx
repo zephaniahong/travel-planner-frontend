@@ -31,8 +31,6 @@ export default function NavBar() {
   const { country } = store;
   const history = useHistory();
 
-  console.log("country ------>", country);
-
   // set chosen country as NULL in store, to re-render worldmap.
   function handleSubmit() {
     dispatch(resetCountryAction(null));
@@ -42,6 +40,7 @@ export default function NavBar() {
   const createTrip = () => {
     newTrip(dispatch, setTripIdAction);
   };
+
   return (
     <div>
       <Navbar collapseOnSelect bg="dark" expand="lg" variant="dark">
