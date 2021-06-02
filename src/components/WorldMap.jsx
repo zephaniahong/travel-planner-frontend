@@ -5,19 +5,19 @@ import React, { useState, useContext } from "react";
 import { PlanningContext } from "../store";
 
 const Map = styled.div`
-  margin: 1rem auto;
+  margin: 2.5rem auto;
 
   svg {
     stroke: #fff;
-    max-height: 650px;
+    max-height: 700px;
     path {
-      fill: #a82b2b;
+      fill: #687980;
       // cursor: pointer;
       outline: none;
 
       // When a layer is hovered
       &:hover {
-        fill: rgba(168, 43, 43, 0.83);
+        fill: #a0937d;
       }
 
       // // When a layer is focused.
@@ -27,7 +27,7 @@ const Map = styled.div`
 
       // When a layer is 'selected' (via currentLayers prop).
       &[aria-current="true"] {
-        fill: #382ba8;
+        fill: #a0937d;
       }
     }
   }
@@ -55,7 +55,10 @@ const WorldMap = (props) => {
           layerProps={layerProps}
           currentLayers={highlightedCountry}
         />
-        <p>Hovered: {hovered && <code>{hovered}</code>}</p>
+        <p className="text-center">
+          Hovered: <br />
+          {hovered && <code className="text-secondary">{hovered}</code>}
+        </p>
         {/* <p>Clicked: {clicked && <code>{clicked}</code>}</p> */}
       </Map>
     </React.Fragment>

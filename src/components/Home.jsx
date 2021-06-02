@@ -13,7 +13,9 @@ const Home = () => {
           className="w-100 d-flex justify-content-center mt-4"
           id="search-bar"
         ></div>
-        <WorldMap />
+        <div className="w-100 d-flex justify-content-center mt-4">
+          <WorldMap />
+        </div>
       </div>
     );
   } else {
