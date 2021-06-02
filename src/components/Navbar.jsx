@@ -64,7 +64,7 @@ export default function NavBar() {
           <Nav className="ml-auto">
             <Link
               onClick={createTrip}
-              className="btn btn-outline-success mx-2 my-1"
+              className="btn btn-outline-light mx-2 my-1"
               to="/createtrip"
             >
               + Create Trip

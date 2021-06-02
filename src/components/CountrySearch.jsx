@@ -52,7 +52,7 @@ const CountrySearch = ({ getGeocode, getLatLng, panTo }) => {
         options={countries}
       />
       <button
-        className="btn btn-success ml-2"
+        className="btn btn-success ml-2 px-4"
         onClick={() => {
           handleSubmit();
           getLocationInfo();
