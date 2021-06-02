@@ -2,8 +2,6 @@ import React from "react";
 import { Row, Col, Toast } from "react-bootstrap";
 
 export default function Notification({ show, setToast, itemMsg }) {
-  console.log("ITEM MSG", itemMsg);
-
   return (
     <Row>
       <Col>
@@ -11,7 +9,7 @@ export default function Notification({ show, setToast, itemMsg }) {
           className="toast-add"
           onClose={() => setToast(false)}
           show={show}
-          delay={1800}
+          delay={1100}
           autohide
         >
           <Toast.Header>

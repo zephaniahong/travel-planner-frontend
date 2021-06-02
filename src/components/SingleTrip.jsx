@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState, useCallback } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import {
   PlanningContext,
   addToLikedItems,
@@ -10,10 +10,16 @@ import { Link } from "react-router-dom";
 import HeartIcon from "./HeartIcon.jsx";
 import Notification from "./Notification.jsx";
 
-export default function SingleTrip({ items, selectedTrip, onDeepLink }) {
+export default function SingleTrip({
+  items,
+  selectedTrip,
+  onDeepLink,
+  show,
+  setToast,
+}) {
   const { store, dispatch } = useContext(PlanningContext);
   let { tripId } = useParams();
-  const [show, setShow] = useState(false);
+  // const [show, setShow] = useState(false);
   const [itemMsg, setItemMsg] = useState({});
 
   useEffect(() => {
@@ -33,10 +39,6 @@ export default function SingleTrip({ items, selectedTrip, onDeepLink }) {
       </Container>
     );
   }
-
-  const setToast = (bool) => {
-    setShow(bool);
-  };
 
   return (
     <Container fluid>
@@ -83,7 +85,7 @@ export default function SingleTrip({ items, selectedTrip, onDeepLink }) {
                           setItemMsg(item);
                         } else if (item.liked) {
                           dltFromLikedItems(dispatch, item.id);
-                          setItemMsg({ ...item, message: "REMOVED" });
+                          setItemMsg(item);
                         }
                         setToast(true);
                       }}

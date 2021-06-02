@@ -25,6 +25,7 @@ function App() {
   const [items, setItems] = useState([]);
   const [selectedTripId, setSelectedTrip] = useState();
   const selectedTrip = trips.find(trip => trip.id === selectedTripId); // Set trip by tripId, not by array position.
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
     axios.get(`${REACT_APP_BACKEND_URL}/gettrips`)
@@ -37,14 +38,17 @@ function App() {
       axios.get(`${REACT_APP_BACKEND_URL}/get-items/${selectedTripId}/${userId}`,)
         .then((res)=> {
           setItems(res.data);
-          console.log("See get items --------\n", res.data)
       });
     }
-  }, [selectedTripId]);
+  }, [selectedTripId, show]);
 
   const onDeepLink = (tripId) => {
     setSelectedTrip(tripId);
   }
+
+  const setToast = (bool) => {
+    setShow(bool);
+  };
 
   return (
     <PlanningProvider>
@@ -63,7 +67,7 @@ function App() {
             </Route>
 
             <Route path="/trips/:tripId">
-              <SingleTrip items={items} selectedTrip={selectedTrip} onDeepLink={onDeepLink} /> 
+              <SingleTrip items={items} selectedTrip={selectedTrip} onDeepLink={onDeepLink} show={show} setToast={setToast} /> 
             </Route>  
 
             <Route path="/alltrips">

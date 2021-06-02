@@ -210,10 +210,10 @@ export function newTrip(dispatch, setTripId) {
       const tripId = result.data.tripId
       dispatch(setTripId(tripId))
 
-      axios.get(REACT_APP_BACKEND_URL + `/get-items/${tripId}`,)
+    axios.get(REACT_APP_BACKEND_URL + `/get-trip-items/${tripId}`)
       .then((result)=> {
         dispatch(getItemsAction(result.data))
-      })
+    })
   })
 };
 
