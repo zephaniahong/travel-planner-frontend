@@ -8,14 +8,13 @@ const Home = () => {
   // only render home page if user has not selected country
   if (store.country === null) {
     return (
-      <div>
+      <div className="text-center">
         <div
           className="w-100 d-flex justify-content-center mt-4"
           id="search-bar"
         ></div>
-        <div className="w-100 d-flex justify-content-center mt-4">
-          <WorldMap />
-        </div>
+
+        <WorldMap />
       </div>
     );
   } else {
