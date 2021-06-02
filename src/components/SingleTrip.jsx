@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useEffect, useContext, useState, useCallback } from "react";
 import {
   PlanningContext,
   addToLikedItems,
@@ -15,11 +15,6 @@ export default function SingleTrip({ items, selectedTrip, onDeepLink }) {
   let { tripId } = useParams();
   const [show, setShow] = useState(false);
   const [itemMsg, setItemMsg] = useState({});
-  const [value, setValue] = useState(0); // integer state
-
-  // function useForceUpdate() {
-  //   return () => setValue((value) => value + 1); // update the state to force render
-  // }
 
   useEffect(() => {
     if (!selectedTrip) {
@@ -88,10 +83,9 @@ export default function SingleTrip({ items, selectedTrip, onDeepLink }) {
                           setItemMsg(item);
                         } else if (item.liked) {
                           dltFromLikedItems(dispatch, item.id);
-                          setItemMsg(item);
+                          setItemMsg({ ...item, message: "REMOVED" });
                         }
                         setToast(true);
-                        // setValue((value) => value + 1);
                       }}
                     />
                   </Card.Header>
