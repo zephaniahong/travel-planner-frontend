@@ -3,7 +3,7 @@ import {
   PlanningContext,
   newTrip,
   setTripIdAction,
-  setCountryAction,
+  resetCountryAction,
 } from "../store";
 import { Link } from "react-router-dom";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
@@ -35,7 +35,7 @@ export default function NavBar() {
 
   // set chosen country as NULL in store, to re-render worldmap.
   function handleSubmit() {
-    dispatch(setCountryAction(null));
+    dispatch(resetCountryAction(null));
     history.push("/");
   }
 
