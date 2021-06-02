@@ -50,7 +50,6 @@ function App() {
     setShow(bool);
   };
 
-// console.log("SEE ITEMS", items);
   
   return (
     <PlanningProvider>

@@ -3,10 +3,10 @@ import {
   PlanningContext,
   addToLikedItems,
   dltFromLikedItems,
+  resetCountryAction,
 } from "../store.js";
 import { useParams } from "react-router-dom";
 import { Container, Row, Col, Button, Card } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import HeartIcon from "./HeartIcon.jsx";
 import Notification from "./Notification.jsx";
 import { useHistory } from "react-router-dom";
@@ -19,6 +19,7 @@ export default function SingleTrip({
   setToast,
 }) {
   const { store, dispatch } = useContext(PlanningContext);
+  const { country } = store;
   let { tripId } = useParams();
   const [itemMsg, setItemMsg] = useState({});
   const history = useHistory();
@@ -42,10 +43,9 @@ export default function SingleTrip({
   }
 
   const handleBackBtnClick = () => {
+    dispatch(resetCountryAction(null));
     history.push("/");
   };
-
-  console.log("SEE ITEMS!!", items);
 
   return (
     <Container fluid>
