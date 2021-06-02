@@ -25,7 +25,7 @@ export default function SideBar({ children }) {
 
   return (
     <>
-      <header className="sidebar-btn">
+      <header className="sidebar-btn mt-2">
         <PlusCircleIcon setShowNav={setShowNav} showNav={showNav} />
       </header>
 
@@ -35,7 +35,7 @@ export default function SideBar({ children }) {
             <StyledNavItem>
               <h5 className="lead">Filters</h5>
             </StyledNavItem>
-            <div>{children}</div>
+            <div className="mt-3">{children}</div>
           </StyledNavList>
         </div>
       </div>
