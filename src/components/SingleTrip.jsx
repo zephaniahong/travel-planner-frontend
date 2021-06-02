@@ -1,7 +1,6 @@
 import React, { useEffect, useContext, useState } from "react";
 import {
   PlanningContext,
-  getlikedItems,
   addToLikedItems,
   dltFromLikedItems,
 } from "../store.js";
@@ -11,23 +10,23 @@ import { Link } from "react-router-dom";
 import HeartIcon from "./HeartIcon.jsx";
 import Notification from "./Notification.jsx";
 
-export default function SingleTrip({ items, selectedTrip, onDeepLink }) {
-  console.log("============ SingleTrip rendering! ============ ");
+export default function SingleTrip({
+  items,
+  selectedTrip,
+  onDeepLink,
+  show,
+  setToast,
+}) {
   const { store, dispatch } = useContext(PlanningContext);
   let { tripId } = useParams();
-  const { likedItems } = store;
-  const [show, setShow] = useState(false);
+  // const [show, setShow] = useState(false);
   const [itemMsg, setItemMsg] = useState({});
 
   useEffect(() => {
     if (!selectedTrip) {
       onDeepLink(Number(tripId));
     }
-    getlikedItems(dispatch); // get all user liked items for this trip
-  }, [show]);
-
-  // See if item that is to be clicked is in liked items.
-  const likedIds = likedItems.map((item) => item.id);
+  }, []);
 
   if (!selectedTrip) {
     return (
@@ -40,10 +39,6 @@ export default function SingleTrip({ items, selectedTrip, onDeepLink }) {
       </Container>
     );
   }
-
-  const setToast = (bool) => {
-    setShow(bool);
-  };
 
   return (
     <Container fluid>
@@ -83,16 +78,15 @@ export default function SingleTrip({ items, selectedTrip, onDeepLink }) {
                 >
                   <Card.Header>
                     <HeartIcon
-                      heartColour={likedIds.includes(item.id) ? "red" : "grey"}
+                      heartColour={item.liked ? "red" : "grey"}
                       handleClick={() => {
-                        if (!likedIds.includes(item.id)) {
+                        if (!item.liked) {
                           addToLikedItems(dispatch, item.id);
                           setItemMsg(item);
-                        } else if (likedIds.includes(item.id)) {
+                        } else if (item.liked) {
                           dltFromLikedItems(dispatch, item.id);
                           setItemMsg(item);
                         }
-
                         setToast(true);
                       }}
                     />
@@ -119,16 +113,15 @@ export default function SingleTrip({ items, selectedTrip, onDeepLink }) {
                 >
                   <Card.Header>
                     <HeartIcon
-                      heartColour={likedIds.includes(item.id) ? "red" : "grey"}
+                      heartColour={item.liked ? "red" : "grey"}
                       handleClick={() => {
-                        if (!likedIds.includes(item.id)) {
+                        if (!item.liked) {
                           addToLikedItems(dispatch, item.id);
                           setItemMsg(item);
-                        } else if (likedIds.includes(item.id)) {
+                        } else if (item.liked) {
                           dltFromLikedItems(dispatch, item.id);
                           setItemMsg(item);
                         }
-
                         setToast(true);
                       }}
                     />

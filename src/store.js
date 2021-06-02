@@ -199,11 +199,11 @@ export function getTrips(dispatch) {
   axios.get(`${REACT_APP_BACKEND_URL}/gettrips`)
     .then(res => {
       dispatch(getTripsAction(res.data));
-    })
+  });
 };
 
-export function getUserTrips(dispatch) {
-  axios.get(`${REACT_APP_BACKEND_URL}/usertrips`)
+export function getUserTrips(dispatch, userId=19) {
+  axios.get(`${REACT_APP_BACKEND_URL}/usertrips/${userId}`)
     .then((res) => {
       dispatch(getUserTripsAction(res.data))
   });
@@ -222,23 +222,23 @@ export function newTrip(dispatch, setTripId) {
       const tripId = result.data.tripId
       dispatch(setTripId(tripId))
 
-      axios.get(REACT_APP_BACKEND_URL + `/get-items/${tripId}`,)
+    axios.get(REACT_APP_BACKEND_URL + `/get-trip-items/${tripId}`)
       .then((result)=> {
         dispatch(getItemsAction(result.data))
-      })
+    })
   })
 };
 
-export function getlikedItems(dispatch) {
+export function getlikedItems(dispatch, userId=19) {
   // TODO: Add /:userId parameter once Login Page is created.
-  axios.get(REACT_APP_BACKEND_URL + '/get-liked-items')
+  axios.get(REACT_APP_BACKEND_URL + `/get-liked-items/${userId}`)
     .then((result)=> {
     dispatch(getlikedItemsAction(result.data))
   });
 };
 
-export function getTripItems(dispatch, tripId) {
-  axios.get(REACT_APP_BACKEND_URL + `/get-items/${tripId}`,)
+export function getTripItems(dispatch, tripId, userId=19) {
+  axios.get(REACT_APP_BACKEND_URL + `/get-items/${tripId}/${userId}`,)
     .then((result)=> {
       dispatch(getItemsAction(result.data))
   })

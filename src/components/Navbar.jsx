@@ -45,10 +45,10 @@ export default function NavBar() {
             <LogoRotate>
               <button className="btn btn-sm px-0" onClick={handleSubmit}>
                 <img
-                  src="./travel-planner-logo.png"
+                  src={"../travel-planner-logo.png"}
                   width="32"
                   height="32"
-                  alt="Travel Planner Brand"
+                  alt="Travel Planner"
                 />
               </button>
             </LogoRotate>

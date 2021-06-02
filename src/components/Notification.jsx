@@ -9,7 +9,7 @@ export default function Notification({ show, setToast, itemMsg }) {
           className="toast-add"
           onClose={() => setToast(false)}
           show={show}
-          delay={2000}
+          delay={1100}
           autohide
         >
           <Toast.Header>
@@ -18,10 +18,14 @@ export default function Notification({ show, setToast, itemMsg }) {
               className="rounded mr-2"
               alt=""
             />
-            <strong className="mr-auto">❤️ Saved</strong>
+            <strong className="mr-auto">
+              {!itemMsg.liked ? "❤️ Saved" : "❌ Removed"}
+            </strong>
           </Toast.Header>
           <Toast.Body>
-            {itemMsg.name} is now a liked {itemMsg.type} item!
+            {itemMsg.name} has been{" "}
+            {!itemMsg.liked ? "addded to " : "removed from "}
+            liked {itemMsg.type} items!
           </Toast.Body>
         </Toast>
       </Col>
