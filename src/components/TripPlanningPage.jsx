@@ -9,10 +9,12 @@ export default function TripPlanningPage() {
   const { likedItems, tripId } = store;
   const [search, setSearch] = useState("google");
   const [type, setType] = useState("food");
+
   useEffect(() => {
     // get all liked items from db for this trip
     getlikedItems(dispatch);
   }, []);
+
   const filteredLikedItems = likedItems.filter((item) => item.type === type);
   const displayLikedItems = filteredLikedItems.map((item) => (
     <div className="card mb-2" style={{ width: "18rem" }} key={item.id}>
@@ -30,6 +32,7 @@ export default function TripPlanningPage() {
       </button>
     </div>
   ));
+
   if (search === "google") {
     return (
       <React.Fragment>

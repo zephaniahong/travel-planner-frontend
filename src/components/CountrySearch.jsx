@@ -44,7 +44,7 @@ const CountrySearch = ({ getGeocode, getLatLng, panTo }) => {
     <>
       <Typeahead
         id="searchbar"
-        className={`form ${classes.inputBox}`}
+        className={`form ${classes.inputBox} text-center ml-4`}
         onChange={(input) => {
           setSearchedCountry(input[0]);
           highlightCountry(input);
@@ -52,14 +52,14 @@ const CountrySearch = ({ getGeocode, getLatLng, panTo }) => {
         options={countries}
       />
       <button
-        className="btn btn-secondary"
+        className="btn btn-success ml-2"
         onClick={() => {
           handleSubmit();
           getLocationInfo();
           dispatch(setShow(true));
         }}
       >
-        Submit
+        Search
       </button>
     </>
   );

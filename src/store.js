@@ -243,7 +243,7 @@ export function getTripItems(dispatch, tripId, userId=19) {
       dispatch(getItemsAction(result.data))
   })
 };
-
+      
 export function addToLikedItems(dispatch, itemId, userId=19) {
   axios.post(`${REACT_APP_BACKEND_URL}/addlikeditem/${itemId}/${userId}`)
     .then((res) => {
