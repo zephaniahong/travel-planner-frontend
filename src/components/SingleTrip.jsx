@@ -49,19 +49,20 @@ export default function SingleTrip({
 
   return (
     <Container fluid>
+      <Notification show={show} setToast={setToast} itemMsg={itemMsg} />
       <h1 className="my-3 text-center font-weight-light">items</h1>
       <h2 className="text-center">{selectedTrip.hotel}</h2>
-      <Notification show={show} setToast={setToast} itemMsg={itemMsg} />
       <Row className="mx-3 mb-5"></Row>
       <Row className="mx-3">
         <Col>
-          <h1>Food</h1>
+          <h1 className="text-warning">Food</h1>
           {items
             .filter((item) => item.type === "food")
             .map((item) => {
               return (
                 <Card
                   bg={item.name.toLowerCase()}
+                  border="warning"
                   key={item.id.toString()}
                   style={{ width: "18rem" }}
                   className="mb-2"
@@ -82,7 +83,9 @@ export default function SingleTrip({
                     />
                   </Card.Header>
                   <Card.Body>
-                    <Card.Title>{item.name}</Card.Title>
+                    <Card.Title className="text-warning">
+                      {item.name}
+                    </Card.Title>
                     <Card.Text>{item.address}</Card.Text>
                   </Card.Body>
                 </Card>
@@ -90,13 +93,15 @@ export default function SingleTrip({
             })}
         </Col>
         <Col>
-          <h1>Activities</h1>
+          <h1 className="text-primary">Activities</h1>
           {items
             .filter((item) => item.type === "activities")
             .map((item) => {
               return (
                 <Card
                   bg={item.name.toLowerCase()}
+                  border="primary"
+                  git
                   key={item.id.toString()}
                   style={{ width: "18rem" }}
                   className="mb-2"
@@ -117,7 +122,9 @@ export default function SingleTrip({
                     />
                   </Card.Header>
                   <Card.Body>
-                    <Card.Title>{item.name} </Card.Title>
+                    <Card.Title className="text-primary">
+                      {item.name}{" "}
+                    </Card.Title>
                     <Card.Text>{item.address}</Card.Text>
                   </Card.Body>
                 </Card>
@@ -125,13 +132,14 @@ export default function SingleTrip({
             })}
         </Col>
         <Col>
-          <h1>Sites</h1>
+          <h1 className="text-info">Sites</h1>
           {items
             .filter((item) => item.type === "sites")
             .map((item) => {
               return (
                 <Card
                   bg={item.name.toLowerCase()}
+                  border="info"
                   key={item.id.toString()}
                   style={{ width: "18rem" }}
                   className="mb-2"
@@ -152,7 +160,7 @@ export default function SingleTrip({
                     />
                   </Card.Header>
                   <Card.Body>
-                    <Card.Title>{item.name} </Card.Title>
+                    <Card.Title className="text-info">{item.name} </Card.Title>
                     <Card.Text>{item.address}</Card.Text>
                   </Card.Body>
                 </Card>

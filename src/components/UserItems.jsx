@@ -1,8 +1,11 @@
 import { useContext } from "react";
 import { PlanningContext } from "../store";
+import { Container, Row, Col } from "react-bootstrap";
+
 const UserItems = () => {
   const { store } = useContext(PlanningContext);
   const { items } = store;
+
   let sites, food, activities;
   sites = items.sites.map((site) => (
     <div className="card" style={{ width: "20rem", height: "10rem" }}>
@@ -12,6 +15,7 @@ const UserItems = () => {
       </div>
     </div>
   ));
+
   food = items.food.map((fd) => (
     <div className="card" style={{ width: "20rem", height: "10rem" }}>
       <div className="card-body">
@@ -20,6 +24,7 @@ const UserItems = () => {
       </div>
     </div>
   ));
+
   activities = items.activities.map((activity) => (
     <div className="card" style={{ width: "20rem", height: "10rem" }}>
       <div className="card-body">
@@ -28,21 +33,24 @@ const UserItems = () => {
       </div>
     </div>
   ));
+
   return (
-    <div className="row userItems">
-      <div className="col">
-        <h2>Sites</h2>
-        {sites}
+    <Container>
+      <div className="row userItems mt-5">
+        <Col>
+          <h2 className="text-warning">Food</h2>
+          {food}
+        </Col>
+        <Col>
+          <h2 className="text-primary">Activities</h2>
+          {activities}
+        </Col>
+        <Col>
+          <h2 className="text-info">Sites</h2>
+          {sites}
+        </Col>
       </div>
-      <div className="col">
-        <h2>Food</h2>
-        {food}
-      </div>
-      <div className="col">
-        <h2>Activities</h2>
-        {activities}
-      </div>
-    </div>
+    </Container>
   );
 };
 
