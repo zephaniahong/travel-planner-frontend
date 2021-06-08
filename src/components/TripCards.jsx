@@ -34,7 +34,17 @@ const TripCards = ({
           {<TripRating stars={stars} />}
           <Nav variant="pills" defaultActiveKey="#first">
             <Nav.Item>
-              <Nav.Link href="#first">Info</Nav.Link>
+              <Link
+                to={{
+                  pathname: `trips/${tripId}`,
+                  state: {
+                    from: "root",
+                  },
+                }}
+                className="btn btn-outline-dark ml-2"
+              >
+                View Trip
+              </Link>
             </Nav.Item>
             <Nav.Item className="ml-auto">
               <Nav.Link href="#disabled" disabled>
@@ -50,21 +60,9 @@ const TripCards = ({
           <Card.Title></Card.Title>
           <Card.Text>
             <h5 className="text-capitalize">City: {city}</h5>
-            <h6>Star Point: {hotel}</h6>
+            <h6>Start Point: {hotel}</h6>
             <p>Cost / Day: ${calcAvg(startDate, endDate, totalCost)}</p>
           </Card.Text>
-          {/* This info will be passed to SingleTrip.jsx. */}
-          <Link
-            to={{
-              pathname: `trips/${tripId}`,
-              state: {
-                from: "root",
-              },
-            }}
-            className="btn btn-outline-dark"
-          >
-            View Trip
-          </Link>
         </Card.Body>
       </Card>
     </div>
