@@ -50,8 +50,11 @@ export default function SingleTrip({
   return (
     <Container fluid>
       <Notification show={show} setToast={setToast} itemMsg={itemMsg} />
-      <h1 className="my-3 text-center font-weight-light">items</h1>
-      <h2 className="text-center">{selectedTrip.hotel}</h2>
+      <h1 className="my-3 text-center font-weight-light">Trip Items</h1>
+      <h2 className="text-center lead">
+        Start point: <br />
+        {selectedTrip.hotel}
+      </h2>
       <Row className="mx-3 mb-5"></Row>
       <Row className="mx-3">
         <Col>
