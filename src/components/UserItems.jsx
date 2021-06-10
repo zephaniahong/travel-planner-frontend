@@ -8,12 +8,19 @@ const UserItems = () => {
 
   let sites, food, activities;
   sites = items.sites.map((site) => (
-    <div className="card" style={{ width: "20rem", height: "10rem" }}>
-      <div className="card-body">
-        <h5 className="card-title">{site.name}</h5>
-        <p className="card-text">{site.address}</p>
-      </div>
-    </div>
+    <Card
+      bg={site.name.toLowerCase()}
+      border="info"
+      key={site.id.toString()}
+      style={{ width: "20rem", height: "10rem" }}
+      className="mb-2"
+    >
+      <Card.Header></Card.Header>
+      <Card.Body>
+        <Card.Title className="text-info">{site.name}</Card.Title>
+        <Card.Text>{site.address}</Card.Text>
+      </Card.Body>
+    </Card>
   ));
 
   food = items.food.map((fd) => (
@@ -33,12 +40,19 @@ const UserItems = () => {
   ));
 
   activities = items.activities.map((activity) => (
-    <div className="card" style={{ width: "20rem", height: "10rem" }}>
-      <div className="card-body">
-        <h5 className="card-title">{activity.name}</h5>
-        <p className="card-text">{activity.address}</p>
-      </div>
-    </div>
+    <Card
+      bg={activity.name.toLowerCase()}
+      border="primary"
+      key={activity.id.toString()}
+      style={{ width: "20rem", height: "10rem" }}
+      className="mb-2"
+    >
+      <Card.Header></Card.Header>
+      <Card.Body>
+        <Card.Title className="text-primary">{activity.name}</Card.Title>
+        <Card.Text>{activity.address}</Card.Text>
+      </Card.Body>
+    </Card>
   ));
 
   return (
